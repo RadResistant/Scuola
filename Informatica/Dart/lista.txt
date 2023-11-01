@@ -1,0 +1,6 @@
+void main(){
+  var fissa=List<int>.filled(5, 0);
+  var x=fissa[1];
+  fissa[0]=8;
+  print(fissa.length);
+}

@@ -1,0 +1,13 @@
+.principale{
+	-fx-background-image:url(background-numbers-from-zero-nine-numbers-texture_333900-9341);
+}
+.label{
+	-fx-text-fill:#f7df02;
+}
+.text-field{
+	-fx-background-color:#1ff702;
+}
+.button{
+	-fx-background-color:#02f7e7 ;
+	-fx-text-fill:#f70202 ;
+}
