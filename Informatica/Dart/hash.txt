@@ -1,0 +1,4 @@
+void main(){
+  var telefoni=<String,String>{};
+  telefoni["pluto"]="+390099887766";
+}
