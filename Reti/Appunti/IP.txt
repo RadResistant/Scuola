@@ -1,0 +1,10 @@
+Classe a= 1 byte rete, 3 host
+Classe b = 2 byte rete, 2 host
+Classe c = 3 byte rete, 2 host
+Classe a primo byte < 128 o se il primo bit è 0—------
+Classe b primo byte > 127 ma < 192 o se i primi bit sono 10—-----
+Classe c primo byte > 191 o se i primi bit sono 11—-----
+
+Host se ci sono byte diversi da 0 nella parte Host 
+Rete se nella parte Host i byte sono tutti 0
+Broadcast se i byte nella parte Host sono tutti 255 o i bit sono tutti 1
