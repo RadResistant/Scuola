@@ -1,0 +1,7 @@
+.label, .button, .TextField{
+	-fx-font-size:20px;
+	-fx-text-fill: Blue;
+}
+.principale, .button{
+	-fx-background-color:Violet;
+}

@@ -1,0 +1,21 @@
+#pane{
+	-fx-background-image:url("Background.png");
+}
+#Point{
+	-fx-text-fill:red;
+	-fx-font-weight: bolder;
+}
+#Score{
+	-fx-text-fill:Black;
+	-fx-font-weight: bolder;
+	-fs-font-size: 80px;
+}
+.button{
+    -fx-pref-width: 100px;
+	-fx-pref-height: 40px;
+	-fx-font-size:18;
+	-fx-font-weight: bolder;
+	-fx-background-image: url(BloodDripping.png);
+    -fx-background-size: 80px 40px;
+    -fx-background-position: center;
+}
