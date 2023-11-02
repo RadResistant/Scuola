@@ -1,6 +1,0 @@
-main(){
-  var lista=[1,4];
-  lista.add(9);
-  lista.removeAt(1);
-  print (lista);
-}

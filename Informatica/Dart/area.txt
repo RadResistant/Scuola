@@ -1,6 +1,0 @@
-void main(){
-  var base=10;
-  var altezza=20;
-  var risposta="$base*$altezza";
-  print(risposta);
-}
