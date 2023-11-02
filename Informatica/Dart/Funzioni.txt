@@ -1,7 +1,0 @@
-int area({int base=1,int altezza=1}){
-  return base*altezza;
-}
-void main(){
-  print(area(base:5));
-  print(area(base:5,altezza:4));
-}
