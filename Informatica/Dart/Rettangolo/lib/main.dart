@@ -52,6 +52,7 @@ class _PrincipaleState extends State<Principale> {
                   TextField(
                       controller: _cAltezza
                   ),
+                  Padding(padding: EdgeInsets.all(20)),
                   ElevatedButton(
                       onPressed: _rettangolo,
                       child: const Text('Calcola area+perimetro',style: TextStyle(color: Colors.redAccent,fontSize: 30)),
