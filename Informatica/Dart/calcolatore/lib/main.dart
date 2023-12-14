@@ -7,7 +7,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -24,61 +23,75 @@ class MyHomePage extends StatefulWidget {
 }
 class _MyHomePageState extends State<MyHomePage> {
   final campoDiTesto=TextEditingController();
-  double s=0;
   double inserito=0;
-  var elenco=[];
-  var tipoNumero=[];
-  String numeropn="";
+  List<double> elenco=[0.0,];
+  List<String> separi=["",];
   void piu(){
     inserito=double.parse(campoDiTesto.text);
-    s+=inserito;
-    if(s==0){
-      numeropn="Numero Neutro";
-    }
-    else{
-      if(s>0){
-        numeropn="Numero posistivo";
-      }
-      else{
-        numeropn="Numero negativo";
-      }
-    }
     setState(() {
-      tipoNumero.add("$numeropn");
-      elenco.add("$s");
+      elenco.add(elenco[elenco.length-1]+inserito);
+      separi.add("");
     });
   }
   void meno(){
     inserito=double.parse(campoDiTesto.text);
-    s-=inserito;
-    if(s==0){
-      numeropn="Numero Neutro";
-    }
-    else{
-      if(s>0){
-        numeropn="Numero posistivo";
-      }
-      else{
-        numeropn="Numero negativo";
-      }
-    }
     setState(() {
-      tipoNumero.add("$numeropn");
-      elenco.add("$s");
+      elenco.add(elenco[elenco.length-1]-inserito);
+      separi.add("");
     });
   }
   void c(){
     setState(() {
-
+      elenco.removeRange(0, elenco.length);
+      elenco.add(0);
     });
   }
-  ListTile numeri(context,index) {
+  ListTile separe(context,index){
     return ListTile(
-        title: Text("${elenco[index]}"),
-        subtitle: Text("${tipoNumero[index]} ${elenco[index]}"),
-        leading: Icon(Icons.favorite),
-        tileColor: Colors.yellow
+      title: Text("${separi[index]}",style: TextStyle(fontSize: 0)),
     );
+  }
+  ListTile numeri(context,index) {
+    if(elenco[index]==0){
+      return ListTile(
+          title: Text("${elenco[index]}"),
+          subtitle: Text("Numero neutro ${elenco[index]}"),
+          leading: Icon(Icons.circle),
+          tileColor: Colors.yellow,
+          onLongPress:(){
+            setState(() {
+              elenco.remove(elenco[index]);
+            });
+          }
+      );
+    }
+    else{
+      if(elenco[index]>0){
+        return ListTile(
+            title: Text("${elenco[index]}"),
+            subtitle: Text("Numero positivo ${elenco[index]}"),
+            leading: Icon(Icons.favorite),
+            tileColor: Colors.yellow,
+            onLongPress:(){
+              setState(() {
+                elenco.remove(elenco[index]);
+              });
+            }
+        );
+      }
+      else{
+        return ListTile(
+            title: Text("${elenco[index]}"),
+            leading: Icon(Icons.heart_broken),
+            tileColor: Colors.yellow,
+            onLongPress:(){
+              setState(() {
+                elenco.remove(elenco[index]);
+              });
+            }
+        );
+      }
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -87,13 +100,17 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
               child:Material(
                   color:Colors.orange,
-                  child: ListView.builder(
+                  child: ListView.separated(
+                      separatorBuilder:separe,
                       itemCount:elenco.length,
-                      itemBuilder: numeri
+                      itemBuilder: numeri,
+                      padding: EdgeInsets.all(5)
                   ))
           ),
           TextField(
-              controller: campoDiTesto
+            controller: campoDiTesto,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20),
           ),
           Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
