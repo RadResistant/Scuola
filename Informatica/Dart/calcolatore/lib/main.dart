@@ -25,7 +25,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final campoDiTesto=TextEditingController();
   double inserito=0;
   List<double> elenco=[0.0,];
-  List<String> separi=["",];
   void piu(){
     inserito=double.parse(campoDiTesto.text);
     setState(() {
@@ -46,10 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
       elenco.add(0);
     });
   }
-  ListTile separe(context,index){
-    return ListTile(
-      title: Text("${separi[index]}",style: TextStyle(fontSize: 0)),
-    );
+  Widget separe(context,index){
+    return Container(height: 5,);
   }
   ListTile numeri(context,index) {
     if(elenco[index]==0){
