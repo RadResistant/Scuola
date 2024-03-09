@@ -1,0 +1,32 @@
+body {
+    display: grid;
+    grid-template-columns: auto 1fr ;
+    grid-template-rows: 1fr auto;
+    grid-gap: 0rem;
+    grid-template-areas:
+        "header header"
+        "nav article"
+        ;
+}
+header {
+    grid-area: header;
+    text-align: end;
+}
+nav{
+    grid-area: nav;
+    border-right: 5px solid rgba(128, 128, 128, 0.469);
+}
+article{
+    grid-area: article;
+    column-count: 2;
+}
+ul:hover{
+    background-color: yellow;
+}
+ul{
+    padding:1em;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
