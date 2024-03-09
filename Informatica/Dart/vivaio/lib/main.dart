@@ -1,4 +1,4 @@
-import 'dart:collection'; // ci serve per usare gli insiemi (HashSet)
+import 'dart:collection';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -59,8 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
         2,
         false,
         "La primula è una pianta erbacea perenne che fiorisce in primavera. "
-            "I suoi fiori sono colorati e vivaci, e possono essere gialli, arancioni, rosa, viola o bianchi. "
-            "La primula ama i luoghi semi-ombreggiati e il terreno umido.",
+        "I suoi fiori sono colorati e vivaci, e possono essere gialli, arancioni, rosa, viola o bianchi. "
+        "La primula ama i luoghi semi-ombreggiati e il terreno umido.",
         0
     ),
     Fiori(
