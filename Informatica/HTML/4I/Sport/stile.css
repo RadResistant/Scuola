@@ -1,0 +1,18 @@
+h2{
+    color: red;
+}
+dl{
+    background-color: yellow;
+}
+ul{
+    background-color: green;
+}
+ol{
+    background-color: pink;
+}
+p{
+    color: blue;
+}
+*{
+    padding: 0.5em;
+}
