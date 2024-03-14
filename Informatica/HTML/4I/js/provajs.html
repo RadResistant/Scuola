@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="stile.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <script>
-        let x=1;
-        function fun(){
-            x++;
-        }
-        document.getElementsByTagName(p).innerHTML=x;
-    </script>
-    <button onclick="fun()">Click counter</button>
+    <div>
+        <script>
+            let x=Math.random()*101;
+            let numerotentativi=0;
+            let textarea=document.createElement("textarea");
+            textarea.setAttribute("cols","10");
+            textarea.setAttribute("rows","1");
+            document.body.appendChild(textarea);
+            x=Math.round(x);
+            function fun(){
+                if(parseInt(textarea.value)==x &&  numerotentativi<=10){
+                    document.getElementById("risultato").innerHTML="Indovinato";
+                }
+                if(parseInt(textarea.value)<x &&  numerotentativi<=10){
+                    document.getElementById("risultato").innerHtml="Più grande";
+                }
+                if(parseInt(textarea.value)>x &&  numerotentativi<=10){
+                    document.getElementById("risultato").innerHTML="Più piccolo";
+                }
+                if(numerotentativi>10){
+                    document.getElementById("risultato").innerHTML="Hai finito i tentativi";
+                }
+                numerotentativi++;
+            }
+            function ran(){
+                x=Math.random()*101;
+                x=Math.round(x);
+            }
+        </script>
+        <object data="textarea" type="textarea"></object>
+        <button onclick="fun()">Prova</button>
+        <button onclick="ran()">Reset</button>
+        <p id="risultato"></p>
+    </div>
 </body>
 </html>

@@ -1,0 +1,10 @@
+textarea{
+    resize: none;
+}
+button{
+    height: 2em;
+    width: 6em;
+}
+body{
+    background-image: url("poster-astratto-sfondo-con-numeri-colorati.jpg.jpg");
+}
