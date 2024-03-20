@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        textarea{
+            resize: none;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let triangoloRettangolo={
+            catetoMinore:1,
+            catetoMaggiore:1,
+            ipotenusa:ipo=>Math.sqrt(Math.pow(catetoMaggiore,2)+Math.pow(catetoMinore,2)),
+            area:a=>(catetoMaggiore*catetoMaggiore)/2,
+            perimetro:per=>catetoMaggiore+catetoMaggiore+ipotenusa
+        }
+    </script>
+</body>
+</html>
