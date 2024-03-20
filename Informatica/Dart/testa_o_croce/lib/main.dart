@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Testa o Croce'),
+      home: const MyHomePage(title: 'Testa o Croce ${}'),
     );
   }
 }
