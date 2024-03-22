@@ -1,5 +1,4 @@
 package spiraleFibonacci;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class SpiraleDiFibonacci extends Application{
 	TextField tfFibonacci=new TextField();
 	Button bCalcolo=new Button("Calcolo Fibonacci");
@@ -22,9 +20,9 @@ public class SpiraleDiFibonacci extends Application{
 		gP.add(bRicorsivo, 0, 2);
 		gP.add(lRisultato, 0, 3);
 		gP.setPadding(new Insets(10,10,10,10));
-	    gP.setHgap(10); 
-	    gP.setVgap(10);
-	    gP.setAlignment(Pos.CENTER);
+	        gP.setHgap(10); 
+	        gP.setVgap(10);
+	        gP.setAlignment(Pos.CENTER);
 		Scene scena = new Scene(gP);
 		finestra.setTitle("Fibonacci");
 		finestra.setScene(scena);
@@ -33,31 +31,31 @@ public class SpiraleDiFibonacci extends Application{
 		bCalcolo.setOnAction(e-> riproduzioneIterativa());
 	}
 	public int fibonacciRicorsivo(int r) {
-		
-		if (r<2) {
-			if (r==0) {
+		if(r<2){
+			if(r==0){
 				return 0;
-			} else {
+			}
+			else{
 				return 1;
 			}
-		}else {
-			return fibonacciRicorsivo(r-1) + fibonacciRicorsivo(r - 2);
+		}
+		else{
+			return fibonacciRicorsivo(r-1)+fibonacciRicorsivo(r-2);
 		}
 	}
-	
 	public int fibonacciIterativo(int n) {
 		int antenato, precendente, fibonacci = 0;
-		
-		if (n<2) {
-			if (n==0) {
+		if(n<2){
+			if(n==0){
 				return 0;
-			} else {
+			}
+			else{
 				return 1;
 			}
-		}else {
+		}
+		else{
 			antenato = 0;
 			precendente = 1;
-			
 			for(int c = 2;c<= n;c++) {
 				fibonacci = antenato +precendente;
 				antenato = precendente;
@@ -65,25 +63,18 @@ public class SpiraleDiFibonacci extends Application{
 			}
 			return fibonacci;
 		}
-		
-		
 	}
 	
 	private void riproduzioneIterativa() {
 		int mese = Integer.parseInt(tfFibonacci.getText());
 		int coppieConigli = fibonacciIterativo(mese);
-
 		lRisultato.setText(coppieConigli + "");
-			
 	}
 	
 	private void riproduzioneRicorsivo() {
 		int mese = Integer.parseInt(tfFibonacci.getText());
 		int coppieConigli = fibonacciRicorsivo(mese);
-
 		lRisultato.setText(coppieConigli + "");
-			
-	
 	}
 	public static void main(String[] args) {
 	    launch(args);
