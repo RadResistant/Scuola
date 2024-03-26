@@ -1,5 +1,4 @@
 package colori;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,27 +6,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
 public class Colori extends Application{
-
 	Button bPavimento=new Button ("Pavimento");
     Button bPareti=new Button ("Pareti");
-    Button bCosto=new Button ("Costo");
-    
+    Button bCosto=new Button ("Costo");   
     Label lLarghezza=new Label("Larghezza");
     Label lProfondità=new Label("Profondità");
     Label lAltezza=new Label("Altezza");
-    
     TextField tLarghezza=new TextField();
     TextField tProfondità=new TextField();
-    TextField tAltezza=new TextField();
-    
-	
+    TextField tAltezza=new TextField();	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-		
-		
 	    GridPane griglia=new GridPane();
 	    griglia.add(bPavimento, 0, 0);
 		griglia.add(lLarghezza, 0, 1);
@@ -38,15 +28,11 @@ public class Colori extends Application{
 		griglia.add(bCosto, 2, 0);
 		griglia.add(lAltezza, 2, 1);
 		griglia.add(tAltezza, 2, 2);
-		
 		Scene scene = new Scene(griglia);
-
 		scene.getStylesheets().add("nomeCartella/nomeFile.css");
-		
 		primaryStage.setScene(scene);
 	    primaryStage.setTitle("Colori");
 	    primaryStage.show();
-		
 	}
 	
 	public static void main(String[] args) {

@@ -1,5 +1,4 @@
 package canvaP;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -9,9 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 public class Pallinaclick extends Application {
-
 	Canvas cSfondo = new Canvas(400, 400);
     GraphicsContext gcPallina = cSfondo.getGraphicsContext2D();
 		

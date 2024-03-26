@@ -1,5 +1,4 @@
 package canvaP;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -10,17 +9,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-public class Pallina extends Application {
-	
+public class Pallina extends Application {	
 	Timeline timer = new Timeline();
 	Canvas cSfondo = new Canvas(400, 400);
     GraphicsContext gcPallina = cSfondo.getGraphicsContext2D();
     double posizioneX=50;
-		
 	public void start(Stage finestra) throws Exception {
-			
-		
 	    gcPallina.setLineWidth(1);
 	    gcPallina.setFill(Color.RED);
 	    gcPallina.fillOval(posizioneX, 50, 20, 20);

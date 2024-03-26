@@ -18,8 +18,6 @@ public class RoboMedio extends Application{
 		dc.setTitle("Pallina");
 	    dc.setScene(scena);
 	    dc.show();
-		
-		
 	}
 
 	public static void main(String[] args) {

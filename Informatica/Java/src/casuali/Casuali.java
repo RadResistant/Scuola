@@ -1,6 +1,4 @@
 package casuali;
-
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class Casuali  extends Application {
 		Label lPari = new Label("Pari");
 		Label lDispari = new Label("Dispari");
@@ -28,14 +25,9 @@ public class Casuali  extends Application {
 		Label lMinNPari = new Label();
 		Label lMinNDispari = new Label();
 		Button bProva = new Button("Calcola");
-		
-		
 	public void start(Stage finestra) throws Exception {
-			
 			bProva.setOnAction(e -> eseguiCal());		
-			
 			GridPane principale = new GridPane();
-
 			principale.add(lPari, 0,0);
 			principale.add(lDispari, 1,0);
 			principale.add(lNumeroPari, 0,1);
@@ -50,19 +42,15 @@ public class Casuali  extends Application {
 			principale.add(lMinDispari, 1,4);
 			principale.add(lMinNDispari, 1,5);
 			Scene scena = new Scene(principale,400,300);
-	
 			principale.setPadding(new Insets(10, 10, 10, 10));
 			principale.setHgap(10); 
 			principale.setVgap(10);
 			principale.setAlignment(Pos.CENTER);
 			bProva.setMaxSize(500,500);
-		    
 		    finestra.setTitle("10 Casuali");
 		    finestra.setScene(scena);
 		    finestra.show();
-		}
-	
-	
+		}	
 		private void eseguiCal(){
 			int pari=0,dispari=0,minoreP=1000,minoreD=1001;
 			String elencoPari="",elencoDispari="";
@@ -81,22 +69,16 @@ public class Casuali  extends Application {
 					elencoDispari+=" "+estratto;
 					if (minoreD>estratto) {
 						minoreD=estratto;
-					}
-					
-				}
-				
+					}	
+				}	
 			}
 			lNumeroPari.setText(elencoPari);
 			lNumeroDispari.setText(elencoDispari);
 			lRisultatoPari.setText(""+pari);
 			lRisultatoDispari.setText(""+dispari);
 			lMinNPari.setText(""+minoreP);
-			lMinNDispari.setText(""+minoreD);
-			
-		}
-			
-		
-		
+			lMinNDispari.setText(""+minoreD);	
+		}		
 		public static void main(String[] args) {
 		    launch(args);
 	}
