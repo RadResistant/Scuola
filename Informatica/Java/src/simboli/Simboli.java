@@ -44,7 +44,6 @@ public class Simboli extends Application {
 	    principale.setPadding(new Insets(10,10,10,10));
 	    principale.setHgap(10); 
 	    principale.setVgap(10);
-	    
 	}
 	private void eSimboli() {
 		iTempo=Integer.parseInt(tfMilli.getText());

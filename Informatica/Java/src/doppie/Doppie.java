@@ -1,5 +1,4 @@
 package doppie;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -8,16 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class Doppie extends Application {
 	Label lRisultato = new Label();
 	Label lFrase = new Label("Frase");
 	Label lDoppie = new Label("Doppie");
 	TextField tfFrase = new TextField();
 	Button bConta = new Button("Conta");
-
 	public void start(Stage finestra) throws Exception {
-		
 		GridPane principale = new GridPane();
 	    principale.add(lFrase, 0, 0);
 	    principale.add(lDoppie, 0, 2);

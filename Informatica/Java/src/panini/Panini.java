@@ -1,5 +1,4 @@
 package panini;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -10,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class Panini extends Application {
 	Label lTotale = new Label();
 	Label lSconto = new Label("Sconto");

@@ -1,6 +1,4 @@
 package divisori;
-
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,18 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class Divisori extends Application{
-
 	Label lNumero=new Label("Numero");
 	Label lDivisori=new Label();
 	Button bDivisori=new Button("Divisori");
 	TextField tfNumero=new TextField();
 	int n;
 	String elencoN;
-	
 	public void start(Stage dc) throws Exception {
-		
 		lDivisori.setMaxSize(500,500);
 	    bDivisori.setMaxSize(500,500);
 		GridPane dg = new GridPane();
@@ -37,10 +31,8 @@ public class Divisori extends Application{
 		dg.setPadding(new Insets(10, 10, 10, 10));
 		dg.setHgap(10); 
 		dg.setVgap(10);
-		bDivisori.setOnAction(e -> eseguiDiv());
-		
+		bDivisori.setOnAction(e -> eseguiDiv());	
 	}
-
 	private void eseguiDiv() {
 		n=Integer.parseInt(tfNumero.getText());
 		for(int i=1;i<=100; i++){
@@ -50,9 +42,7 @@ public class Divisori extends Application{
 		}
 		lDivisori.setText(elencoN);
 	}
-
 	public static void main(String[] args) {
 	    launch(args);
 	}
-	
 }

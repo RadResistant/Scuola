@@ -50,8 +50,7 @@ public class Memory extends Application{
 				bCaselle[r][c] = new Button(mNumeri[r][c]+"");
 				gP.add(bCaselle[r][c], c, r);
 			}
-		}
-		
+		}	
 	}
 	public static void main(String[] args) {
 		launch(args);

@@ -1,5 +1,4 @@
 package mobilita.proveMobilita;
-
 import mobilita.mobilita.Barca;
 import mobilita.mobilita.Bicicletta;
 import mobilita.mobilita.MezzoDiTrasporto;
@@ -15,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class Rimessa extends Application{
 	TextField tfNome=new TextField();
 	TextField tfCosto=new TextField();

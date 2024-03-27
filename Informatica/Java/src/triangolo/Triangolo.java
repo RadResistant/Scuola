@@ -1,5 +1,4 @@
 package triangolo;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class Triangolo extends Application {
 		Label lLato1 = new Label("Lato 1:");
 		Label lLato2 = new Label("Lato 2:");

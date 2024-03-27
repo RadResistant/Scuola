@@ -1,5 +1,4 @@
 package gioco2;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -17,15 +16,12 @@ import javafx.util.Duration;
 public class Gioco extends Application {
 	Button bStart = new Button("Start");
 	Button bRestart = new Button("Restart");
-	
 	Pane pFloor = new Pane();
-	
 	Timeline tlDamageS = new Timeline();
 	Timeline tlDamageW = new Timeline();
 	Timeline tlMovementZ = new Timeline();
 	Timeline tlDamageZ = new Timeline();
 	Timeline tlBullet[] = new Timeline[40];
-	
 	Image iSoldier = new Image(getClass().getResourceAsStream("Soldier.png"));
 	ImageView ivSoldier = new ImageView(iSoldier);
 	Image iZombie = new Image(getClass().getResourceAsStream("Zombie.png"));
@@ -58,21 +54,17 @@ public class Gioco extends Application {
 	ImageView ivBullet[] = new ImageView[40];
 	Image iGameOver= new Image(getClass().getResourceAsStream("GameOver.png"));
 	ImageView ivGameOver = new ImageView(iGameOver);
-	
 	Label lSoldierHP=new Label("SOLDIER HP");
 	Label lWallHP=new Label("WALL HP");
 	Label lScoreTXT=new Label("SCORE:");
 	Label lScore=new Label();
-	
 	int yS=348, yZ=(int)(Math.random()*696)+1;
 	int Heart = 0, HP=0,score=0, DMGW=0,DMGS=0;
 	boolean intersectionHeart = false,intersectionWall = false;
 	double x[]= new double[40];
 	double xB[]=new double[40];
 	int bullet=0;
-	
 	public void start(Stage finestra) throws Exception {
-		
 		lScore.setText(score+"");
 		ivFullHP.setId("hp");
 		ivAverageHP.setId("hp");
@@ -152,17 +144,14 @@ public class Gioco extends Application {
 		pFloor.getChildren().add(lScoreTXT);
 		pFloor.getChildren().add(lScore);
 		pFloor.setPrefSize(1366, 697);
-		
 		Scene scena = new Scene(pFloor);
-		scena.getStylesheets().add("it/gioco/Gioco.css");
+		scena.getStylesheets().add("gioco2/Gioco.css");
 		finestra.setTitle("Apocalypse Z");
 		finestra.setScene(scena);
 		finestra.show();
-		
 		pFloor.setId("pane");
 		bStart.setOnAction(e -> eStart());
 		bRestart.setOnAction(e -> eRestart());
-		
 		KeyFrame kfMovementZ = new KeyFrame(Duration.millis(1), e -> eZombie());
 		tlMovementZ = new Timeline(kfMovementZ);
 		tlMovementZ.setCycleCount(Timeline.INDEFINITE);
@@ -178,11 +167,9 @@ public class Gioco extends Application {
 		KeyFrame kfDamageZ= new KeyFrame(Duration.millis(1), e -> eDamageZ());
 		tlDamageZ= new Timeline(kfDamageZ);
 		tlDamageZ.setCycleCount(Timeline.INDEFINITE);
-		
 		scena.setOnKeyPressed(e->eMovimento(e));
 		scena.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> eBullet(e));
 	}
-
 	private void etlBullet() {
 			xB[bullet]+=0.5;
 			ivBullet[bullet].setX(xB[bullet]);
@@ -196,14 +183,12 @@ public class Gioco extends Application {
 			bullet=0;
 		}
 	}
-
 	private void eZombie() {
 		for (int i=0;i<=ivZombie.length-1;i++) {
 			x[i]=x[i]-0.05;
 			ivZombie[i].setX(x[i]);
 		}
 	}
-	
 	private void eStart() {
 		pFloor.getChildren().remove(bStart);
 		pFloor.getChildren().add(ivSoldier);
@@ -239,7 +224,6 @@ public class Gioco extends Application {
 			pFloor.getChildren().add(ivBullet[i]);
 		}
 	}
-	
 	private void eBullet(MouseEvent e) {
 		if(e.getButton().equals(MouseButton.SECONDARY)) {
 			tlBullet[bullet].play();
@@ -249,7 +233,6 @@ public class Gioco extends Application {
 			}
 		}
 	}
-	
 	private void eMovimento(KeyEvent e) {
 		int incrementoUp=-10,incrementoDown=10;
 		if(e.getText().equals("w")){
@@ -275,7 +258,6 @@ public class Gioco extends Application {
 			ivBullet[i].setY(yS);
 		}
 	}
-	
 	private void eDamageS() {
 		for(int i=0;i<=ivZombie.length-1;i++) {
 			if (ivSoldier.getBoundsInParent().intersects(ivZombie[i].getBoundsInParent())) {
@@ -317,7 +299,6 @@ public class Gioco extends Application {
 			}
 		}
 	}
-	
 	private void eDamageW() {
 		for(int i=0;i<=ivZombie.length-1;i++) {
 			if (ivWall.getBoundsInParent().intersects(ivZombie[i].getBoundsInParent())) {
@@ -371,7 +352,6 @@ public class Gioco extends Application {
 			}
 		}	
 	}	
-
 	private void eDamageZ() {
 		int i=bullet;
 		if (ivBullet[i].getBoundsInParent().intersects(ivZombie[i].getBoundsInParent())) {
@@ -384,7 +364,6 @@ public class Gioco extends Application {
 			System.out.print(bullet);
 		}
 	}
-	
 	private void eRestart() {
 		pFloor.getChildren().remove(bRestart);
 		pFloor.getChildren().remove(ivGameOver);
@@ -453,7 +432,6 @@ public class Gioco extends Application {
 		tlDamageS.play();
 		tlDamageW.play();
 	}
-	
 	public static void main(String[] args) {
 		launch(args);
 	}

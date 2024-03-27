@@ -1,5 +1,4 @@
 package forme;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -9,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 public class Forme extends Application{
 	Timeline timer = new Timeline();
 //	int posizioneX=50;

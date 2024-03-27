@@ -1,5 +1,4 @@
 package elementicomuni;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import javafx.application.Application;
@@ -8,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class ElementiComuni extends Application{
 		Button bFiltra=new Button("Filtra");
 		Label lOutput=new Label();

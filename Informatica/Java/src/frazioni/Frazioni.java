@@ -1,6 +1,4 @@
 package frazioni;
-
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 public class Frazioni extends Application{
 	Canvas cFrazione=new Canvas(100,10);
 	Button bSemplifica=new Button("Semplifica");

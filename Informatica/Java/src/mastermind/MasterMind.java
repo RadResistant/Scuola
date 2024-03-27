@@ -25,7 +25,7 @@ public class MasterMind extends Application{
 		gP.add(lCancella, 3, 0);
 		gP.setHgap(10);
 		gP.setVgap(10);
-		 gP.setAlignment(Pos.CENTER);
+		gP.setAlignment(Pos.CENTER);
 		Scene scena = new Scene(gP);
 		primaryStage.setTitle("Mastermind");
 		primaryStage.setScene(scena);
@@ -38,7 +38,6 @@ public class MasterMind extends Application{
 		int numeroCasuale=0;
 		for(int i=0;i<4;i++) {
 			numeroCasuale=(int)(Math.random()*4);
-
 			if(numeroCasuale==0) {
 				parolaIndovina+="A";
 			}

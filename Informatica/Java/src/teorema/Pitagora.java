@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class Pitagora extends Application {
 	Label lMaggiore = new Label();
 	Label lMinore = new Label();

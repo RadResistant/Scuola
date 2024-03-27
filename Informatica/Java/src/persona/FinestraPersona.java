@@ -1,5 +1,4 @@
 package persona;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,7 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class FinestraPersona extends Application{
 	TextField tfNome=new TextField();
 	TextField tfCognome=new TextField();

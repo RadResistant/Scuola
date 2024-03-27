@@ -1,26 +1,18 @@
 package tryCatch;
-
 import javafx.application.Application;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class AreaQuadrato extends Application {
-
 	Label lLato = new Label(" Lato");
 	Label lArea = new Label("Area");
 	Label lAreaRisultato = new Label();
-
 	TextField tLato = new TextField();
-
 	Button bCalcolaArea = new Button("Calcola Area");
-
 	public void start(Stage primaryStage) throws Exception {
-
 		GridPane griglia = new GridPane();
 		griglia.add(lLato, 0, 0);
 		griglia.add(tLato, 1, 0);

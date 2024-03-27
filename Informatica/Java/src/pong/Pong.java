@@ -1,5 +1,4 @@
-package it.edu.iisgubbio.pong;
-
+package pong;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -15,7 +14,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 public class Pong extends Application{
 	Timeline timer = new Timeline();
 	Circle cSfera=new Circle(10);

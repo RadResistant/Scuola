@@ -64,7 +64,6 @@ public class SpiraleDiFibonacci extends Application{
 			return fibonacci;
 		}
 	}
-	
 	private void riproduzioneIterativa() {
 		int mese = Integer.parseInt(tfFibonacci.getText());
 		int coppieConigli = fibonacciIterativo(mese);

@@ -34,7 +34,6 @@ public class LeggiRiga extends Application{
 			{
 			String testo="";
 			int stop=Integer.parseInt(input.getText());
-			
 			for(int i=1;i<=stop;i++) {
 				testo=lettoreDiRighe.readLine();
 				if(testo!=null ) {

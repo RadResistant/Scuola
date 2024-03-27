@@ -17,9 +17,7 @@ import javafx.util.Duration;
 public class Gioco extends Application {
 	Button bStart = new Button("Start");
 	Button bRestart = new Button("Restart");
-	
 	Pane pFloor = new Pane();
-	
 	Timeline tlDamageS = new Timeline();
 	Timeline tlDamageW = new Timeline();
 	Timeline tlMovementZ = new Timeline();
@@ -152,7 +150,7 @@ public class Gioco extends Application {
 		pFloor.setPrefSize(1366, 697);
 		
 		Scene scena = new Scene(pFloor);
-		scena.getStylesheets().add("it/gioco/Gioco.css");
+		scena.getStylesheets().add("gioco/Gioco.css");
 		finestra.setTitle("Apocalypse Z");
 		finestra.setScene(scena);
 		finestra.show();

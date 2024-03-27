@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 public class MescolaVettori extends Application {
 	TextField tfInput=new TextField();
 	Label lOutput=new Label();
