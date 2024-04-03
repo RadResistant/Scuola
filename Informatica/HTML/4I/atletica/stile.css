@@ -1,0 +1,40 @@
+h2{
+    color: green;
+}
+p + h2{
+    color: black;
+}
+h1:hover{
+    color: red;
+}
+section{
+    border: solid red 2px;
+}
+article{
+    border: dashed red 2px;
+}
+h3 ~ p{
+    background-color: aqua;
+}
+section + article{
+    background-color: yellow;
+}
+p em{
+    border-top: solid black 2px;
+    background-color: palevioletred;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-weight: lighter;
+    padding: 0.2em;
+}
+article h2 em{
+    background-color: red;
+    font-family: serif;
+}
+*{
+    margin: 0.5em;
+}
+section h2 em{
+    font-family: sans-serif;
+    font-weight: lighter;
+}

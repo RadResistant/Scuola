@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let calcolatrice={
+            cifremax:8,
+            addizione:(pO, sO=0)=>pO+sO,
+            sottrazione:function sottrazione(pO,sO=0){
+                return pO-sO;
+            },
+            moltiplicazione:function moltiplicazione(pO,sO=1){
+                return pO*sO
+            },
+            divisione:function divisione(pO,sO=1){
+                return pO/sO;
+            },
+            nomeProprietario:"Raffaele Saponaro",
+            opposto:function opposto(num){
+                return -num;
+            }
+        }
+        console.log(calcolatrice.cifremax);
+        console.log(calcolatrice.moltiplicazione(4,10));
+        console.log(calcolatrice.opposto(calcolatrice.moltiplicazione(4,10)))
+    </script>
+</body>
+</html>
