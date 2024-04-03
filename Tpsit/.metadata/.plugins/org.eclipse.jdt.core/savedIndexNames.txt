@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+/home/raffaele/Scrivania/GitHub/Scuola/Tpsit/.metadata/.plugins/org.eclipse.jdt.core
+2078267704.index
+3723348558.index
+1865797976.index
