@@ -1,0 +1,110 @@
+body{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows:  auto auto auto auto auto;
+    grid-template-areas:
+    "titolo titolo titolo titolo"
+    "aneletti cappelletti cappelletti bucatini"
+    "cannelloni cappelletti cappelletti fusilli"
+    "garganelli lasagne maltagliati orecchiette"
+    "penne spaghetti tagliatelle ziti";
+}
+h1{
+    grid-area: titolo;
+    background-color: red;
+    color: white;
+}
+section{
+    grid-area: cappelletti;
+    background-image: url(foto/cappelletti.jpg);
+    background-repeat: no-repeat;
+    margin: 1em;
+}
+section article{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+img{
+    float: right;
+    height: 6em;
+}
+article{
+    background-color: lightgray;
+    margin: 1em;
+    padding: 1em;
+}
+.aneletti{
+    grid-area: aneletti;
+}
+.bucatini{
+    grid-area: bucatini;
+}
+.cannelloni{
+    grid-area: cannelloni;
+}
+.fusilli{
+    grid-area: fusilli;
+}
+.garganelli{
+    grid-area: garganelli;
+}
+.lasagne{
+    grid-area: lasagne;
+}
+.maltagliati{
+    grid-area: maltagliati;
+}
+.orecchiette{
+    grid-area: orecchiette;
+}
+.penne{
+    grid-area: penne;
+}
+.spaghetti{
+    grid-area: spaghetti;
+}
+.tagliatelle{
+    grid-area: tagliatelle;
+}
+.ziti{
+    grid-area: ziti;
+}
+article::first-letter{
+    font-size: 4em;
+    color: green;
+    font-family: sans-serif;
+}
+section article img{
+    height: 12em;
+}
+@media screen and (max-width:1000px) {
+    body{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-template-rows:  auto auto auto auto auto auto auto;
+        grid-template-areas:
+        "titolo titolo titolo"
+        "cappelletti cappelletti aneletti"
+        "cappelletti cappelletti bucatini"
+        "cannelloni fusilli garganelli"
+        "lasagne maltagliati orecchiette"
+        "penne spaghetti tagliatelle"
+        "ziti null null";
+    }
+}
+@media screen and (max-width:700px) {
+    body{
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows:  auto auto auto auto auto auto auto auto auto;
+        grid-template-areas:
+        "titolo titolo"
+        "cappelletti cappelletti"
+        "cappelletti cappelletti"
+        "aneletti bucatini"
+        "cannelloni fusilli garganelli"
+        "garganelli lasagne" 
+        "maltagliati orecchiette"
+        "penne spaghetti" 
+        "tagliatelle ziti";
+    }
+}

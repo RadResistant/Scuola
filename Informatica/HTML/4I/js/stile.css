@@ -1,0 +1,37 @@
+textarea{
+    resize: none;
+}
+button{
+    height: 2em;
+    width: 6em;
+}
+body{
+    background-image: url("poster-astratto-sfondo-con-numeri-colorati.jpg.jpg");
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows:   1fr 1fr 1fr;
+    grid-template-areas:
+    "titolo titolo titolo"
+    "inserisci risultato bottoni"
+    "piede piede piede"
+    ;
+}
+button{
+    float: right;
+}
+#bottoni{
+    grid-area: bottoni;
+    align-items: center;
+}
+#risultato{
+    grid-area: risultato;
+    text-align: center;
+}
+#inserisci{
+    grid-area: inserisci;
+}
+#vuoto{
+    grid-area: titolo;
+    margin: 5em;
+}
