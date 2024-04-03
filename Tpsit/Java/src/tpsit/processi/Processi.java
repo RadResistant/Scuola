@@ -1,4 +1,4 @@
-package it.edu.iisgubbio.tpsit.processi;
+package tpsit.processi;
 /**
  *This class sorts all the process gave in input 
  *by its execution time in ascending order

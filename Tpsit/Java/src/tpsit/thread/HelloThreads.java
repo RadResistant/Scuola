@@ -1,4 +1,4 @@
-package it.edu.iisgubbio.thread;
+package tpsit.thread;
 
 public class HelloThreads extends Thread{
 	/**

@@ -1,4 +1,4 @@
-package it.edu.iisgubbio.tpsit.processi;
+package tpsit.processi;
 
 public class RoundRobin extends Fcfs{
 	int qT;

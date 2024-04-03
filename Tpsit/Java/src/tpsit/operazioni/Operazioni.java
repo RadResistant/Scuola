@@ -1,4 +1,4 @@
-package it.edu.iisgubbio.tpsit.operazioni;
+package tpsit.operazioni;
 
 public class Operazioni{
 	int n1,n2;

@@ -1,4 +1,4 @@
-package it.edu.iisgubbio.tpsit.processi;
+package tpsit.processi;
 /**
  * It sorts every single process in ascending order by it's execution time
  * @return it returns all the 4 array (p[],ta[],te[],ts[])

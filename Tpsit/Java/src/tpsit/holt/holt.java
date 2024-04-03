@@ -1,4 +1,4 @@
-package it.edu.iisgubbio.tpsit.holt;
+package tpsit.holt;
 public class holt{
 	int dimensione;
 	int [][] grafo;

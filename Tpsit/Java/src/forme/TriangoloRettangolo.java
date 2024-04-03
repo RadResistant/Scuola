@@ -1,4 +1,4 @@
-package it.edu.iisgubbio.forme;
+package forme;
 
 public class TriangoloRettangolo {
 	double base;

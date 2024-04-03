@@ -1,4 +1,4 @@
-package it.edu.iisgubbio.thread;
+package tpsit.thread;
 /**
  * lanciare due thread uno che scrive i numeri da 1 a 10
  * e l'altro che scrive i numeri da 50 a 100
