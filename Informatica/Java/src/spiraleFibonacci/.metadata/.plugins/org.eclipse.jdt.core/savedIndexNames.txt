@@ -1,1 +1,0 @@
-INDEX VERSION 1.134+/home/raffaele/Scrivania/GitHub/Scuola/Informatica/Java/ProgettiJava/src/spiraleFibonacci/.metadata/.plugins/org.eclipse.jdt.core
