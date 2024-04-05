@@ -22,7 +22,6 @@ public class Gioco extends Application {
 	Timeline tlDamageW = new Timeline();
 	Timeline tlMovementZ = new Timeline();
 	Timeline tlBullet = new Timeline();
-	
 	Image iSoldier = new Image(getClass().getResourceAsStream("Soldier.png"));
 	ImageView ivSoldier = new ImageView(iSoldier);
 	Image iZombie = new Image(getClass().getResourceAsStream("Zombie.png"));
@@ -343,8 +342,7 @@ public class Gioco extends Application {
 				pFloor.getChildren().add(bRestart);
 			}
 		}	
-	}	
-	
+	}
 	private void eRestart() {
 		pFloor.getChildren().remove(bRestart);
 		pFloor.getChildren().remove(ivGameOver);
