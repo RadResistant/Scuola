@@ -59,15 +59,12 @@ public class Gioco extends Application {
 	Label lWallHP=new Label("WALL HP");
 	Label lScoreTXT=new Label("SCORE:");
 	Label lScore=new Label();
-	
 	int yS=348, yZ=(int)(Math.random()*696)+1;
 	int incrementoUp=-10,incrementoDown=10;
 	int Heart = 0, HP=0,score=0, DMGW=0,DMGS=0;
 	boolean intersectionHeart = false,intersectionWall = false;
 	double x[]= new double[40],xB=81;
-	
 	public void start(Stage finestra) throws Exception {
-		
 		lScore.setText(score+"");
 		ivFullHP.setId("hp");
 		ivAverageHP.setId("hp");
@@ -147,17 +144,14 @@ public class Gioco extends Application {
 		pFloor.getChildren().add(lScoreTXT);
 		pFloor.getChildren().add(lScore);
 		pFloor.setPrefSize(1366, 697);
-		
 		Scene scena = new Scene(pFloor);
 		scena.getStylesheets().add("gioco/Gioco.css");
 		finestra.setTitle("Apocalypse Z");
 		finestra.setScene(scena);
 		finestra.show();
-		
 		pFloor.setId("pane");
 		bStart.setOnAction(e -> eStart());
 		bRestart.setOnAction(e -> eRestart());
-		
 		KeyFrame kfMovementZ = new KeyFrame(Duration.millis(1), e -> eZombie());
 		tlMovementZ = new Timeline(kfMovementZ);
 		tlMovementZ.setCycleCount(Timeline.INDEFINITE);
@@ -167,18 +161,15 @@ public class Gioco extends Application {
 		KeyFrame kfDamageW = new KeyFrame(Duration.millis(1), e -> eDamageW());
 		tlDamageW = new Timeline(kfDamageW);
 		tlDamageW.setCycleCount(Timeline.INDEFINITE);
-		
 		scena.setOnKeyPressed(e->eMovimento(e));
 		scena.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> eBullet(e));
 	}
-
 	private void eZombie() {
 		for (int i=0;i<=ivZombie.length-1;i++) {
 			x[i]=x[i]-0.05;
 			ivZombie[i].setX(x[i]);
 		}
 	}
-	
 	private void eStart() {
 		pFloor.getChildren().remove(bStart);
 		pFloor.getChildren().add(ivSoldier);
@@ -212,7 +203,6 @@ public class Gioco extends Application {
 			pFloor.getChildren().add(ivBullet[i]);
 		}
 	}
-	
 	private void eBullet(MouseEvent e) {
 		if(e.getButton().equals(MouseButton.SECONDARY)) {
 			for(int i=0;i<=ivBullet.length-1;i++) {
@@ -221,7 +211,6 @@ public class Gioco extends Application {
 			}
 		}
 	}
-	
 	private void eMovimento(KeyEvent e) {
 		
 		if(e.getText().equals("w")){
@@ -247,7 +236,6 @@ public class Gioco extends Application {
 			ivBullet[i].setY(yS);
 		}
 	}
-	
 	private void eDamageS() {
 		for(int i=0;i<=ivZombie.length-1;i++) {
 			if (ivSoldier.getBoundsInParent().intersects(ivZombie[i].getBoundsInParent())) {
@@ -289,7 +277,6 @@ public class Gioco extends Application {
 			}
 		}
 	}
-	
 	private void eDamageW() {
 		for(int i=0;i<=ivZombie.length-1;i++) {
 			if (ivWall.getBoundsInParent().intersects(ivZombie[i].getBoundsInParent())) {
@@ -407,7 +394,6 @@ public class Gioco extends Application {
 		tlDamageS.play();
 		tlDamageW.play();
 	}
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
