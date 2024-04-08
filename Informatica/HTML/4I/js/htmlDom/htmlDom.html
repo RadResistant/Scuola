@@ -42,7 +42,7 @@
             let elementi=document.getElementsByTagName("li");
             for(let i=0;i<elementi.length;i++){
                 let ran=Math.floor(Math.random()*emoji.lenght);
-                elementi[i].innerHTML+=facce[caso];
+                elementi[i].innerHTML+=emoji[ran];
             }
         }
     </script>
@@ -59,7 +59,7 @@
     
     <h2 onclick="clickContatore()">contatore di click <span id="giove">!</span></h2>
     
-    <h2 onclick="clickAumentaFacceACaso()">ElenmentI</h2>
+    <h2 onclick="clickAumentaFacceACaso()">Elementi</h2>
     <p>
         <span onclick="clickAumentaFacce()">Aumenta facce</span>
         <span onclick="mescola()">Mescola</span>
