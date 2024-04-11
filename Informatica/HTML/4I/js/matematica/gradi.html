@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let angolo={
+            gradi:80,
+            primi:30,
+            secondi:23
+        }
+        function gradiInRadianti(angolo){
+            let sessadeciamali=angolo.gradi+angolo.primi/60+angolo.secondi/3600;
+            let radianti=sessadeciamali*Math.PI/180;
+            return radianti;
+        }
+        alert(gradiInRadianti(angolo));
+        alert(gradiInRadianti({gradi:25,primi:31,secondi:4}));
+    </script>
+</body>
+</html>

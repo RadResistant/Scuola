@@ -1,0 +1,26 @@
+img{
+    height: 6em;
+}
+.destra{
+    float: left;
+    clear: left;
+}
+div{
+    padding: 1em;
+}
+h2{
+    padding-left: 0.5em;
+}
+em{
+    font-style: normal;
+    background-color: yellow;
+    border: solid 1px green;
+    padding: 1em;
+}
+#mur{
+    display: inline-block;
+}
+.circolo{
+    float: right;
+    height: 20em;
+}
