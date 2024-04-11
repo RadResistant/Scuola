@@ -1,0 +1,25 @@
+h2{
+    border-bottom: solid green 1px;
+}
+.prima th{
+    background-color: rgb(60, 60, 60);
+    color: white;
+    text-align: center;
+}
+.prima,.prima th,.prima td{
+    border: dotted 1px black;
+}
+.seconda,.seconda th,.seconda td{
+    border: solid green 3px;
+}
+.seconda td{
+    background-color: yellow;
+}
+.seconda th{
+    background-color: green;
+    color: yellow;
+}
+table,td,th{
+    border-collapse: collapse;
+    padding: 5px;
+}

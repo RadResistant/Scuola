@@ -1,0 +1,29 @@
+#pre{
+    margin-right: 400px;
+}
+body{
+    background-image: url(drago.png);
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+    margin-right: 200px;
+}
+div.sfondato{
+    background-image: url(intreccio.png);
+    padding: 20px;
+}
+#primoP{
+    background-color: white;
+}
+#secondoP{
+    background-color: rgba(255,255,255,0.5);
+    color: rgba(0,0,0,0.5);
+}
+#terzoP{
+    background-color: rgba(255,255,255,0.5);
+}
+#quartoP{
+    background-image: url(dentellato.png);
+    background-repeat: repeat-y;
+    background-color: white;
+}

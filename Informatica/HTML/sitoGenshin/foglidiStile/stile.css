@@ -1,0 +1,115 @@
+h2{
+    color:cyan;
+    font-size:20px;
+    }
+
+h6.anemo{
+    color:rgb( 84, 220, 180);
+    font-size: 20px;
+    text-align:center;
+    }
+
+h6.cryo{
+    color: aquamarine;
+    font-size: 20px;
+    text-align:center;
+    }
+
+h6.dendro{
+    color: chartreuse;
+    font-size: 20px;
+    text-align:center;
+    }
+
+h6.electro{
+    color: purple;
+    font-size: 20px;
+    text-align:center;
+    }
+
+h6.geo{
+    color:rgb( 250, 182, 50);
+    font-size: 20px;
+    text-align:center;
+    }
+
+h6.hydro{
+    color: aqua;
+    font-size: 20px;
+    text-align:center;
+    }
+
+h6.pyro{
+    color: chocolate;
+    font-size: 20px;
+    text-align:center;
+    }
+
+p.dendro{
+    text-align:center;
+    color: antiquewhite;
+    }
+
+body{
+    background-image: url("../fotoVarie/Sfondo.jpg");
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "titolo titolo titolo"
+    "nav nav nav"
+    "anemo cryo dendro"
+    "electro geo hydro "
+    "pyro null null";
+    }
+
+header{
+    grid-area: titolo;
+    text-align:center;
+    font-size: 25px;
+    padding: 100px;
+    margin: 0px;
+    background-image:url("../fotoVarie/LogoHoyoverse.jpg");
+    color: rgb(165, 42, 159);
+    }
+    
+ nav{
+    grid-area: nav;
+    background-color: rgb(0, 17, 114);
+    }
+
+li{
+    display: inline;
+    }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    }
+      
+li {
+    float: left;
+    }
+      
+li a {
+    display: block;
+    padding: 8px;
+    background-color: rgb(0, 17, 114);
+    }
+
+li a:hover {
+    background-color: rgb(49, 68, 175);
+    }
+h1{
+    color: azure;
+}
+p{
+    color: azure;
+}

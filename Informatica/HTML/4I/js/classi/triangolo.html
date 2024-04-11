@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Triangolo{
+            constructor(a,b=a,c=a){
+                this.lato1=a;
+                this.lato2=b;
+                this.lato3=c;
+            }
+            aTesto(){
+                return "Triangolo "+this.lato1+" "+this.lato2+" "+this.lato3;
+            }
+            perimetro(){
+                return this.lato1+this.lato2+this.lato3;
+            }
+            rettangolo(){
+                let rettangolo=false;
+                return  (Math.pow(this.lato1,2)+Math.pow(this.lato2,2)==Math.pow(this.lato3,2)) ||
+                    (Math.pow(this.lato1,2)+Math.pow(this.lato3,2)==Math.pow(this.lato3,2)) ||
+                    (Math.pow(this.lato2,2)+Math.pow(this.lato3,2)==Math.pow(this.lato1,2));
+            }
+            area(){
+                console.log(">>"+this.perimetro());
+                return  Math.sqrt(
+                            this.perimetro()/2*
+                            (this.perimetro()/2-this.lato1)*
+                            (this.perimetro()/2-this.lato2)*
+                            (this.perimetro()/2-this.lato3)
+                        );
+            }
+        }
+        let tri1=new Triangolo(15,5,10);
+        let tri2=new Triangolo(12,14,20);
+        let tri3=new Triangolo(5,5,10);
+        console.log(tri1.rettangolo());
+        console.log(tri2.perimetro());
+        console.log(tri3.aTesto());
+        console.log(tri3.area());
+    </script>
+</body>
+</html>
