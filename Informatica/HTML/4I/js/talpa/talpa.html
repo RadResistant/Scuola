@@ -4,8 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            background-color: green;
+        }
+    </style>
+    <script>
+        let punteggio=0;
+        let immagine=new Image();;
+        function carica(){
+            let timer=window.setInterval(cambiafoto,1000);
+            immagine.src="Diglett.png";
+            immagine.style.position="fixed";
+            immagine.style.height="100px";
+            document.body.appendChild(immagine);
+        }
+        immagine.addEventListener("click",clickSuFoto);
+        function cambiafoto(){
+            let sx=parseInt(Math.random()*(window.innerWidth-immagine.width));
+            let sy=parseInt(Math.random()*(window.innerHeight-immagine.height));
+            immagine.style.left=`${sx}px`;
+            immagine.style.top=`${sy}px`;
+        }
+        function clickSuFoto(){
+            punteggio++;
+            document.querySelector("h1").innerText="Punti:"+punteggio;
+        }
+    </script>
 </head>
-<body>
-    
+<body onload="carica()">
+    <h1>Punti:</h1>
 </body>
 </html>
