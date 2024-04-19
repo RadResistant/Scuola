@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let alberi=["albero1.png","albero2.png","albero3.png","arbusto1.png","arbusto2.png"];
+        function creaAlberi(){
+            for(let i=0;i<11;i++){
+                let x=new Image();
+                let c=Math.floor(Math.random()*alberi.length);
+                x.src=alberi[c];
+                x.alt=alberi[c];
+                x.style.width=200+"px";
+                x.style.position="fixed";
+                x.style.bottom=0;
+                x.style.left=(Math.random()*window.innerWidth)+"px";
+                document.body.appendChild(x);
+            }
+        }
+    </script>
+</head>
+<body onload="creaAlberi()">
+</body>
+</html>

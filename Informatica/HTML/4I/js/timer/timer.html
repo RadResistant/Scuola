@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            background-color: red;
+        }
+    </style>
+    <script>
+        "use strict";
+        let numeroTempo;
+        let timero;
+        function timer(){
+            document.querySelector("h1").innerText=5;
+            document.querySelector("h1").style.backgroundColor="red";
+            timero=window.setInterval(fun,1000);
+        }
+        function fun(){
+            let testo=document.querySelector("h1");
+            numeroTempo=parseInt(testo.innerText);
+            console.log(numeroTempo);
+            numeroTempo--;
+            testo.innerText=numeroTempo;
+            if(numeroTempo==0){
+                window.clearInterval(timero);
+                testo.style.backgroundColor="green";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2 onclick="timer()">Avvia timer</h2>
+    <h1>5</h1>
+</body>
+</html>
