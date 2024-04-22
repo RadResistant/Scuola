@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+DIFFICILE
+OBBIETTIVO: creare un mondo descrivendolo con un testo
+le immaginette hanno dimensione 32x32 e occupano 33x33 pixels
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prato piccolo</title>
+    <style>
+    	div { width: 32px; height: 32px ; position: fixed; background: url(mattonelle.png);}
+		.tile_A{background-position: 0 0;}
+		.tile_s{background-position: 0 -33px;}
+		.tile_S{background-position: -132px 0px;}
+		.tile_D{background-position: -165px 0px;}
+		.tile_C{background-position: -132px -66px;}
+		.tile_c{background-position: -165px -66px;}
+		.tile_p{background-position: -99px 0px;}
+		.tile_F{background-position: -66px -66px;}
+        .tile_e{background-position: 0 -66px;}
+        .tile_f{background-position: -33px -66px;}
+        .tile_t{background-position: -99px -66px;}
+    </style>
+    <script>
+"use strict";
+let mondo = `linea da sprecare per via dell'"a capo"
+cCcccCcCCccc
+cccccccccccc
+ctcffffecFCc
+pppppppppppD
+sAssssAAAsss`;
+function creaMondo(){
+	let righe = mondo.split("\n");
+	for(let indiceRiga=1; indiceRiga<righe.length; indiceRiga++){
+		let colonne = righe[indiceRiga].split("");
+		for(let indiceColonna=0; indiceColonna<colonne.length; indiceColonna++){
+			let classeMattonella = "tile_"+colonne[indiceColonna];
+			console.log(classeMattonella);
+			let mattonella = document.createElement("div");
+			mattonella.classList.add(classeMattonella);
+			mattonella.style.left = indiceColonna*32+"px";
+			mattonella.style.top = (indiceRiga-1)*32+"px";
+			document.querySelector("body").append(mattonella);
+		}
+	}
+}
+    </script>
+</head>
+<body onload="creaMondo()">
+</body>
+</html>

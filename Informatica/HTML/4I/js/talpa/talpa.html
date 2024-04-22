@@ -11,24 +11,53 @@
     </style>
     <script>
         let punteggio=0;
-        let immagine=new Image();;
+        let talpa1=new Image();
+        talpa1.src="Diglett.png";
+        talpa1.style.position="fixed";
+        talpa1.style.height="100px";
+        talpa1.addEventListener("click",clickSuFoto);
+        let talpa2=new Image();
+        talpa2.src="Diglett.png";
+        talpa2.style.position="fixed";
+        talpa2.style.height="100px";
+        talpa2.addEventListener("click",clickSuFoto);
+        let intervallo;
         function carica(){
-            let timer=window.setInterval(cambiafoto,1000);
-            immagine.src="Diglett.png";
-            immagine.style.position="fixed";
-            immagine.style.height="100px";
-            document.body.appendChild(immagine);
+            intervallo=window.setInterval(cambiafoto,1000);
+            document.body.appendChild(talpa1);
         }
-        immagine.addEventListener("click",clickSuFoto);
         function cambiafoto(){
-            let sx=parseInt(Math.random()*(window.innerWidth-immagine.width));
-            let sy=parseInt(Math.random()*(window.innerHeight-immagine.height));
-            immagine.style.left=`${sx}px`;
-            immagine.style.top=`${sy}px`;
+            let sx1=parseInt(Math.random()*(window.innerWidth-talpa1.width));
+            let sy1=parseInt(Math.random()*(window.innerHeight-talpa1.height));
+            talpa1.style.left=`${sx1}px`;
+            talpa1.style.top=`${sy1}px`;
+            let sx2=parseInt(Math.random()*(window.innerWidth-talpa1.width));
+            let sy2=parseInt(Math.random()*(window.innerHeight-talpa1.height));
+            talpa2.style.left=`${sx2}px`;
+            talpa2.style.top=`${sy2}px`;
         }
         function clickSuFoto(){
             punteggio++;
             document.querySelector("h1").innerText="Punti:"+punteggio;
+            if(punteggio==5){
+                window.clearInterval(intervallo);
+                intervallo=window.setInterval(cambiafoto,750);
+            }
+            if(punteggio==10){
+                document.body.appendChild(talpa2);
+            }
+            if(punteggio==15){
+                window.clearInterval(intervallo);
+                intervallo=window.setInterval(cambiafoto,500);
+            }
+            if(punteggio==20){
+                window.clearInterval(intervallo);
+                intervallo=window.setInterval(cambiafoto,250);
+            }
+            if(punteggio==25){
+                window.clearInterval(intervallo);
+                intervallo=window.setInterval(cambiafoto,1);
+            }
         }
     </script>
 </head>

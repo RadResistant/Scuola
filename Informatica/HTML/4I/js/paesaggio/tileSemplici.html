@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+OBBIETTIVO: utilizzare la proprietà background-position
+	per prendere immagini diverse che si trovano in un unico file
+	
+le immaginette hanno dimensione 32x32 e occupano 33x33 pixels
+
+questo esempio non riguarda javascript ma serve per vedere come si posizionano
+le immagini di sfondo
+
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prato piccolo</title>
+    <style>
+    	div { width: 32px; height: 32px; position: fixed }
+		#prato1 {
+			background: url(mattonelle.png);
+			background-position: -66px 0px;
+			left:0px; top:0px;
+		}
+		#prato2 {
+			background: url(mattonelle.png);
+			background-position: -33px -66px;
+			left:32px; top:0px;
+		}
+		#prato3 {
+			background: url(mattonelle.png);
+			background-position: -165px 0px;
+			left:64px; top:0px;
+		}
+    </style>
+    <script>
+    </script>
+</head>
+<body>
+    <div id="prato1"></div>
+    <div id="prato2"></div>
+    <div id="prato3"></div>
+</body>
+</html>

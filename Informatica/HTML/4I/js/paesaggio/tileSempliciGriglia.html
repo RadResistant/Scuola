@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+OBBIETTIVO: utilizzare una griglia al posto del posizionamento assoluto
+
+è solo per vedere come viene, magari non utilissimo da fare
+
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prato piccolo</title>
+    <style>
+    	body { 
+    		display: grid; 
+    		grid-template-columns: repeat(3,32px); 
+    		grid-template-rows: repeat(10,32px);
+    	}
+    	div {
+    		width: 32px; height: 32px; 
+    		background: url(mattonelle.png);
+    	}
+    	.vuoto {
+			background-position: -165px -66px;
+		}
+		.fiore {
+			background-position: -99px -66px;
+		}
+		.prato {
+			background-position: -66px 0px;
+		}
+		.angolo {
+			background-position: -165px 0px;
+		}
+    </style>
+    <script>
+    </script>
+</head>
+	<body>
+	<div class="vuoto"></div>
+    <div class="vuoto"></div>
+    <div class="fiore"></div>
+    
+    <div class="prato"></div>
+    <div class="prato"></div>
+    <div class="angolo"></div>
+</body>
+</html>
