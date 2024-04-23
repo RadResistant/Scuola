@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            position: fixed; 
+            background: url(colline.png);
+            background-repeat: repeat-x;
+        }
+        img{
+            position: fixed;
+            height: 80px;
+            top: 50px;
+        }
+    </style>
+    <script>
+        function carica(){
+            window.setInterval(cammina,10);
+            window.setInterval(vola,1);
+        }
+        let x=0;
+        function cammina(){
+            let sfondo=document.querySelector("body");
+            x+=5;
+            if(x>=1366){
+                x=0
+            }
+            sfondo.style.backgroundPositionX=x+"px";
+        }
+        let uccello=Number(window.innerWidth);
+        function vola(){
+            let pappagallo=document.querySelector("img");
+            uccello--;
+            if(uccello==0-pappagallo.width){
+                uccello=Number(window.innerWidth);
+            }
+            pappagallo.style.left=uccello+"px";
+        }
+        function abbassa(event){
+            let tasto=event.key;
+            if(tasto=='a'){
+                let foto=document.querySelector("img");
+                foto.style.top=window.innerHeight-foto.height+"px";
+            }
+        } 
+        function rialza(event){
+            let tasto=event.key;
+            if(tasto=='a'){
+                let foto=document.querySelector("img");
+                foto.style.top=20+"px";
+            }
+        }
+    </script>
+</head>
+<body onload="carica()" onkeydown="abbassa(event)" onkeyup="rialza(event)">
+    <img src="pappagallo.gif" alt="pappagallo">
+</body>
+</html>

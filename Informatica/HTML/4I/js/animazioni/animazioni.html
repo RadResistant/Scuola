@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div { 
+            height: 233px; 
+            width: 233px; 
+            position: fixed; 
+            background: url(omino.png);
+        }
+    </style>
+    <script>
+        function carica(){
+            let timer=window.setInterval(cammina,1);
+        }
+        let x=233;
+        function cammina(){
+            x-=233;
+            if(x<=-932){
+                x=233
+            }
+            let foto=document.querySelector("div");
+            foto.style.backgroundPositionX=x+"px";
+        }
+    </script>
+</head>
+<body onload="carica()">
+    <div></div>
+</body>
+</html>
