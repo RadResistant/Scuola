@@ -7,55 +7,43 @@
     <style>
         body {
             position: fixed; 
-            background: url(colline.png);
+            background-image: url(colline.png);
             background-repeat: repeat-x;
         }
         img{
             position: fixed;
             height: 80px;
-            top: 50px;
         }
     </style>
     <script>
         function carica(){
-            window.setInterval(cammina,10);
+            window.setInterval(scorrimentoSfondo,10);
             window.setInterval(vola,1);
         }
         let x=0;
-        function cammina(){
+        function scorrimentoSfondo(){
             let sfondo=document.querySelector("body");
             x+=5;
             if(x>=1366){
-                x=0
+                x=0;
             }
             sfondo.style.backgroundPositionX=x+"px";
         }
-        let uccello=Number(window.innerWidth);
+        let posizioneUccelloX=Number(window.innerWidth);
+        let posizioneUccelloY=0;
         function vola(){
             let pappagallo=document.querySelector("img");
-            uccello--;
-            if(uccello==0-pappagallo.width){
-                uccello=Number(window.innerWidth);
+            posizioneUccelloX--;
+            posizioneUccelloY=5*Math.sin(posizioneUccelloX/window.innerWidth)*100;
+            if(posizioneUccelloX==0-pappagallo.width){
+                posizioneUccelloX=Number(window.innerWidth);
             }
-            pappagallo.style.left=uccello+"px";
-        }
-        function abbassa(event){
-            let tasto=event.key;
-            if(tasto=='a'){
-                let foto=document.querySelector("img");
-                foto.style.top=window.innerHeight-foto.height+"px";
-            }
-        } 
-        function rialza(event){
-            let tasto=event.key;
-            if(tasto=='a'){
-                let foto=document.querySelector("img");
-                foto.style.top=20+"px";
-            }
+            pappagallo.style.left=posizioneUccelloX+"px";
+            pappagallo.style.top=posizioneUccelloY+"px";
         }
     </script>
 </head>
-<body onload="carica()" onkeydown="abbassa(event)" onkeyup="rialza(event)">
+<body onload="carica()">
     <img src="pappagallo.gif" alt="pappagallo">
 </body>
 </html>
