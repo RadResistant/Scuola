@@ -30,6 +30,7 @@
         function muovi(e){
             let astronave=document.getElementById("astronave");
             let missile=document.getElementById("missile");
+            let sparato=false;
             switch (e.key) {
                 case "w":
                     sopra-=10;
@@ -51,8 +52,15 @@
                         astronave.style.display="inline-block";
                     }
                     break;
+                case " ":
+                    sparato=true;
+                    break;
                 default:
                     break;
+            }
+            if (!sparato){  
+                missile.style.top=sopra+"px";
+                missile.style.left=sinistra+"px";
             }
             astronave.style.top=sopra+"px";
             astronave.style.left=sinistra+"px";
