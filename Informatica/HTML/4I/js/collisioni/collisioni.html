@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #albero {
+            background-color: rgba(255, 225, 0, 0.334);
+            left: 700px;
+            top: 100px;
+            position: fixed;
+        }
+
+        #sparrow {
+            left: 100px;
+            top: 100px;
+            position: fixed;
+        }
+    </style>
+
+</head>
+
+<body onload="secondaria(event)">
+
+    <img src="alberi/albero1.png" alt="albero1" id="albero">
+    <img src="sparrow.png" alt="sparrow" id="sparrow">
+</body>
+<script>
+    "use strict";
+
+    function secondaria(){
+        let albero = document.getElementById("albero");
+        let sparrow = document.getElementById("sparrow");
+        let ris = collisione(albero,sparrow);
+        console.log(ris);
+    }
+    function collisione(obj1, obj2) {
+        let coll = true;
+        let img1 = obj1.getBoundingClientRect();
+        let img2 = obj2.getBoundingClientRect();
+        if (img1.y > img2.y + img2.height) {
+            coll = false;
+        }
+        if (img2.x + img2.width < img1.x) {
+            coll = false;
+        }
+        if (img1.x + img1.width < img2.x) {
+            coll = false;
+        }
+        if (img1.y + img1.height < img2.y) {
+            coll = false;
+        }
+        return coll;
+    }
+   
+</script>
+
+</html>

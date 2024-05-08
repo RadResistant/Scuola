@@ -1,0 +1,5 @@
+body{
+    position: fixed; 
+    background-image: url(sfondoBase.jpg);
+    background-size: cover;
+}
