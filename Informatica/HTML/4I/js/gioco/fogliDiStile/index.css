@@ -1,0 +1,28 @@
+body{
+    position: fixed; 
+    background-image: url(../immagini/sfondoBase.jpg);
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+    "null null null"
+    "bosco deserto neve"
+    "null null null"
+    ;
+}
+img{
+    border: white 3px solid;
+    border-radius: 5px;
+    height: 200px;
+    padding: 5px;
+}
+#bosco{
+    grid-area: bosco;
+}
+#deserto{
+    grid-area: deserto;
+}
+#neve{
+    grid-area: neve;
+}
