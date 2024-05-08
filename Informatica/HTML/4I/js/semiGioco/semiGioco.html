@@ -4,62 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-            position: fixed; 
-            background-image: url(sfondo.jpg);
-            background-repeat: repeat-x;
-        }
-        img{
-            position: fixed;
-            height: 80px;
-        }
-    </style>
-    <script>
-        function carica(){
-            window.setInterval(scorrimentoSfondo,10);
-            window.setInterval(vola,1);
-            let pappagallo=document.querySelector("img");
-            pappagallo.style.top=window.innerHeight/2+"px";
-        }
-        let x=0;
-        function scorrimentoSfondo(){
-            let sfondo=document.querySelector("body");
-            x+=5;
-            if(x>=1024){
-                x=0
-            }
-            sfondo.style.backgroundPositionX=x+"px";
-        }
-        let posizioneUccello=Number(window.innerWidth);
-        function vola(){
-            let pappagallo=document.querySelector("img");
-            posizioneUccello--;
-            if(posizioneUccello==0-pappagallo.width){
-                posizioneUccello=Number(window.innerWidth);
-            }
-            pappagallo.style.left=posizioneUccello+"px";
-        }
-        function premuto(event){
-            let tasto=event.key;
-            let foto=document.querySelector("img");
-            if(tasto=='ArrowUp'){
-                foto.style.top=20+foto.height+"px";
-            }
-            if(tasto=="ArrowDown"){
-                foto.style.top=window.innerHeight-foto.height+"px";                
-            }
-        } 
-        function rilasciato(event){
-            let tasto=event.key;
-            let foto=document.querySelector("img");
-            if(tasto=="ArrowUp"|| tasto=="ArrowDown"){
-                foto.style.top=window.innerHeight/2+"px";
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="semiGioco.css">
+    <script src="semiGioco.js"></script>
 </head>
 <body onload="carica()" onkeydown="premuto(event)" onkeyup="rilasciato(event)">
-    <img src="pappagallo.gif" alt="pappagallo">
+    <img src="pappagallo.gif" alt="pappagallo" id="uccello">
+    <img src="omino.gif" alt="omino" id="personaggio">
 </body>
 </html>

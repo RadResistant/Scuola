@@ -34,10 +34,11 @@
         function vola(){
             let pappagallo=document.querySelector("img");
             posizioneUccelloX--;
-            posizioneUccelloY=5*Math.sin(posizioneUccelloX/window.innerWidth)*100;
+            posizioneUccelloY=100*Math.sin(posizioneUccelloX/100);
             if(posizioneUccelloX==0-pappagallo.width){
                 posizioneUccelloX=Number(window.innerWidth);
             }
+            pappagallo.style.marginTop=50+"px";
             pappagallo.style.left=posizioneUccelloX+"px";
             pappagallo.style.top=posizioneUccelloY+"px";
         }
