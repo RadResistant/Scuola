@@ -1,0 +1,9 @@
+body{
+    background-image:url("../immagini/sfondoBosco.svg");
+    background-repeat: repeat-x;
+    position: fixed;
+}
+div{
+    background-image:url("../immagini/omino.png");
+    width: 233px;
+}
