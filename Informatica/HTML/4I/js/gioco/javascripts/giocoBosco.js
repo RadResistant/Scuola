@@ -3,7 +3,15 @@ let timerSfondo=window.setInterval(scorrimentoSfondo,1);
 let timerPersonaggio=window.setInterval(cammina,60);
 let aggiungtaZombie=window.setInterval(aggiungiZombie,1000);
 let camminaZombie=window.setInterval(camminaZ,60);
+let adattaSfondo=window.setInterval(adatta,1);
 let posSfondo=0;
+ function adatta(){
+    document.querySelector("body").style.backgroundSize="auto "+window.innerHeight+"px";
+    let posDiv=document.querySelectorAll("div");
+    for(let i=0;i<posDiv.length;i++){
+        posDiv[i].style.bottom="14%";
+    }
+ }
 function scorrimentoSfondo(){
     let sfondo=document.querySelector("body");
     posSfondo-=2;
@@ -18,7 +26,7 @@ function cammina(){
     if(posPersonaggio<=-932){
         posPersonaggio=233
     }
-    let foto=document.querySelectorAll("div")[0];
+    let foto=document.getElementById("personaggio");
     foto.style.backgroundPositionX=posPersonaggio+"px";
 }
 function aggiungiZombie(){
