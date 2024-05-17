@@ -3,7 +3,17 @@ body{
     background-repeat: repeat-x;
     position: fixed;
 }
-div{
+#personaggio{
     background-image:url("../immagini/omino.png");
     width: 233px;
+    height: 227px;
+    position: fixed;
+    bottom: 75px;
+}
+.zombie{
+    height: 227px;
+    width: 233px;
+    position:fixed;
+    bottom: 75px;
+    background-image: url("../immagini/zombie.jpg");
 }
