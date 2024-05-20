@@ -4,7 +4,7 @@ body{
     position: fixed;
 }
 div{
-    bottom: 14%;
+    bottom: 11%;
     position:fixed;
     height: 227px;
     width: 233px;
@@ -14,4 +14,7 @@ div{
 }
 .zombie{
     background-image: url("../immagini/zombie.jpg");
+}
+.proiettile{
+    position: fixed;
 }
