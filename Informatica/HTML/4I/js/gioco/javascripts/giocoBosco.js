@@ -5,6 +5,8 @@ let aggiungtaZombie=window.setInterval(aggiungiZombie,1000);
 let camminaZombie=window.setInterval(camminaZ,60);
 let adattaSfondo=window.setInterval(adatta,1);
 let posSfondo=0;
+let posProiettile=[];
+let inc=[];
 function adatta(){
         document.querySelector("body").style.backgroundSize="auto "+window.innerHeight+"px";
 }
@@ -20,7 +22,7 @@ let posPersonaggio=0;
 function cammina(){
     posPersonaggio-=233;
     if(posPersonaggio<=-932){
-        posPersonaggio=233
+        posPersonaggio=233;
     }
     let foto=document.getElementById("personaggio");
     foto.style.backgroundPositionX=posPersonaggio+"px";
@@ -33,7 +35,7 @@ function aggiungiZombie(){
 }
 function camminaZ(){
     let zombies=document.querySelectorAll(".zombie");
-    let inc=[1,1,1,1,1];
+    inc.push(1);
     if(zombies.length>4){
         window.clearInterval(aggiungtaZombie);
     }
@@ -44,5 +46,21 @@ function camminaZ(){
         let posizioneZom=parseInt(zombies[i].style.left);
         posizioneZom-=inc[i];
         zombies[i].style.left=posizioneZom+"px";
+    }
+}
+function spara(){
+    let proiettile=new Image(20);
+    proiettile.src="immagini/proiettile.png";
+    proiettile.className="proiettile";
+    proiettile.style.bottom="16%";
+    proiettile.onload=window.setInterval(scorrimentoProiettile,1);
+    posProiettile.push(0);
+    document.body.appendChild(proiettile);
+}
+function scorrimentoProiettile(){
+    let proiettili=document.querySelectorAll("img");
+    for(let i=0;i<proiettili.length;i++){
+        posProiettile[i]+=5;
+        proiettili[i].style.left=posProiettile+"px";
     }
 }
