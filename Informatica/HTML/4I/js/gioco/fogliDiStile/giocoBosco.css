@@ -4,17 +4,18 @@ body{
     position: fixed;
 }
 div{
-    bottom: 11%;
+    bottom: 10%;
     position:fixed;
     height: 144px;
     width: 150px;
 }
 #personaggio{
-    background-image:url("../immagini/omino.png");
-    background-size: cover;
+    background-image:url("../immagini/personaggio.png");
+    background-size: 750px 450px;
 }
 .zombie{
     background-image: url("../immagini/zombie.gif");
+    background-size: cover;
 }
 .proiettile{
     position: fixed;

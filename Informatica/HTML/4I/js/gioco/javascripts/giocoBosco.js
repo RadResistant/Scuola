@@ -7,7 +7,7 @@ let adattaSfondo=window.setInterval(adatta,1);
 let posSfondo=0;
 let inc=[];
 function adatta(){
-        document.querySelector("body").style.backgroundSize="auto "+window.innerHeight+"px";
+    document.querySelector("body").style.backgroundSize="auto "+window.innerHeight+"px";
 }
 function scorrimentoSfondo(){
     posSfondo-=2;
@@ -15,8 +15,8 @@ function scorrimentoSfondo(){
 }
 let posPersonaggio=0;
 function cammina(){
-    posPersonaggio-=145;
-    if(posPersonaggio<=-870){
+    posPersonaggio-=355;
+    if(posPersonaggio<=-750){
         posPersonaggio=145;
     }
     let foto=document.getElementById("personaggio");
@@ -43,23 +43,43 @@ function camminaZ(){
         zombies[i].style.left=posizioneZom+"px";
     }
 }
-function salta(event){
+let timerSalto;
+let timerScesa;
+let incrementoPavimento=1;
+function premi(event){
     let tasto=event.key;
     let personaggio=document.getElementById("personaggio");
     if(tasto==" "||tasto=="ArrowUp"||tasto=="w"){
-        personaggio.style.bottom="20%";
-    }
-    if(tasto=="ArrowDown"||tasto=="Control"||tasto=="s"){
-        personaggio.style.bottom=0;
+        console.log(incrementoPavimento);
+        incrementoPavimento=1;
+        timerSalto=window.setInterval(salto,100);
     }
 }
-function ritorna(event){
+function rilascia(event){
     let tasto=event.key;
     let personaggio=document.getElementById("personaggio");
     if(tasto==" "||tasto=="ArrowUp"||tasto=="w"){
-        personaggio.style.bottom="11%";
+        incrementoPavimento=0;
+        window.clearInterval(timerSalto);
+        timerScesa=window.setInterval(scesa,1);
     }
-    if(tasto=="ArrowDown"||tasto=="Control"||tasto=="s"){
-        personaggio.style.bottom="11%";
+}
+function salto(){
+    let personaggio=document.getElementById("personaggio");
+    let pavimento=parseInt(personaggio.style.bottom);
+    if(pavimento<25){
+        pavimento+=incrementoPavimento;
     }
+    personaggio.style.bottom=pavimento+"%";
+}
+function scesa(){
+    let personaggio=document.getElementById("personaggio");
+    let pavimento=parseInt(personaggio.style.bottom);
+    if(pavimento>10){
+        pavimento--;
+    }
+    else{
+        window.clearInterval(timerScesa);
+    }
+    personaggio.style.bottom=pavimento+"%";
 }
