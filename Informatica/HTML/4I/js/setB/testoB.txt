@@ -1,0 +1,12 @@
+- puoi modificare l'HTML ma fallo il meno possibile
+- se premi spazio il numero nel primo box viene decrementato,
+  qualsiasi altro tasto viene incrementato
+- al clik sull'immagine del fenicottero deve cambiare
+  (usa le due immagini del fenicottero alternandole)
+- al click su "drago" le parole "drago" nel testo diventano rosse
+  (ma non quella nel box)
+- al click su "cadi" l'immagine del fenicottero si sposta verso destra fino a scomparire
+- al click su "ferma" l'immagine del fenicottero si ferma
+- al click su mappa compare una mappa random 8x4 pezzi
+  creata utilizzando l'immagine deserto.png
+- al click su un tassello della mappa questo scompare

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palle</title>
+    <style>
+        body {
+            font-family: Optima, Verdana, Sans, sans-serif;
+        }
+        header {
+            margin-bottom:1em;
+        }
+        header span {
+            display: inline-block;
+            border:1px solid red;
+            border-radius: 5px;
+            padding: 0.2em 1em;
+            background-color: #eee;
+        }
+        img {
+            width: 8em;
+        }
+    </style>
+    <!--
+        L'HTML va modificato il meno possibile (e mai togliendo/mettendo dei tag)
+        [15pt] quando si preme "p" il numero nel primo box aumenta di uno,
+               quando si preme "m" il numero diminuisce di uno
+        [15pt] al click su "zoom" le dimensioni del testo descrittivo aumentano
+               delle dimensioni delle diverse palle da gioco raddoppia
+        [15pt] al click su "mangia" deve cancellare una delle foto dei palloni
+        [20pt] al click su "cambio" compaion N palle a caso (tipo slot machine)
+               le palle sono 4 a meno che non ne sia stata cancellata qualcuna dal
+               click su "mangia"
+        [15pt] al click su "batti!" compare una palla da baseball in
+               alto a destra e poi si muove verso il basso
+               fino a scomparire in fondo alla pagina
+    -->
+    <script>
+        "use strict";
+        function aumenta(e){
+            let numero=parseInt(document.getElementById("numero").innerText);
+            if(e.key=="p"){
+                numero++;
+            }
+            if(e.key=="m"){
+                numero--;
+            }
+            document.getElementById("numero").innerText=numero;
+        }
+        function ingrandisci(){
+            let testi=document.querySelectorAll("strong");
+            testi[1].style.fontSize="140px";
+            testi[2].style.fontSize="48px";
+            testi[3].style.fontSize="8.6px";
+            testi[4].style.fontSize="43.2px";
+        }
+        function elimina(){
+            let palle=document.querySelectorAll("img");
+            document.querySelector("section").removeChild(palle[palle.length-1]);
+        }
+        function battiPalla(){
+            let palla=document.createElement("img");
+            palla.src="baseball.jpg";
+            palla.alt="baseball";
+            palla.id="palla";
+            palla.style.position="fixed";
+            palla.style.right=0;
+            document.body.appendChild(palla);
+            let scendiPalla=window.setInterval(scesaPalla,10);
+        }
+        let sopra=0
+        function scesaPalla(){
+            let palla=document.getElementById("palla");
+            sopra=sopra+1;
+            palla.style.top=sopra+"px";
+        }
+    </script>
+</head>
+<body onkeypress="aumenta(event)">
+    <section>
+        <img src="rugby.jpg" alt="Rugby">
+        <img src="rugby.jpg" alt="Rugby">
+        <img src="rugby.jpg" alt="Rugby">
+        <img src="rugby.jpg" alt="Rugby">
+    </section>
+    <header>
+        <span id="numero">1</span>
+        <span onclick="ingrandisci()"><strong>zoom</strong></span>
+        <span>cambio</span>
+        <span onclick="elimina()">mangia</span>
+        <span onclick="battiPalla()">batti!</span>
+    </header>
+
+    <h1>Sport con sfere di ogni misura</h1>
+
+    <p>Nel panorama sportivo, la palla regna indiscussa come protagonista.
+    Ma non tutte le palle sono uguali: dimensioni, forme e materiali differenti
+    danno vita a una varietà di discipline che appassionano milioni di persone in tutto il mondo.</p>
+
+    <p>Tra gli sport più popolari troviamo il calcio, dove una palla sferica di cuoio o materiale
+    sintetico viene calciata da due squadre di undici giocatori con l'obiettivo di segnarla nella porta avversaria.
+    Dimensione regolamentare: circa <strong>70 cm di circonferenza</strong>.</p>
+
+    <p>Se preferite uno sport più dinamico, il basket è l'ideale. Due squadre di cinque giocatori
+    si sfidano lanciando una palla a spicchi nel canestro avversario.
+    La palla da basket ha un <strong>diametro di circa 24 cm</strong>.</p>
+
+    <p>Nel golf, una piccola palla bianca viene colpita da un bastone con l'obiettivo di farla
+    entrare in buche disposte lungo un percorso in mezzo al verde.
+    Il diametro della palla da golf è di <strong>circa 4,3 cm</strong>.</p>
+
+    <p>Infine, il bowling prevede il lancio di una palla pesante verso dei birilli da abbattere.
+    La palla da bowling ha un <strong>diametro di circa 21,6</strong> cm e un peso che varia da 6 a 7,3 kg.</p>
+</body>
+</html>

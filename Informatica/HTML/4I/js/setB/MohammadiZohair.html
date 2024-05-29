@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set2</title>
+    <style>
+      body {
+        margin-right: 300px;
+      }
+      header {
+        margin-bottom: 1em;
+        width: 100%;
+      }
+      div {
+        background-image: url("deserto.png");
+        height: 33px;
+        width: 33px;
+        display: inline-block;
+        color: transparent;
+      }
+      header span {
+        display: block;
+        border: 1px solid blue;
+        border-radius: 5px;
+        padding: 0.2em 1em;
+        background-color: #1fe;
+        margin: 1em;
+      }
+      article {
+        width: 100%;
+      }
+      #mappa {
+        width: 264px;
+      }
+      #quadro {
+        position: fixed;
+        width: 20%;
+        left: 80%;
+      }
+      #c {
+        background-image: url("deserto.png");
+        height: 33px;
+        width: 33px;
+        background-position: 33px 33px;
+      }
+    </style>
+    <script>
+      "use strict";
+
+      function avvia() {
+        document.querySelector("body").addEventListener("keydown", numero);
+        console.log(document.getElementById("c").width);
+        console.log(document.getElementById("c").height);
+      }
+
+      function numero(e) {
+        let numero = document.getElementById("numero");
+        if (e.key == " ") {
+          numero.innerText = parseInt(numero.innerText) - 1;
+        } else {
+          numero.innerText = parseInt(numero.innerText) + 1;
+        }
+      }
+
+      function cambioImmagine() {
+        let immagine = document.getElementById("quadro");
+        if (immagine.src.includes("feni1")) {
+          immagine.src = "feni2.jpg";
+        } else {
+          immagine.src = "feni1.jpg";
+        }
+      }
+
+      function drago() {
+        let draghi = document.querySelectorAll("article em");
+        for (let i = 0; i < draghi.length; i++) {
+          draghi[i].style.fontSize = "40px";
+        }
+      }
+
+      let timer;
+      function spostaGiu() {
+        timer = window.setInterval(sposta, 100);
+      }
+
+      function sposta() {
+        let immagine = document.getElementById("quadro");
+        immagine.style.top = parseInt(immagine.style.top) + 5 + "px";
+      }
+      function ferma() {
+        clearInterval(timer);
+      }
+
+      function mappa() {
+        let padre = document.getElementById("mappa");
+        for (let i = 0; i < 32; i++) {
+          let nuovo = document.createElement("div");
+          nuovo.innerText = " c";
+          let posizioni = [33, 66, 99];
+          let x = Math.floor(Math.random() * 3);
+          let y = Math.floor(Math.random() * 3);
+          nuovo.addEventListener("click", rimuovi);
+          nuovo.style.backgroundPosition =posizioni[x] + "px " + posizioni[y] + "px";
+          padre.appendChild(nuovo);
+        }
+      }
+      function rimuovi(e) {
+        e.target.style.visibility = "hidden";
+      }
+    </script>
+  </head>
+  <body onload="avvia()">
+    <img
+      id="quadro"
+      src="feni1.jpg"
+      alt="fenicottero"
+      onclick="cambioImmagine()"
+      style="top: 0px"
+    />
+    <header>
+      <span id="numero">1</span>
+      <span onclick="drago()"><em>drago</em></span>
+      <span onclick="spostaGiu()">cadi</span>
+      <span onclick="ferma()">ferma</span>
+      <span onclick="mappa()">mappa</span>
+    </header>
+    <article>
+      <p>
+        Nell'antico borgo di Gualdo Tadino, si narra la leggenda del
+        <em>Drago</em> di Rame. Si dice che un tempo, un <em>drago</em> enorme
+        con scaglie di rame lucente vivesse nelle profondità della montagna. Era
+        una creatura temibile, che sputava fuoco e terrorizzava gli abitanti del
+        villaggio.
+      </p>
+      <p>
+        Un giorno, un giovane cavaliere di nome Araldo decise di affrontare il
+        <em>drago</em>. Si armò della sua spada più affilata e del suo scudo più
+        resistente, e si avventurò nelle caverne del monte Subasio. Dopo giorni
+        di ricerca, finalmente trovò il <em>drago</em>. La battaglia fu epica e
+        sanguinosa, ma alla fine Araldo riuscì a sconfiggere la creatura.
+      </p>
+    </article>
+    <section id="mappa"></section>
+  </body>
+</html>
