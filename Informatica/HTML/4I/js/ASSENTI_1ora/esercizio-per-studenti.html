@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Compito recupero</title>
+		<meta charset="UTF-8">
+<!--
+
+INFORMAZIONI:
+  - non serve modificare il foglio di stile
+  - punteggio = (totale+20)/10
+  - tutte le immagini sono 200x200px
+
+1:[punti 10] click sullo span "bianco" o "nero"
+al posto dell'immagine dei cani deve comparire l'immagine del cane bianco o di quello nero
+
+2:[punti 10] click su "canis lupus familiaris"
+la grandezza del branco (il numero sulla destra) +1
+
+3:[punti 10] click sull'immagine del cane
+l'immagine si sposta verso destra
+
+4:[punti 10] click sul pulsante "latino"
+i nomi latini devono diventare rossi al click successivo tornano neri
+
+5:[punti 15] click su "aggiungi"
+al click compare una immagine aggiuntiva di un cane nel box con il bordo rosso
+(una volta un cane bianco e una volta nero alternati)
+
+6:[punti 15] click su "mangia" deve eliminare una foto dei cani nelò box rosso
+ogni secondo fino ad averle rimosse tutte
+
+ -->
+	</head>
+	<style>
+
+		header { display: grid; grid-template-columns: 5em 5em ; grid-gap:0.2em}
+		header > div { background: green ; padding: 1em;}
+
+		section { margin-top:7em }
+		article > div { border: 1px solid red; border-radius: 1em ; padding:1em ; margin:1em}
+		#cani { position:fixed; left:300px; top:0px }
+		span { font-weight: bold; font-size:125% }
+		#foto { border:1px solid red ; height: 220px; margin-top: 1em}
+	</style>
+	<script>
+		"use strict";
+		let sinistra=200;
+		function adatta(){
+			document.querySelector("img").style.position="absolute";
+			document.querySelector("img").style.top="5px";
+			document.querySelector("img").style.left=sinistra+"px";
+		}
+		function contatore(){
+			let grandezzaBranco=parseInt(document.querySelector("em").innerText);
+			grandezzaBranco=grandezzaBranco+1;
+			console.log(grandezzaBranco);
+			document.querySelector("em").innerText=grandezzaBranco;
+		}
+		function coloreCane(x){
+			document.querySelector("img").src=x;
+		}
+		function latino(){
+			let latino=document.querySelectorAll("strong");
+			for(let i=0; i<latino.length; i++){
+				if(latino[i].style.color=="black"){
+					latino[i].style.color="red";
+				}
+				else{
+					latino[i].style.color="black";
+				}
+			}
+		}
+		function destra(){
+			let immagine=document.querySelector("img");
+			sinistra+=10;
+			immagine.style.left=sinistra+"px";
+		}
+		let canidi;
+		let click=true;
+		function cani(){
+			canidi=document.querySelectorAll("section img");
+			let immag=document.createElement("img");
+				if(click){
+					immag.src="terranova.jpg";
+				}
+				else{
+					immag.src="samoiedo.jpg";
+				}
+				click=!click;
+			document.getElementById("foto").appendChild(immag);
+		}
+	</script>
+	<body onload="adatta()">
+		<header>
+			<div onclick="latino()">latino</div>
+			<div onclick="cani()">aggiungi</div>
+			<div>mangia</div>
+		</header>
+		<section>
+			<img alt="cani" src="cani.jpg" onclick="destra()">
+			<h2 onclick="contatore()">Canis lupus familiaris, grandezza del branco: <em>2</em></h2>
+			<p>Il cane <strong>(Canis lupus familiaris)</strong> è un mammifero appartenente
+                all'ordine Carnivora, della famiglia dei canidi. Con l'avvento dell'addomesticamento
+                si è distinto dal lupo <strong>(Canis lupus)</strong> di cui è considerato una sottospecie
+                Si tratta di un canino dalla taglia piccola a grande con una plasticità
+                fenotipica molto variabile. Il mantello può essere corto o lungo, ispido o morbido,
+                liscio o riccio, con una borra (sottopelo) di cui molte razze fanno la muta.
+                Il colore varia a seconda della discendenza, i quali possono essere di tanti colori,
+                come dal
+                <span onclick="coloreCane('samoiedo.jpg')">bianco</span> al
+                <span onclick="coloreCane('terranova.jpg')">nero</span>, dal rosso al marrone e via di scorrendo e talvolta
+                ritenendo una forma di controilluminazione ancestrale, con una superficie superiore
+                scura ed inferiore chiara. La testa può essere brachicefala, mesaticefala o doligocefala.
+                La coda varia in forma e lunghezza, essendo persino assente in certe razze.
+                Alcune razze dispongono d'un quinto dito vestigiale sugli arti posteriori,
+                che serve per facilitare la camminata o arrampicarsi in muri o mura di rocce. </p>
+                <p>In australia c'è una sottospecie endemica: il dingo (<strong>Canis lupus dingo</strong>).</p>
+		</section>
+		<section id="foto"></section>
+	</body>
+</html>

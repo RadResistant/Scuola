@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentazione</title>
+    <style>
+        img{border-left: 2px yellow solid; padding: 5px;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ciao sono Raffaele</h1>
+        <p><strong>Informatica</strong></p>
+        <p><i>Giocare a genshin</i></p>
+        <p><sup>Giocare </sup><sub>a hsr</sub></p>
+        <a href="pagina2.html" target="_blank"><p id="link">Io quando vedo adam</p></a>
+        <img src="../images/agapanto.jpeg" alt="agapanto">
+        <img src="../images/ginepro.jpeg" alt="ginegro">
+        <blockquote cite="http://www.worldwildlife.org/who/index.html">
+            For 60 years, WWF has worked to help people and nature thrive. As the world's leading conservation organization, WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver innovative solutions that protect communities, wildlife, and the places in which they live.
+        </blockquote>
+        <ul style="list-style-type:square;">
+            <li>sad</li>
+        </ul>
+        <ol style="list-style-type: upper-roman;">
+            <li>asda</li>
+        </ol>
+        <iframe src="https://www.speedtest.net/it" frameborder="0" style="display: block;">asd</iframe>
+        <code>adesso inizia la parte <var>js</var></code>
+        <div>
+            <script>
+                let click=true;
+                function fun(){
+                    if(click){
+                        document.getElementById("foto").src="../images/agapanto.jpeg";
+                    }
+                    else{
+                        document.getElementById("foto").src="../images/aster.jpeg";
+                    }
+                    click = !click;
+                }
+            </script>
+            <input type="button" style="display: block;" value="Cambia foto" onclick="fun()">
+            <img src="../images/aster.jpeg" id="foto" alt="aster">
+            <input type="radio" name="Ti piace questa cosa?" id="bottonetondo" style="display: block;">
+            <form action="pagina2.html">
+                Name: <input type="text" name="name">
+                <input type="submit">
+                </form> 
+        </div>
+        <video src=""></video>
+        <audio src=""></audio>
+    </header>
+</body>
+</html>

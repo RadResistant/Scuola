@@ -1,0 +1,22 @@
+body{
+    background-image: url(../immagini/sfondoBase.jpg);
+    background-size: cover;
+}
+img{
+    border: white 3px solid;
+    border-radius: 5px;
+    height: 300px;
+    padding: 5px;
+}
+div{
+    height: 75%;
+    width: 33%;
+    display: inline-block;
+    align-items: center;
+}
+h1{
+    height: 25%;
+    text-align: center;
+    color: black;
+    font-size:5em;
+}

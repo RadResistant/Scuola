@@ -1,0 +1,6 @@
+body{
+    background-image: url("../immagini/sfondoNeve.svg");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-attachment: fixed;
+}

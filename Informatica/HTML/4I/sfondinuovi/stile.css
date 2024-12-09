@@ -1,0 +1,55 @@
+div.kansas{
+    background-color: red;
+    padding: 5px;
+}
+p.kansas{
+    background-color: white;
+    margin: 5px;
+    border-top: dashed blue;
+    border-left: dotted red 2px;
+}
+div.kentucky{
+    margin-top: 1em;
+    border: dotted green;
+}
+h3.kentucky{
+    border: solid red 2px;
+    background-color: white;
+    margin: 0em;
+}
+p.argentina{
+    background-color: black;
+    color: white;
+    padding-bottom: 4em;
+}
+h2{
+    border: solid aqua;
+}
+p.kentucky{
+    background-color: lightgray;
+    padding: 1em;
+}
+p.finale{
+    border-top: solid red 1px;
+    background-color: lightgray;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    padding: 1em;
+}
+div.texas{
+    border: solid green;
+    background-color: yellow;
+    padding-top: 0em;
+    margin-bottom: 1em;
+}
+h3.texas{
+    border: solid green;
+    margin: 1em;
+    background-color: white;
+    border-radius: 200px;
+}
+p.inizio{
+    background-color: lightgray;
+    padding: 1em;
+    margin-left: 10em;
+}

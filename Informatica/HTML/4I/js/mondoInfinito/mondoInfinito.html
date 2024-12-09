@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            position: fixed; 
+            background-image: url(colline.png);
+            background-repeat: repeat-x;
+        }
+        img{
+            position: fixed;
+            height: 80px;
+        }
+    </style>
+    <script>
+        function carica(){
+            window.setInterval(scorrimentoSfondo,10);
+            window.setInterval(vola,1);
+        }
+        let x=0;
+        function scorrimentoSfondo(){
+            let sfondo=document.querySelector("body");
+            x+=5;
+            if(x>=1366){
+                x=0;
+            }
+            sfondo.style.backgroundPositionX=x+"px";
+        }
+        let posizioneUccelloX=Number(window.innerWidth);
+        let posizioneUccelloY=0;
+        function vola(){
+            let pappagallo=document.querySelector("img");
+            posizioneUccelloX--;
+            posizioneUccelloY=100*Math.sin(posizioneUccelloX/100);
+            if(posizioneUccelloX==0-pappagallo.width){
+                posizioneUccelloX=Number(window.innerWidth);
+            }
+            pappagallo.style.marginTop=50+"px";
+            pappagallo.style.left=posizioneUccelloX+"px";
+            pappagallo.style.top=posizioneUccelloY+"px";
+        }
+    </script>
+</head>
+<body onload="carica()">
+    <img src="pappagallo.gif" alt="pappagallo">
+</body>
+</html>

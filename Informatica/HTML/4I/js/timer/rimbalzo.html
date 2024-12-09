@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 50px;
+            background-color: yellow;
+            position: fixed;
+            padding:0;
+            margin:0;
+        }
+    </style>
+   <script>
+        let sin=0;
+        let incre=1;
+        let des=window.innerWidth;
+        function carica(){
+            let timer=window.setInterval(incremento,1);
+        }
+        function incremento(){
+            let ret=document.querySelector("div");
+            sin+=incre;
+            des-=incre;
+            ret.style.left=sin+"px";
+            if(sin+100>=window.innerWidth){
+                incre=-1;
+            }
+            if(sin<=0){
+                incre=1;
+            }
+        }
+   </script> 
+</head>
+<body onload="carica()">
+    <div></div>
+</body>
+</html>

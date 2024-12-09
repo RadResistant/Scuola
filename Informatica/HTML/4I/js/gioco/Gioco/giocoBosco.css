@@ -1,0 +1,23 @@
+body{
+    background-image:url("immagini/sfondoBosco.svg");
+    background-repeat: repeat-x;
+    position: fixed;
+}
+div{
+    bottom: 7%;
+    position:fixed;
+}
+#personaggio{
+    background-size: cover;
+    height: 143.9px;
+    width: 170px;
+}
+.zombie{
+    background-image: url("immagini/zombie.gif");
+    background-size: cover;
+    height: 115px;
+    width: 170px;
+}
+.proiettile{
+    position: fixed;
+}

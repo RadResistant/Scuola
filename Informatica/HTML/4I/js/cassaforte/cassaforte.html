@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         h1{
+            background-color: green;
+            color: white;
+            grid-column: 1/4;
+            font-size: 100px;
+            margin: 0px;
+            text-align: center;
+        }
+         button{
+            background-color: yellow;
+            color: red;
+            border: orange 2px solid;
+            border-radius: 0.25em;
+            font-size: 5em;
+        }
+        body{
+            grid-template-columns: auto auto auto;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            display: grid;
+            grid-gap: 1rem;
+            background-color: red;
+        }        
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <script>
+        function fun(e){
+            let campo=document.querySelector("h1");
+            campo.innerText+=e.target.innerText;
+            if(campo.innerText=="123"){
+                alert("Cassaforte aperta");
+            }
+        }
+        for(let i=1;i<10;i++){
+                let x=document.createElement("button");
+                x.innerText=i
+                x.addEventListener("click",fun);
+                document.body.appendChild(x);
+            }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let vettore=[];
+        for(let i=0;i<10;i++){
+            vettore.push(Math.floor(Math.random()*1001))
+        }
+        document.write("<h1>"+vettore+"</h1>");
+        let media=0;
+        for(let i=0;i<vettore.length;i++){
+            media+=vettore[i];
+        }
+        media/=10;
+        document.write("<h2>"+media+"</h2>");
+        let max=0,min=999999;
+        for(let i=0;i<vettore.length;i++){
+            if(max<vettore[i]){
+                max=vettore[i];
+            }
+            if(min>vettore[i]){
+                min=vettore[i];
+            }
+        }
+        document.write("<h3>minimo: "+min+" ,max:"+max+"</h3>");
+    </script>
+</body>
+</html>

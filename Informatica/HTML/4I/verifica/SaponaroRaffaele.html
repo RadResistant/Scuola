@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        body{
+            margin: 0;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto auto;
+            grid-template-areas: 
+            "titolo titolo logo"
+            "sectionS sectionD nav"
+            "foot foot nav"
+            ;
+        }
+        img{
+            float: right;
+            grid-area: logo;
+            background-color: yellow;
+            padding: 1em;
+            margin: 0em;
+        }
+        div{
+            background-color: yellow
+        }
+        h1{
+            font-family: serif;
+            padding: 0,5em;
+            font-size: 75px;
+            text-align: center;
+            grid-area: titolo;
+            background-color: green;
+            margin: 0;
+        }
+        h3{
+            border-bottom: dotted yellow 2px;
+        }
+        footer{
+            color: white;
+            background-color: black;
+            grid-area: foot;
+        }
+        nav{
+            grid-area: nav;
+            background-color: green;
+        }
+        a{
+            border-left: 5px solid yellow;
+        }
+        a:hover{
+            border-width: 15px;
+        }
+        table,th,td{
+            border: solid rgb(72, 72, 72) 1px;
+            border-collapse: collapse;
+        }
+        th{
+            background-color: rgb(72, 72, 72);
+            color: white;
+            border-color: white;
+            padding: 0.5em;
+        }
+        td:hover{
+            background-color: rgb(72, 72, 72);
+            color: yellow;
+        }
+        nav ul li{
+            list-style-type: none;
+            padding: 2em 0em;
+        }
+        #sectionS{
+            grid-area: sectionS;
+            margin: 1em;
+        }
+        #sectionD{
+            grid-area: sectionD;
+            margin: 1em;
+        }
+        .sinistra{
+            color: cyan;
+            font-weight: bold;
+        }
+        .destra{
+            color: green;
+            font-weight: bold;
+        }
+        @media screen and (max-width:800px){
+            .descrizione{
+                display: none;
+            }
+            body{
+                margin: 0;
+                display: grid;
+                grid-template-columns: auto auto;
+                grid-template-rows: auto auto auto auto;
+                grid-template-areas: 
+                "titolo logo"
+                "sectionS nav"
+                "sectionD nav"
+                "foot nav"
+                ;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="iis.png" alt="Logo IIS Gubbio">
+    </div>
+    <h1>Verifica di informatica</h1>
+    <nav>
+        <ul>
+            <li>
+                <a href="https://www.iisgubbio.edu.it/">link uno</a>
+            </li>
+            <li>
+                <a href="https://lnx.iisgubbio.edu.it/Orario/">link due</a>
+            </li>
+            <li>
+                <a href="https://www.google.com/">link tre</a>
+            </li>
+        </ul>
+    </nav>
+    <section id="sectionS">
+        <h2>Pizza</h2>
+        <h3>Dati</h3>
+        <table>
+            <tr>
+                <th></th>
+                <th>pomodoro</th>
+                <th>alici</th>
+            </tr>
+            <tr>
+                <th>
+                    Focaccia <em class="sinistra">Genovese</em>
+                </th>
+                <td>no</td>
+                <td>no</td>
+            </tr>
+            <tr>
+                <th>Margherita</th>
+                <td>si</td>
+                <td>no</td>
+            </tr>
+            <tr>
+                <th>Napoletana</th>
+                <td colspan="2">si</td>
+            </tr>
+        </table>
+        <h3>In sintesi</h3>
+        <p>Cosa serve sempre per una roba <em class="sinistra">tipo</em> pizza?</p>
+        <ul>
+            <li>farina</li>
+            <li>lievito</li>
+            <li>acqua</li>
+        </ul>
+        <h3 class="descrizione">Descrizione</h3>
+        <p class="descrizione">Questa frase è qui soltanto come riempimento, non ha un senso partcolare.</p>
+        <p class="descrizione">Questa frase è qui soltanto come riempimento, non ha un senso partcolare.</p>
+    </section>
+    <section id="sectionD">
+        <h2>Brace</h2>
+        <h3>Dati</h3>
+        <table>
+            <tr>
+                <th></th>
+                <th>vegano</th>
+                <th>maiale</th>
+            </tr>
+            <tr>
+                <th>patate</th>
+                <td>si</td>
+                <td>no</td>
+            </tr>
+            <tr>
+                <th>fiorentina</th>
+                <td rowspan="2">no</td>
+                <td>no</td>
+            </tr>
+            <tr>
+                <th>costarelle</th>
+                <td>si</td>
+            </tr>
+        </table>
+        <h3>In sintesi</h3>
+        <p>Cosa serve sempre per una <em class="destra">griglaita</em>?</p>
+        <ol>
+            <li>uno spazio adeguato</li>
+            <li>legna e <em class="destra">cenere</em> a sufficenza</li>
+        </ol>
+        <h3 class="descrizione">Descrizione</h3>
+        <p class="descrizione">Questa frase è qui soltanto come riempimento, non ha un senso partcolare.</p>
+        <p class="descrizione">Questa frase è qui soltanto come riempimento, non ha un senso partcolare.</p>
+    </section>
+    <footer>
+        <p>
+            Questo confronto tra pizza e brace non è particolarmente utile.
+        </p>
+        <p>
+            Il testo pero va ricopiato tutto.
+        </p>
+    </footer>
+</body>
+</html>

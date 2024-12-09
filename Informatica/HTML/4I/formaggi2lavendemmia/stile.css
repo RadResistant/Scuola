@@ -1,0 +1,61 @@
+th{
+    background-color: gray;
+}
+table,td,th{
+    border: solid blue 1px;
+    border-collapse: collapse;
+    padding: 0.5em;
+}
+h2{
+    color: green;
+    border-bottom: dotted green 0.1px;
+}
+img.gorgonzola{
+    float: left;
+    height: 7em;
+    margin: 0em 1em 1em 1em;
+}
+img{
+    border: solid green 2px;
+}
+div{
+    background-color: yellow;
+    border-left: orange dashed 2px;
+    padding: 2em 0em 0em 2em;
+    clear: both;
+}
+strong{
+    font-family: sans-serif;
+    font-size: 0.9em;
+}
+*{
+    font-family: sans-serif;
+}
+em{
+    font-weight: bold;
+    font-style: normal;
+    background-color: yellow;
+    border-bottom: solid red 2px;
+}
+img.formaggi{
+    float: left;
+    margin: 0em 1em 1em 1em;
+    height: 10em;
+}
+body{
+    margin: 1em;
+}
+span{
+    color: red;
+}
+article{
+    font-style: italic;
+    font-family: Times;
+}
+img.logo{
+    float: right;
+    height: 7em;
+    background-color: aquamarine;
+    padding: 1em;
+    clear: both;
+}

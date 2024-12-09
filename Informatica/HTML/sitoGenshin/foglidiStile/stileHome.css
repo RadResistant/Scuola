@@ -1,0 +1,58 @@
+body {
+    background-image: url("../fotoVarie/Sfondo.jpg");
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "titolo titolo titolo"
+        "nav nav nav"
+        "Vuoto Welcome vuoto";
+}
+header {
+    grid-area: titolo;
+    text-align: center;
+    font-size: 25px;
+    padding: 100px;
+    margin: 0px;
+    background-image: url("../fotoVarie/LogoHoyoverse.jpg");
+    color: rgb(255, 255, 255);
+}
+nav {
+    grid-area: nav;
+    background-color: rebeccapurple;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+li {
+    float: left;
+    display: inline;
+}
+li a {
+    display: block;
+    padding: 8px;
+    background-color: rebeccapurple;
+}
+li a:hover {
+    background-color: rgb(131, 79, 184);
+}
+h2 {
+    color: cyan;
+    font-size: 20px;
+}
+h6.BH {
+    font-size: 20px;
+    color: blanchedalmond;
+    text-align: center;
+}
+div{
+    grid-area: Welcome;
+}

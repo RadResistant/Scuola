@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function oreMinutiSecondi(sec){
+            let s,m,o,g;
+            m = Math.floor(sec/60);
+            s = sec % 60;
+            o = Math.floor(m/60);
+            m = m % 60;
+            let risultato="Sono le ore "+o+":"+m+":"+s;
+            return risultato;
+        }
+    </script>
+</body>
+</html>

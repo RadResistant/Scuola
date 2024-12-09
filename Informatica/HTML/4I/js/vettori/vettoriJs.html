@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            background-color: orange;
+            border-color: darkorange;
+            border-radius: 5px;
+            height: 50px;
+            width: 75px;
+        }
+        li{
+            background-color: gray;
+            border-color: darkgray;
+            border-radius: 5px;
+        }
+        ul{
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function metti(){
+            let lista=["rosso","blu","viola","rosa"];  
+            let nuovo=document.createElement("p");
+            nuovo.innerText=lista[Math.floor(Math.random()*lista.length)];
+            document.body.appendChild(nuovo);
+        }
+        function togli(){
+            let vecchio=document.getElementsByTagName("p");
+            document.body.removeChild(vecchio[vecchio.length-1]);
+        }
+    </script>
+    <button onclick="metti()">Metti</button>
+    <button onclick="togli()">Togli</button>
+</body>
+</html>

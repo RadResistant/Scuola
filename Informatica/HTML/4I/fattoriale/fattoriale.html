@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fattoriale(num){
+            let risultato=1;
+            for(let numero=num;numero>0;numero--){
+                risultato*=numero;
+            }
+            return risultato;
+        }
+        function fibonacci(num){
+            let antenato;
+            let precedente;
+            let fibonacci;
+            if(num>1){
+                precedente=num;
+                antenato=num-1;
+                for(let numero=num;numero>0;numero--) {
+                    fibonacci=antenato+precedente;
+                    antenato=precedente;
+                    precedente=fibonacci;
+			    }
+                return fibonacci;
+            }
+            else{
+                if(num==0){
+                    return 0;
+                }
+                else{
+                    return 1;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

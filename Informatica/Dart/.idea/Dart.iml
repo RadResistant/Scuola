@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/calcolatore/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/calcolatore/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/calcolatore/build" />
+      <excludeFolder url="file://$MODULE_DIR$/colori/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/colori/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/colori/build" />
+      <excludeFolder url="file://$MODULE_DIR$/immagini/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/immagini/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/immagini/build" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia/build" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia3/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia3/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia3/build" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia4/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia4/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia4/build" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia5/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia5/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/interfaccia5/build" />
+      <excludeFolder url="file://$MODULE_DIR$/listview/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/listview/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/listview/build" />
+      <excludeFolder url="file://$MODULE_DIR$/menu/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/menu/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/menu/build" />
+      <excludeFolder url="file://$MODULE_DIR$/multipagina/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/multipagina/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/multipagina/build" />
+      <excludeFolder url="file://$MODULE_DIR$/panini/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/panini/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/panini/build" />
+      <excludeFolder url="file://$MODULE_DIR$/pariodispari/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/pariodispari/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/pariodispari/build" />
+      <excludeFolder url="file://$MODULE_DIR$/primo/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/primo/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/primo/build" />
+      <excludeFolder url="file://$MODULE_DIR$/progettovivaio/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/progettovivaio/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/progettovivaio/build" />
+      <excludeFolder url="file://$MODULE_DIR$/rettangolo/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/rettangolo/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/rettangolo/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ristorante/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ristorante/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ristorante/build" />
+      <excludeFolder url="file://$MODULE_DIR$/slot_machine/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/slot_machine/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/slot_machine/build" />
+      <excludeFolder url="file://$MODULE_DIR$/testa_o_croce/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/testa_o_croce/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/testa_o_croce/build" />
+      <excludeFolder url="file://$MODULE_DIR$/vivaio/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/vivaio/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/vivaio/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+  </component>
+</module>

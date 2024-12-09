@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="stile.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <script>
+            let x=Math.random()*101;
+            let numerotentativi=0;
+            let textarea=document.createElement("textarea");
+            textarea.setAttribute("cols","10");
+            textarea.setAttribute("rows","1");
+            document.body.appendChild(textarea);
+            x=Math.round(x);
+            function fun(){
+                if(parseInt(textarea.value)==x &&  numerotentativi<=10){
+                    document.getElementById("ris").innerHTML="Indovinato in " + numerotentativi +" tentativi/o";
+                }
+                if(parseInt(textarea.value)<x &&  numerotentativi<=10){
+                    document.getElementById("ris").innerHTML="Più grande";
+                }
+                if(parseInt(textarea.value)>x &&  numerotentativi<=10){
+                    document.getElementById("ris").innerHTML="Più piccolo";
+                }
+                if(numerotentativi>10){
+                    document.getElementById("ris").innerHTML="Hai finito i tentativi";
+                }
+                numerotentativi++;
+            }
+            function ran(){
+                x=Math.random()*101;
+                x=Math.round(x);
+                numerotentativi=0;
+            }
+        </script>
+        <div id="vuoto"></div>
+        <div id="inserisci">
+            <object data="textarea" type="textarea" id="campo"></object>
+            <label for="campo">Inserisci un numero da 1 a 100 e scopri se hai indovinato</label>
+        </div>
+        <div id="risultato">
+            <h1 id="ris"></h1>
+        </div>
+        <div id="bottoni">
+            <button onclick="ran()">Reset</button>
+            <button onclick="fun()">Prova</button>
+        </div>
+</body>
+</html>

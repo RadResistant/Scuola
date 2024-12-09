@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: darkblue;
+        }
+        img{
+            position:fixed;
+        }
+        #astronave{
+            z-index: 1;
+        }
+    </style>
+    <script>
+        let sopra=window.innerHeight/2;
+        let sinistra=window.innerWidth/2;
+        let visibile=true;
+        function centra(){
+            let astronave=document.getElementById("astronave");
+            let missile=document.getElementById("missile");
+            astronave.style.top=sopra+"px";
+            astronave.style.left=sinistra+"px";
+            missile.style.top=sopra+10+"px";
+            missile.style.left=sinistra+40+"px";
+        }
+        function muovi(e){
+            let astronave=document.getElementById("astronave");
+            let missile=document.getElementById("missile");
+            let sparato=false;
+            switch (e.key) {
+                case "w":
+                    sopra-=10;
+                    break;
+                case "s":
+                    sopra+=10;
+                    break;
+                case "a":
+                    sinistra-=10;
+                    break;
+                case "d":
+                    sinistra+=10;
+                    break;
+                case "i":
+                    if(visibile){
+                        astronave.style.display="none";
+                    }
+                    else{
+                        astronave.style.display="inline-block";
+                    }
+                    break;
+                case " ":
+                    sparato=true;
+                    break;
+                default:
+                    break;
+            }
+            if (!sparato){  
+                missile.style.top=sopra+"px";
+                missile.style.left=sinistra+"px";
+            }
+            astronave.style.top=sopra+"px";
+            astronave.style.left=sinistra+"px";
+            visibile=!visibile;
+        }
+        let posiMissile=sopra;
+        function missile(){
+            let missile=document.getElementById("missile");
+            console.log(posiMissile);
+            posiMissile+=5;
+            missile.style.top=posiMissile+"px";
+        }
+    </script>
+</head>
+<body onload="centra()" onkeydown="muovi(event)">
+    <img id="astronave" src="astronave.png" alt="astronave">
+    <img id="missile" src="missile.png" alt="missile">
+</body>
+</html>

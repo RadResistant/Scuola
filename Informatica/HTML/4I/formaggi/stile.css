@@ -1,0 +1,39 @@
+
+h1.titolo{
+    text-shadow: 0.1em 0.1em 0.15em red;
+}
+div.blu{
+    background-color: yellow;
+    padding: 1em;
+}
+p.blu{
+    line-height: 2em;
+}
+p.gorgonzola{
+    color: blue;
+    text-align: center;
+    text-transform: capitalize;
+}
+h3.taleggio{
+    text-decoration: underline;
+}
+p.cruda{
+    text-align: right;
+}
+p.roquefort{
+    color: red;
+    word-spacing: 2em;
+}
+h3.roquefort{
+    letter-spacing: 2em;
+    font-family: "Sofia", sans-serif;
+}
+img.blu{
+    vertical-align: middle;
+}
+img.taleggio{
+    vertical-align: text-top;
+}
+.corsivo{
+    font-style: italic;
+}

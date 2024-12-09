@@ -1,0 +1,226 @@
+body{
+    background-image: url("../fotoVarie/Sfondo.jpg");
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: 400px auto 0px;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "titolo titolo titolo"
+    "nav nav nav"
+    "foto testo vuoto";
+    }
+
+header{
+    grid-area: titolo;
+    text-align:center;
+    font-size: 25px;
+    padding: 100px;
+    margin: 0px;
+    background-image:url("../fotoVarie/LogoHoyoverse.jpg");
+    color:  rgb(255, 255, 255);
+    }
+    
+nav{
+    grid-area: nav;
+    background-color:rebeccapurple;
+    }
+    
+li.destra{
+    float:right
+    }
+    
+h2{
+    color: cyan;
+    font-size:20px;
+    }
+
+li{
+    display: inline;
+    }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    }
+      
+li {
+    float: left;
+    }
+      
+li a {
+    display: block;
+    padding: 8px;
+    background-color: rebeccapurple;
+    }
+
+li a:hover {
+    background-color:rgb(131, 79, 184);
+    }
+
+h1.geo{
+    color: rgb( 250, 182, 50);
+    text-align: center;
+    }
+
+p{
+    color: rgb(255, 255, 255);
+    }
+
+
+img{
+    padding-left: 50px;
+    }
+
+h6.vision{
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin-bottom: 5px;
+    }
+
+p.geo{
+    color: rgb( 250, 182, 50);
+    margin-top: 60px;
+    }
+
+h6.artefatti{
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    margin: 5px;
+    }
+
+h6.arma{
+    font-size: 20px;
+    color: white;
+    margin: 0px;
+    }
+
+h6.tipoArma{
+    font-size: 20px;
+    color: white;
+    padding-top: 40px;
+    width: 150px;
+    }
+
+td.tipoVision{
+    width: 8%;
+    }
+
+td.tipoArmaFoto{
+    margin-right: 10px;
+    padding-right: 10px;
+    }
+
+td.tipoArma{
+    width: 10px;
+    }
+
+img.tipoArmaFoto{
+    padding-left: 0px;
+    padding-top: 40px;
+    }
+
+img.armaFoto{
+    padding-left: 0px;
+    height:60px;
+    }
+
+p.arma{
+    height: 15px;
+    color: white;
+    }
+
+table.artefatti{
+    padding-top: 15px;
+    }
+
+img.artefatto{
+    padding-left: 0px;
+    height: 40px;
+    }
+
+p.artefatti{
+    color: black;
+    }
+
+#tab{
+    background-color: antiquewhite;
+    }
+
+tr.tab{
+    height: 50px;
+    }
+
+img.artefatto{
+    padding-left: 0px;
+    }
+    
+p.artefatto{
+    color: black;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    }
+    
+h1.pyro{
+    color: rgb(255, 0, 0);
+    text-align: center;
+    }
+    
+p.pyro{
+    color: rgb(255, 0, 0);
+    margin-top: 60px;
+    }
+    
+h1.hydro{
+    color: aqua;
+    text-align: center;
+    }
+        
+p.hydro{
+    color: aqua;
+    margin-top: 60px;
+    }
+    
+h1.electro{
+    color: purple;
+    text-align: center;
+    }
+            
+p.electro{
+    color: purple;
+    margin-top: 60px;
+    }
+    
+h1.cryo{
+    color: cyan;
+    text-align: center;
+    }
+                
+p.cryo{
+    color: cyan;
+    margin-top: 60px;
+    }
+    
+h1.anemo{
+    color: rgb( 84, 220, 180);
+    text-align: center;
+    }
+                    
+p.anemo{
+    color: rgb( 84, 220, 180);
+    margin-top: 60px;
+    }
+h1.dendro{
+    color: chartreuse;
+    text-align: center;
+    }
+                    
+p.dendro{
+    color: chartreuse;
+    margin-top: 60px;
+    }

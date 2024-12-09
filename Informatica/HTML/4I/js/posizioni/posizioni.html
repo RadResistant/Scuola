@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            background-color:red;
+            height: 250px;
+            width: 250px;
+            position: fixed;
+            top:50px;
+            z-index: 1;
+        }
+        div+div{
+            background-color: blue;
+            height: 500px;
+            width: 250px;
+            position: fixed;
+            top: 175px;
+            z-index: 0;
+        }
+    </style>
+    <script>
+        
+        function sposta(x){
+            let sinistra= x.target.style.left || 3;
+            x.target.style.left=`${parseInt(sinistra)+10}px`;
+        }
+    </script>
+</head>
+<body>
+    <div onclick="sposta(event)" style="left:50px"></div>
+    <div onclick="sposta(event)" style="left: 175px;"></div>
+</body>
+</html>

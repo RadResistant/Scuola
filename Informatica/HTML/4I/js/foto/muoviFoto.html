@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+            background-color: yellow;
+            border:solid 2px orange;
+            position: fixed;
+        }
+    </style>
+    <script>
+        let punti=0;
+        function aggiungi(){
+            let immagine=new Image();
+            immagine.src="Bulbasaur.png";
+            immagine.style.position="fixed";
+            let sx=parseInt(Math.random()*(window.innerWidth-immagine.width));
+            let sy=parseInt(Math.random()*(window.innerHeight-immagine.height));
+            immagine.style.left=`${sx}px`;
+            immagine.style.top=`${sy}px`;
+            immagine.addEventListener("click",clickSuFoto)
+            document.body.appendChild(immagine);
+        }
+        function clickSuFoto(e){
+            let oggetto=e.target;
+            let punteggio=document.querySelector("p");
+            document.body.removeChild(oggetto);
+            punti++;
+            punteggio.innerText=punti;
+        }
+        function scendi(){
+            let x=document.querySelectorAll("img");
+            for(let i=0;i<x.length;i++){
+                x[i].style.top=parseInt(x[i].style.top)+20+"px";
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>Punti=</p>
+    <button onclick="aggiungi()">Aggiungi</button>
+    <button onclick="scendi()">Scendi</button>
+</body>
+</html>

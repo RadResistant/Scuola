@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: green;
+        }
+    </style>
+    <script>
+        let punteggio=0;
+        let talpa1=new Image();
+        talpa1.src="Diglett.png";
+        talpa1.style.position="fixed";
+        talpa1.style.height="100px";
+        talpa1.addEventListener("click",clickSuFoto);
+        let talpa2=new Image();
+        talpa2.src="Diglett.png";
+        talpa2.style.position="fixed";
+        talpa2.style.height="100px";
+        talpa2.addEventListener("click",clickSuFoto);
+        let intervallo;
+        function carica(){
+            intervallo=window.setInterval(cambiafoto,1000);
+            document.body.appendChild(talpa1);
+        }
+        function cambiafoto(){
+            let sx1=parseInt(Math.random()*(window.innerWidth-talpa1.width));
+            let sy1=parseInt(Math.random()*(window.innerHeight-talpa1.height));
+            talpa1.style.left=`${sx1}px`;
+            talpa1.style.top=`${sy1}px`;
+            let sx2=parseInt(Math.random()*(window.innerWidth-talpa1.width));
+            let sy2=parseInt(Math.random()*(window.innerHeight-talpa1.height));
+            talpa2.style.left=`${sx2}px`;
+            talpa2.style.top=`${sy2}px`;
+        }
+        function clickSuFoto(){
+            punteggio++;
+            document.querySelector("h1").innerText="Punti:"+punteggio;
+            if(punteggio==5){
+                window.clearInterval(intervallo);
+                intervallo=window.setInterval(cambiafoto,750);
+            }
+            if(punteggio==10){
+                document.body.appendChild(talpa2);
+            }
+            if(punteggio==15){
+                window.clearInterval(intervallo);
+                intervallo=window.setInterval(cambiafoto,500);
+            }
+            if(punteggio==20){
+                window.clearInterval(intervallo);
+                intervallo=window.setInterval(cambiafoto,250);
+            }
+            if(punteggio==25){
+                window.clearInterval(intervallo);
+                intervallo=window.setInterval(cambiafoto,1);
+            }
+        }
+    </script>
+</head>
+<body onload="carica()">
+    <h1>Punti:</h1>
+</body>
+</html>

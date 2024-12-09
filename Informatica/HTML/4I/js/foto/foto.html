@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        const NUMERO = 10;
+        for(let i=0;i<NUMERO;i++){
+            let imag=new Image();
+            imag.src="Kirby.png";
+            imag.addEventListener("click",fun);
+            document.body.appendChild(imag);
+        }
+        let tocco=true;
+        function fun(x){
+            if(tocco){
+                x.target.src="Bulbasaur.png";
+            }
+            else{
+                x.target.src="Kirby.png";
+            }
+            tocco = !tocco;
+        }
+    </script>
+</html>

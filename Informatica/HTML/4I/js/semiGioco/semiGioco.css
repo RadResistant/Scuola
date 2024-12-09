@@ -1,0 +1,14 @@
+body {
+    position: fixed; 
+    background-image: url(sfondo.jpg);
+    background-repeat: repeat-x;
+}
+#uccello{
+    position: fixed;
+    height: 80px;
+    bottom: 80px;
+}
+#personaggio{
+    position: fixed;
+    bottom: 0;
+}

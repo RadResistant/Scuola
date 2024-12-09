@@ -1,0 +1,34 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto;
+    grid-gap: 0rem;
+    grid-template-areas:
+        "header header"
+        "nav nav"
+        "sidebar content"
+        "sidebar footer"
+}
+header {
+    grid-area: header;
+    background-color: red;
+}
+aside {
+    grid-area: sidebar;
+    background-color: pink;
+}
+section {
+    grid-area: content;
+    background-color: green;
+}
+nav {
+    grid-area: nav;
+    background-color: yellow;
+}
+footer {
+    grid-area: footer;
+    background-color: gray;
+}
+body>* {
+    padding: 1em;
+}

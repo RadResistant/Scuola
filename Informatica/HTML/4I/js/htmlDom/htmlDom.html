@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #uno,#due{
+            border: red 2px solid;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function areaIn(){
+            document.getElementById("colorare").style.backgroundColor="red";
+        }
+        function areaOut(){
+            document.getElementById("colorare").style.backgroundColor="yellow";
+        }
+        let num=0;
+        function clickContatore(){
+            num++;
+            document.getElementById("giove").innerHTML=num;
+        }
+        let click=true;
+        function scambia(){
+            let uno=document.getElementById("uno");
+            let due=document.getElementById("due");
+            let mom=due.innerText;
+            due.innerText=uno.innerText;
+            uno.innerText=mom;
+        }
+        function clickAumentaFacce(){
+            let elementi=document.getElementsByTagName("li");
+            for(let i=0;i<elementi.length;i++){
+                elementi[i].innerHTML+="😳";
+            }
+        }
+        function clickAumentaFacceACaso(){
+            let emoji=["😳","😎","💯","😀","👋","🐵","🍎","🌍"];
+            let elementi=document.getElementsByTagName("li");
+            for(let i=0;i<elementi.length;i++){
+                let ran=Math.floor(Math.random()*emoji.lenght);
+                elementi[i].innerHTML+=emoji[ran];
+            }
+        }
+    </script>
+    <h1>Eventi e elementi</h1>
+    
+    <h2>Mouse!</h2>
+    <p onmouseover="areaIn()" onmouseout="areaOut()">Passa qui sopra</p>
+    <p id="colorare">Questo paragrafo cambia colore.</p>
+    
+    <h2>innerHTML</h2>
+    <p id="uno" contenteditable="true">Questo è il primo paragrafo.</p>
+    <p onclick="scambia()">scambia paragrafi</p>
+    <p id="due" contenteditable="true">Questo è il secondo paragrafo.</p>
+    
+    <h2 onclick="clickContatore()">contatore di click <span id="giove">!</span></h2>
+    
+    <h2 onclick="clickAumentaFacceACaso()">Elementi</h2>
+    <p>
+        <span onclick="clickAumentaFacce()">Aumenta facce</span>
+        <span onclick="mescola()">Mescola</span>
+    </p>
+    <ul>
+        <li>Mario </li>
+        <li>Maria </li>
+        <li>Luca </li>
+        <li>Lucia </li>
+    </ul>
+</body>
+</html>

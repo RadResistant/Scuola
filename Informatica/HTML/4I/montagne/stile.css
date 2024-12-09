@@ -1,0 +1,59 @@
+body{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+    "titolo titolo titolo"
+    "sinistra nav destra"
+    "sinistra centrale destra"
+    "finale finale finale"
+    ;
+}
+*{
+    margin: 0em;
+}
+header{
+    background-color: lightblue;
+    text-align: center;
+    grid-area: titolo;
+    border-bottom: solid 5px blue;
+}
+nav{
+    background-color: blue;
+    height: 2em;
+    padding-top: 1em;
+    grid-area: nav;
+}
+nav a{
+    color: white;
+    padding: 1em;
+    grid-area: nav;
+}
+footer{
+    background-color: black;
+    text-align: center;
+    grid-area: finale;
+}
+footer a{
+    color: yellow;
+}
+footer p{
+    color: white;
+}
+aside{
+    background-color: lightblue;
+}
+#sinistra{
+    grid-area: sinistra;
+    width: 15em;
+}
+#destra{
+    grid-area: destra;
+    width: 15em;
+}
+section{
+    grid-area: centrale;
+}
+h1,h2,h3,p{
+    padding: 0.7em;
+}
