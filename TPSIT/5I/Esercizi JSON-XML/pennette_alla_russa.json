@@ -1,0 +1,20 @@
+{
+    "name": "pennette alla russa",
+	"ingredients":[
+        {"quantityfor":"4"},
+        {"ingredient":"vodka","quantity":"an"},
+        {"ingredient":"pasta","quantity":"400","unit":"gr"},
+        {"ingredient":"salmon's patè","quantity":"50","unit":"gr"},
+        {"ingredient":"pink pepper","quantity":"an"},
+        {"ingredient":"smoked salmon","quantity":"60","unit":"gr"},
+        {"ingredient":"salted cream","quantity":"an"},
+        {"ingredient":"salt","quantity":"an"},
+        {"ingredient":"white pepper","quantity":"an"}
+    ],
+    "preparation":[
+        {"step":"Put on the fire, in a pot, plenty of water; waiting for it to boil, prepare the ingredients for the sauce."},
+        {"step":"Melt 50 g of butter in a pan and dilute the salmon cream, stirring in such a way as to make it homogeneous. Add a drizzle of cream to facilitate the operation, then flat pour a glass of vodka. Season the sauce with a salt and a ground white pepper and keep it warm in a bain-mature."},
+        {"step":"Cook the brushes with the tooth in the boiling salted water; meanwhile cut into the pounds of smoked salmon."},
+        {"step":"Drain the pasta, season with the sauce, distribute it in hot holsters, spread on each serving of salmon strips and some pink peppercorns. You're serving right now."}
+    ]
+}
