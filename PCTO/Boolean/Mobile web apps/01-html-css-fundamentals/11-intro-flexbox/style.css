@@ -1,0 +1,18 @@
+.flex-container {
+    width: 500px;
+    height: 500px;
+    background-color: blue;
+
+    /* mostriamo come solo inserendo display flex gli item si posizionano sulla stessa riga */
+    display: flex;
+
+    /* mostriamo flex wrap per mandare a capo gli elementi */
+    flex-wrap: wrap;
+}
+
+.item {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border: 2px solid red;
+}

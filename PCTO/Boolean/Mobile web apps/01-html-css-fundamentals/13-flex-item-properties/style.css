@@ -1,0 +1,40 @@
+.flex-container {
+    width: 300px;
+    height: 200px;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+
+    /* mostriamo come cambia la flex basis in base alla direction */
+    flex-direction: row;
+}
+
+.item {
+    flex-basis: 150px;
+    text-align: center;
+    color: white;
+}
+
+.pink {
+    background-color: pink;
+
+    /* mostriamo il fattore di crescita flex-grow */
+    flex-grow: 2;
+}
+
+.blue {
+    background-color: blue;
+
+    /* mostriamo il fattore di riduzione flex-shrink  */
+    flex-shrink: 2;
+}
+
+.green {
+    background-color: green;
+
+    /* mostriamo come impostando flex shrink a 0 il rettangolo sbordi */
+    flex-shrink: 0;
+
+    /* mostriamo align self */
+    align-self: flex-end;
+}
