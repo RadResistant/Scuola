@@ -1,7 +1,7 @@
 "use strict";
 async function chiedi() {
     let nCitta=document.getElementById("nomeCitta").value;
-    let rispostaj = await fetch("http://localhost:8088/?city="+nCitta);
+    let rispostaj = await fetch("http://10.1.0.52:8088/cities?city="+nCitta);
     let risposta = await rispostaj.json();
     console.log(risposta);
     if(rispostaj.status==200 && rispostaj.ok==true){
