@@ -6,10 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="nomeCitta">Nome Città:</label>
-    <input type="text" id="nomeCitta">
-    <button onclick="chiedi()"> Chiedi</button>
-    <div id="listaCitta"></div>
+    <input type="text" name="citta" list="listaCitta" id="nomeCitta" oninput="chiedi()">
+    <datalist id="listaCitta">
+    </datalist>
+    <button onclick="chiedi()">Chiedi</button>
+    <button onclick="chiediR()">Chiedi</button>
     <script src="script.js"></script>
 </body>
 </html>
