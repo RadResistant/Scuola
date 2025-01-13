@@ -6,11 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text" name="citta" list="listaCitta" id="nomeCitta" oninput="chiedi()">
+    <input type="text" name="citta" list="listaCitta" id="nomeCitta" onkeydown="chiedi(event)">
     <datalist id="listaCitta">
     </datalist>
-    <button onclick="chiedi()">Chiedi</button>
-    <button onclick="chiediR()">Chiedi</button>
+    <button onclick="prenota()">Prenota</button>
     <script src="script.js"></script>
 </body>
 </html>
