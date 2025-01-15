@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Gen 14, 2025 alle 12:18
+-- Creato il: Gen 15, 2025 alle 10:44
 -- Versione del server: 10.11.6-MariaDB-0+deb12u1
 -- Versione PHP: 8.2.26
 
@@ -33,6 +33,31 @@ CREATE TABLE `Atleti` (
   `nome` varchar(50) DEFAULT NULL,
   `nazione` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `Atleti`
+--
+
+INSERT INTO `Atleti` (`id_atleta`, `cognome`, `nome`, `nazione`) VALUES
+(1, 'Pierotti', 'Alessandro', 'Albania'),
+(2, 'Mars', 'Adam', 'Marocco'),
+(3, 'Mohammadi', 'Zohair', 'Marocco'),
+(4, 'Arteaga', 'Jostyn', 'Ecuador'),
+(5, 'Urbanelli', 'Gianluca', 'Italia'),
+(6, 'Fagiani', 'Cristian', 'Estonia'),
+(7, 'Troiani', 'Francesco', 'USA'),
+(8, 'De Benedetti', 'Matteo', 'Zimbawe'),
+(9, 'Hu', 'Rui Jian', 'Cina'),
+(10, 'Spigarelli', 'Davide', 'Sigillo'),
+(11, 'Polenta', 'Michele', 'CCagli'),
+(12, 'Giulietti', 'Matteo', 'Italia'),
+(13, 'Campanino', 'Mattia', 'Italia'),
+(14, 'Clementi', 'Ludovico', 'Italia'),
+(15, 'Urbani', 'Mattia', 'Italia'),
+(16, 'Cannone', 'Matteo', 'Italia'),
+(17, 'Becchetti', 'Giuseppe', 'Italia'),
+(18, 'Nardoni', 'Filippo', 'Italia'),
+(19, 'Mosca', 'Lucrezia', 'Italia');
 
 -- --------------------------------------------------------
 
@@ -101,7 +126,55 @@ INSERT INTO `Specialità` (`id_specialita`, `descrzione`) VALUES
 (22, 'Cricket'),
 (23, 'Curling'),
 (24, 'Flag Football'),
-(25, 'Futsal');
+(25, 'Futsal'),
+(26, 'Ginnastica Acrobatica'),
+(27, 'Ginnastica Artistica'),
+(28, 'Ginnastica Ritmica'),
+(29, 'Golf'),
+(30, 'Hockey'),
+(31, 'Hockey su ghiaccio'),
+(32, 'Judo'),
+(33, 'Karate'),
+(34, 'Lacrosse'),
+(35, 'Lotta'),
+(36, 'Nuoto'),
+(37, 'Nuoto Artistico'),
+(38, 'Nuoto di Fondo'),
+(39, 'Pallacanestro'),
+(40, 'Pallamano'),
+(41, 'Pallanuoto'),
+(42, 'Pallavolo'),
+(43, 'Pattinaggio di figura'),
+(44, 'Pattinaggio di velocità'),
+(45, 'Pattinaggio di velocità in linea'),
+(46, 'Pentathlon Moderno'),
+(47, 'Pugilato'),
+(48, 'Rugby a 7'),
+(49, 'Salto con gli sci'),
+(50, 'Scherma'),
+(51, 'Sci alpinismo'),
+(52, 'Sci alpino'),
+(53, 'Sci di fondo'),
+(54, 'Sci Freestyle'),
+(55, 'Short track'),
+(56, 'Skateboard'),
+(57, 'Skeleton'),
+(58, 'Slittino'),
+(59, 'Snowboard'),
+(60, 'Sollevamento Pesi'),
+(61, 'Sport Equestri'),
+(62, 'Squash'),
+(63, 'Surf'),
+(64, 'Taekwondo'),
+(65, 'Tennis'),
+(66, 'Tennistavolo'),
+(67, 'Tiro con l\'Arco'),
+(68, 'Tiro sportivo'),
+(69, 'Trampolino Elastico'),
+(70, 'Triathlon'),
+(71, 'Tuffi'),
+(72, 'Vela'),
+(73, 'Wushu');
 
 --
 -- Indici per le tabelle scaricate
@@ -142,7 +215,7 @@ ALTER TABLE `Specialità`
 -- AUTO_INCREMENT per la tabella `Atleti`
 --
 ALTER TABLE `Atleti`
-  MODIFY `id_atleta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_atleta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT per la tabella `Atleti_Gare`
@@ -160,7 +233,7 @@ ALTER TABLE `Gare`
 -- AUTO_INCREMENT per la tabella `Specialità`
 --
 ALTER TABLE `Specialità`
-  MODIFY `id_specialita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_specialita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- Limiti per le tabelle scaricate
