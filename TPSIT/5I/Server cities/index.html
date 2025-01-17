@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Agenzia di viaggio Cities</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body onload="aggiungiN()">
-    <label for="citta">Seleziona una città:</label>
-    <input type="text" name="citta" list="listaCitta" id="nomeCitta" onkeydown="chiedi(event)">
-    <datalist id="listaCitta">
-    </datalist>
-    <label for="ospiti">Quante persone:</label>
-    <select name="ospiti" id="numeroO" >
-    </select>
-    <label for="nome">Nome:</label>
-    <input type="text" id="nomeU" name="nome">
-    <label for="dataI">Seleziona una data di inizio:</label>
-    <input type="date" id="dataI" name="dataI">
-    <label for="dataF">Seleziona una data di inizio:</label>
-    <input type="date" id="dataF" name="dataF">
-    <button onclick="prenota()">Prenota</button>
-    <script src="script.js"></script>
+<body>
+    <div id="scelta">
+        <button onclick="mostraHotel()">Prenotazione Hotel</button>
+        <button onclick="mostraVoli()">Prenotazione Voli</button>
+    </div>
+    <div id="prenotazioneHotel" class="hidden">
+        <label for="citta">Seleziona una città:</label>
+        <input type="text" name="citta" list="listaCitta" id="nomeCitta" onkeydown="chiedi(event)">
+        <datalist id="listaCitta">
+        </datalist>
+        <label for="ospiti">Quante persone:</label>
+        <select name="ospiti" id="numeroO" >
+        </select>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nomeU" name="nome">
+        <label for="dataI">Seleziona una data di inizio:</label>
+        <input type="date" id="dataI" name="dataI">
+        <label for="dataF">Seleziona una data di inizio:</label>
+        <input type="date" id="dataF" name="dataF">
+        <button onclick="prenota()">Prenota</button>
+        <script src="script.js"></script>
+    </div>
+    <div class="hidden" id="prenotazioneVoli">
+
+    </div>
 </body>
 </html>

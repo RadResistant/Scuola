@@ -28,29 +28,47 @@ async function chiedi(e) {
         }
     }
 }
+function mostraHotel(){
+    aggiungiN();
+    document.getElementById("prenotazioneHotel").classList.remove("hidden");
+    document.getElementById("scelta").classList.add("hidden");
+}
+function mostraVoli(){
+    document.getElementById("prenotazioneVoli").classList.remove("hidden");
+    document.getElementById("scelta").classList.add("hidden");
+}
 async function prenota(){
-    let cercato=document.getElementById("nomeCitta").value;
-    let nome=document.getElementById("nomeU").value;
+    let p=document.createElement("p");
+    p.innerText="Riempire tutti i campi"
+    p.style.color="red";
+    p.id="errore";
+    let cercato=document.getElementById("nomeCitta").value.trim();
+    let nome=document.getElementById("nomeU").value.trim();
     let dataInizio=document.getElementById("dataI").value;
     let dataFine=document.getElementById("dataF").value;
     let ospiti=document.getElementById("numeroO").value;
-    let rispostaj = await fetch("http://10.1.0.52:8088/cities?city="+cercato);
-    let risposta = await rispostaj.json();
-    console.log(risposta);
-    let prenotazione={
-        cityId: risposta[0].id,
-        from: dataInizio,
-        guests: ospiti,
-        name: nome,
-        to: dataFine
+    if(cercato!="" && nome!="" && dataInizio!="" && dataFine!="" && ospiti!=""){
+        let rispostaj = await fetch("http://10.1.0.52:8088/cities?city="+cercato);
+        let risposta = await rispostaj.json();
+        console.log(risposta);
+        let prenotazione={
+            cityId: risposta[0].id,
+            from: dataInizio,
+            guests: ospiti,
+            name: nome,
+            to: dataFine
+        }
+        fetch("http://10.1.0.52:8088/reservations",{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(prenotazione)
+        });
     }
-    fetch("http://10.1.0.52:8088/reservations",{
-        method:'POST',
-        headers:{
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(prenotazione)
-    });
+    else{
+        document.getElementById("prenotazioneHotel").appendChild(p);
+    }
 }
 async function controlla(){
     let rispostaj = await fetch("http://10.1.0.52:8088/reservations");
