@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Gen 15, 2025 alle 10:44
+-- Creato il: Gen 17, 2025 alle 08:47
 -- Versione del server: 10.11.6-MariaDB-0+deb12u1
 -- Versione PHP: 8.2.26
 
@@ -50,14 +50,15 @@ INSERT INTO `Atleti` (`id_atleta`, `cognome`, `nome`, `nazione`) VALUES
 (9, 'Hu', 'Rui Jian', 'Cina'),
 (10, 'Spigarelli', 'Davide', 'Sigillo'),
 (11, 'Polenta', 'Michele', 'CCagli'),
-(12, 'Giulietti', 'Matteo', 'Italia'),
+(12, 'Giulietti', 'Matteo', 'USA'),
 (13, 'Campanino', 'Mattia', 'Italia'),
-(14, 'Clementi', 'Ludovico', 'Italia'),
+(14, 'Clementi', 'Ludovico', 'Inghilterra'),
 (15, 'Urbani', 'Mattia', 'Italia'),
-(16, 'Cannone', 'Matteo', 'Italia'),
-(17, 'Becchetti', 'Giuseppe', 'Italia'),
-(18, 'Nardoni', 'Filippo', 'Italia'),
-(19, 'Mosca', 'Lucrezia', 'Italia');
+(16, 'Cannone', 'Matteo', 'USA'),
+(17, 'Becchetti', 'Giuseppe', 'Inghilterra'),
+(18, 'Nardoni', 'Filippo', 'Inghilterra'),
+(19, 'Mosca', 'Lucrezia', 'Italia'),
+(20, 'Saponaro', 'Raffaele', 'Mongolia');
 
 -- --------------------------------------------------------
 
@@ -73,6 +74,57 @@ CREATE TABLE `Atleti_Gare` (
   `fk_id_a` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `Atleti_Gare`
+--
+
+INSERT INTO `Atleti_Gare` (`id_GareAtleti`, `posizione`, `anno`, `fk_id_g`, `fk_id_a`) VALUES
+(1, 1, 2024, 1, 20),
+(2, 2, 2024, 1, 14),
+(3, 3, 2024, 1, 5),
+(4, 1, 2008, 5, 1),
+(5, 1, 2008, 5, 2),
+(6, 1, 2008, 5, 3),
+(7, 1, 2008, 5, 4),
+(8, 1, 2008, 5, 5),
+(9, 1, 2008, 5, 6),
+(10, 1, 2008, 5, 7),
+(11, 1, 2008, 5, 8),
+(12, 1, 2008, 5, 9),
+(13, 2, 2008, 5, 10),
+(14, 2, 2008, 5, 11),
+(15, 2, 2008, 5, 12),
+(16, 2, 2008, 5, 13),
+(17, 2, 2008, 5, 14),
+(18, 2, 2008, 5, 15),
+(19, 2, 2008, 5, 16),
+(20, 2, 2008, 5, 17),
+(21, 2, 2008, 5, 18),
+(22, 1, 2020, 5, 11),
+(23, 1, 2020, 5, 1),
+(24, 1, 2020, 5, 2),
+(25, 1, 2020, 5, 3),
+(26, 1, 2020, 5, 4),
+(27, 2, 2020, 5, 5),
+(28, 2, 2020, 5, 6),
+(29, 2, 2020, 5, 7),
+(30, 2, 2020, 5, 8),
+(31, 2, 2020, 5, 9),
+(32, 3, 2020, 5, 10),
+(33, 3, 2020, 5, 11),
+(34, 3, 2020, 5, 12),
+(35, 3, 2020, 5, 13),
+(36, 3, 2020, 5, 14),
+(37, 1, 2004, 2, 19),
+(38, 2, 2004, 2, 20),
+(39, 3, 2004, 2, 6),
+(40, 1, 2012, 3, 7),
+(41, 2, 2012, 3, 4),
+(42, 3, 2012, 3, 3),
+(43, 1, 2016, 4, 7),
+(44, 2, 2016, 4, 6),
+(45, 3, 2016, 4, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -81,10 +133,22 @@ CREATE TABLE `Atleti_Gare` (
 
 CREATE TABLE `Gare` (
   `id_gare` int(11) NOT NULL,
-  `descrzione` varchar(100) DEFAULT NULL,
+  `descrizione` varchar(100) DEFAULT NULL,
   `genere` varchar(50) DEFAULT NULL,
   `fk_id_s` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `Gare`
+--
+
+INSERT INTO `Gare` (`id_gare`, `descrizione`, `genere`, `fk_id_s`) VALUES
+(1, 'Arrampicata Sportiva Cobassano ', 'M', 1),
+(2, 'Atletica Gubbio ', 'F', 2),
+(3, 'Badminton Perugia ', 'M', 3),
+(4, 'Baseball 5 Cagli ', 'M', 4),
+(5, 'Baseball softball Parigi ', 'M', 5),
+(6, 'Pallanuoto Gualdo Tadino ', 'M', 41);
 
 -- --------------------------------------------------------
 
@@ -215,19 +279,19 @@ ALTER TABLE `Specialità`
 -- AUTO_INCREMENT per la tabella `Atleti`
 --
 ALTER TABLE `Atleti`
-  MODIFY `id_atleta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_atleta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT per la tabella `Atleti_Gare`
 --
 ALTER TABLE `Atleti_Gare`
-  MODIFY `id_GareAtleti` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_GareAtleti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT per la tabella `Gare`
 --
 ALTER TABLE `Gare`
-  MODIFY `id_gare` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_gare` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `Specialità`
