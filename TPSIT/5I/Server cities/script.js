@@ -13,14 +13,19 @@ async function chiedi(e) {
     let tasto=e.key;
     if(tasto=="Enter"){
         let cercato=document.getElementById("nomeCitta").value;
-        let rispostaj = await fetch("http://10.1.0.52:8088/cities?city="+cercato);
+        let rispostaj = await fetch("http://192.168.1.56:8088/cities?city="+cercato);
         let risposta = await rispostaj.json();
         console.log(risposta);
         if(rispostaj.status==200 && rispostaj.ok==true){
             risposta.forEach((city)=>{
                 let opt=document.createElement("option");
-                opt.value=city.city;
+                opt.value=city.city+"-"+city.country;
+                opt.dataset.cityId=city.id;
+                opt.addEventListener("click",()=>{
+                    cittaSelezionata=city;
+                })
                 document.getElementById("listaCitta").appendChild(opt);
+                console.log(opt.dataset.cityId);
             });
         }
         else{
@@ -47,18 +52,16 @@ async function prenota(){
     let dataInizio=document.getElementById("dataI").value;
     let dataFine=document.getElementById("dataF").value;
     let ospiti=document.getElementById("numeroO").value;
-    if(cercato!="" && nome!="" && dataInizio!="" && dataFine!="" && ospiti!=""){
-        let rispostaj = await fetch("http://10.1.0.52:8088/cities?city="+cercato);
-        let risposta = await rispostaj.json();
-        console.log(risposta);
+    if(document.querySelectorAll("datalist option")[0]!=undefined && cercato!="" && nome!="" && dataInizio!="" && dataFine!="" && ospiti!=""){
+        let idCitta=document.querySelectorAll("datalist option")[0];
         let prenotazione={
-            cityId: risposta[0].id,
+            cityId: idCitta.dataset.cityId,
             from: dataInizio,
             guests: ospiti,
             name: nome,
             to: dataFine
         }
-        fetch("http://10.1.0.52:8088/reservations",{
+        fetch("http://192.168.1.56:8088/reservations",{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -71,7 +74,7 @@ async function prenota(){
     }
 }
 async function controlla(){
-    let rispostaj = await fetch("http://10.1.0.52:8088/reservations");
+    let rispostaj = await fetch("http://192.168.1.56:8088/reservations");
     let risposta = await rispostaj.json();
     console.log(risposta);
 }
