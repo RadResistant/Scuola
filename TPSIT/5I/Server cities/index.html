@@ -13,7 +13,6 @@
     </div>
     <div id="prenotazioneHotel" class="hidden">
         <label for="citta">Seleziona una città:</label>
-        <!-- -->
         <input type="text" name="citta" list="listaCitta" id="nomeCitta" onkeydown="chiedi(event)">
         <datalist id="listaCitta">
         </datalist>
@@ -26,7 +25,7 @@
         <input type="date" id="dataI" name="dataI">
         <label for="dataF">Seleziona una data di inizio:</label>
         <input type="date" id="dataF" name="dataF">
-        <button onclick="prenota()">Prenota</button>
+        <button onclick="prenotaHotel()">Prenota</button>
         <p id="errore" class="hidden">Riempi tutti i campi</p>
     </div>
     <div class="hidden" id="prenotazioneVoli">
