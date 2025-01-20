@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Gen 17, 2025 alle 08:47
+-- Creato il: Gen 20, 2025 alle 14:29
 -- Versione del server: 10.11.6-MariaDB-0+deb12u1
 -- Versione PHP: 8.2.26
 
@@ -58,7 +58,9 @@ INSERT INTO `Atleti` (`id_atleta`, `cognome`, `nome`, `nazione`) VALUES
 (17, 'Becchetti', 'Giuseppe', 'Inghilterra'),
 (18, 'Nardoni', 'Filippo', 'Inghilterra'),
 (19, 'Mosca', 'Lucrezia', 'Italia'),
-(20, 'Saponaro', 'Raffaele', 'Mongolia');
+(20, 'Saponaro', 'Raffaele', 'Mongolia'),
+(21, 'Ghiandoni', 'Paola', 'Germany'),
+(22, 'Roncigli', 'Letizia', 'Spain');
 
 -- --------------------------------------------------------
 
@@ -116,14 +118,20 @@ INSERT INTO `Atleti_Gare` (`id_GareAtleti`, `posizione`, `anno`, `fk_id_g`, `fk_
 (35, 3, 2020, 5, 13),
 (36, 3, 2020, 5, 14),
 (37, 1, 2004, 2, 19),
-(38, 2, 2004, 2, 20),
-(39, 3, 2004, 2, 6),
+(38, 2, 2004, 2, 21),
+(39, 3, 2004, 2, 22),
 (40, 1, 2012, 3, 7),
 (41, 2, 2012, 3, 4),
 (42, 3, 2012, 3, 3),
 (43, 1, 2016, 4, 7),
 (44, 2, 2016, 4, 6),
-(45, 3, 2016, 4, 5);
+(45, 3, 2016, 4, 5),
+(46, 1, 2016, 7, 21),
+(47, 2, 2016, 7, 19),
+(48, 3, 2016, 7, 22),
+(49, 1, 2020, 8, 22),
+(50, 2, 2020, 8, 21),
+(51, 3, 2020, 8, 19);
 
 -- --------------------------------------------------------
 
@@ -148,7 +156,9 @@ INSERT INTO `Gare` (`id_gare`, `descrizione`, `genere`, `fk_id_s`) VALUES
 (3, 'Badminton Perugia ', 'M', 3),
 (4, 'Baseball 5 Cagli ', 'M', 4),
 (5, 'Baseball softball Parigi ', 'M', 5),
-(6, 'Pallanuoto Gualdo Tadino ', 'M', 41);
+(6, 'Pallanuoto Gualdo Tadino ', 'M', 41),
+(7, 'Pallanuoto Fabriano', 'F', 41),
+(8, 'Calcio Roma', 'F', 11);
 
 -- --------------------------------------------------------
 
@@ -279,19 +289,19 @@ ALTER TABLE `Specialità`
 -- AUTO_INCREMENT per la tabella `Atleti`
 --
 ALTER TABLE `Atleti`
-  MODIFY `id_atleta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_atleta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT per la tabella `Atleti_Gare`
 --
 ALTER TABLE `Atleti_Gare`
-  MODIFY `id_GareAtleti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_GareAtleti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT per la tabella `Gare`
 --
 ALTER TABLE `Gare`
-  MODIFY `id_gare` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_gare` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `Specialità`
