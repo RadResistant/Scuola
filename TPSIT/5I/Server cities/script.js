@@ -9,7 +9,7 @@ function aggiungiN(){
         menu.appendChild(opt);
     }
 }
-async function chiedi(e) {
+async function cercaCitta(e) {
     let tasto=e.key;
     if(tasto=="Enter"){
         document.getElementById("listaCitta").innerText="";
@@ -73,8 +73,24 @@ async function controlla(){
     let risposta = await rispostaj.json();
     console.log(risposta);
 }
-async function prenotazioneVolo(){
-    let rispostaj = await fetch("http://10.1.0.52:8088/flights?from=10000&to=");
-    let risposta = await rispostaj.json();
-    console.log(risposta);
+async function cercaVolo(e) {
+    let tasto=e.key;
+    if(tasto=="Enter"){
+        document.getElementById("listaVoli").innerText="";
+        let cercato=document.getElementById("nomeCittaPartenza").value;
+        let rispostaj = await fetch("http://192.168.1.56:8088/cities?city="+cercato);
+        let risposta = await rispostaj.json();
+        if(rispostaj.status==200 && rispostaj.ok==true){
+            /*risposta.forEach((city)=>{
+                let opt=document.createElement("option");
+                opt.value=city.city+"-"+city.country;
+                document.getElementById("listaVoli").appendChild(opt);
+            });*/
+            let rispostajv = await fetch("http://192.168.1.56:8088/cities?city="+risposta[0]);
+            let rispostav = await rispostajv.json();
+        }
+        else{
+            console.error("Errore "+ rispostaj.status)
+        }
+    }
 }

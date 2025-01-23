@@ -13,7 +13,7 @@
     </div>
     <div id="prenotazioneHotel" class="hidden">
         <label for="citta">Seleziona una città:</label>
-        <input type="text" name="citta" list="listaCitta" id="nomeCitta" onkeydown="chiedi(event)">
+        <input type="text" name="citta" list="listaCitta" id="nomeCitta" onkeydown="cercaCitta(event)">
         <datalist id="listaCitta">
         </datalist>
         <label for="ospiti">Quante persone:</label>
@@ -29,7 +29,10 @@
         <p id="errore" class="hidden">Riempi tutti i campi</p>
     </div>
     <div class="hidden" id="prenotazioneVoli">
-
+        <label for="voli">Seleziona una città di partenza:</label>
+        <input type="text" name="voli" list="listaVoli" id="nomeCittaPartenza" onkeydown="cercaVolo(event)">
+        <datalist id="listaVoli">
+        </datalist>
     </div>
     <script src="script.js"></script>
 </body>
