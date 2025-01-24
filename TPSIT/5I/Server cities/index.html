@@ -8,8 +8,12 @@
 </head>
 <body>
     <div id="scelta">
-        <button onclick="mostraHotel()">Prenotazione Hotel</button>
-        <button onclick="mostraVoli()">Prenotazione Voli</button>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nomeU" name="nome">
+        <button onclick="mostra(event)" id="pulsanteHotel">Prenotazione Hotel</button>
+        <button onclick="mostra(event)" id="pulsanteVoli">Prenotazione Voli</button>
+        <button onclick="mostra(event)" id="pulsanteRicerca">Ricerca Prenotazioni</button>
+        <p id="erroreNome" class="hidden errore">Inserisci il nome</p>
     </div>
     <div id="prenotazioneHotel" class="hidden">
         <label for="citta">Seleziona una città:</label>
@@ -19,21 +23,29 @@
         <label for="ospiti">Quante persone:</label>
         <select name="ospiti" id="numeroO">
         </select>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nomeU" name="nome">
         <label for="dataI">Seleziona una data di inizio:</label>
         <input type="date" id="dataI" name="dataI">
         <label for="dataF">Seleziona una data di inizio:</label>
         <input type="date" id="dataF" name="dataF">
         <button onclick="prenotaHotel()">Prenota</button>
-        <p id="errore" class="hidden">Riempi tutti i campi</p>
+        <p id="erroreHotel" class="hidden errore">Riempi tutti i campi</p>
     </div>
     <div class="hidden" id="prenotazioneVoli">
-        <label for="voli">Seleziona una città di partenza:</label>
-        <input type="text" name="voli" list="listaVoli" id="nomeCittaPartenza" onkeydown="cercaVolo(event)">
-        <datalist id="listaVoli">
-        </datalist>
+        <label for="voliPartenza" >Seleziona una città di partenza:</label>
+        <input type="text" list="listaCittaPartenza" name="voliPartenza" id="nomeCittaPartenza" onkeydown="cercaCittaVolo(event)">
+        <datalist id="listaCittaPartenza"></datalist>
+        <label for="voliArrivo">Seleziona una città di arrivo:</label>
+        <input type="text" list="listaCittaArrivo" name="voliArrivo" id="nomeCittaArrivo" onkeydown="cercaCittaVolo(event)">
+        <datalist id="listaCittaArrivo"></datalist>
+        <button onclick="cercaVolo()">Cerca Volo</button>
+        <label for="dataI">Seleziona una data di partenza:</label>
+        <input type="date" id="dataP" name="dataP">
+        <label for="listaVoliDisponibili">Voli Disponibili:</label>
+        <select name="listaVoliDisponibili" id="listaVoli" onclick="assegnaV(event)"></select>
+        <button onclick="prenotaVolo(event)">Prenota il volo</button>
+        <p id="erroreVoli" class="hidden errore">Riempi tutti i campi</p>
     </div>
+    <div class="hidden" id="ricerca"></div>
     <script src="script.js"></script>
 </body>
 </html>
