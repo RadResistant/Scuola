@@ -34,7 +34,7 @@ async function cercaCitta(e) {
     if(e.key=="Enter"){
         document.getElementById("listaCitta").innerText="";
         let cercato=document.getElementById("nomeCitta").value;
-        let rispostaj = await fetch("http://192.168.1.56:8088/cities?city="+cercato);
+        let rispostaj = await fetch("http://localhost:8088/cities?city="+cercato);
         let risposta = await rispostaj.json();
         if(rispostaj.status==200 && rispostaj.ok==true){
             risposta.forEach((city)=>{
@@ -55,7 +55,7 @@ async function prenotaHotel(){
     let ospiti=document.getElementById("numeroO").value;
     document.getElementById("erroreHotel").classList.add("hidden");
     if(cercato[0]!="" && nome!="" && dataInizio!="" && dataFine!="" && ospiti!=""){
-        let cittaCercata = await fetch("http://192.168.1.56:8088/cities?city="+cercato[0]+"&country="+cercato[1]);
+        let cittaCercata = await fetch("http://localhost:8088/cities?city="+cercato[0]+"&country="+cercato[1]);
         if(cittaCercata.status==200 && cittaCercata.ok==true){
             cittaCercata = await cittaCercata.json();
             if(cittaCercata.length>=0){
@@ -66,7 +66,7 @@ async function prenotaHotel(){
                     name: nome,
                     to: dataFine
                 };
-                fetch("http://192.168.1.56:8088/reservations",{
+                fetch("http://localhost:8088/reservations",{
                     method:'POST',
                     headers:{
                         'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ async function prenotaHotel(){
     }
 }
 async function controllaH(){
-    let rispostaj = await fetch("http://192.168.1.56:8088/reservations");
+    let rispostaj = await fetch("http://localhost:8088/reservations");
     let risposta = await rispostaj.json();
     console.log(risposta);
 }
@@ -90,7 +90,7 @@ async function cercaCittaVolo(e) {
         if(e.target.id=="nomeCittaPartenza"){
             document.getElementById("listaCittaPartenza").innerText="";
             let cercato=document.getElementById("nomeCittaPartenza").value;
-            let rispostaj = await fetch("http://192.168.1.56:8088/cities?city="+cercato);
+            let rispostaj = await fetch("http://localhost:8088/cities?city="+cercato);
             let risposta = await rispostaj.json();
             if(rispostaj.status==200 && rispostaj.ok==true){
                 risposta.forEach((city)=>{
@@ -106,7 +106,7 @@ async function cercaCittaVolo(e) {
         if(e.target.id=="nomeCittaArrivo"){
             document.getElementById("listaCittaArrivo").innerText="";
             let cercato=document.getElementById("nomeCittaArrivo").value;
-            let rispostaj = await fetch("http://192.168.1.56:8088/cities?city="+cercato);
+            let rispostaj = await fetch("http://localhost:8088/cities?city="+cercato);
             let risposta = await rispostaj.json();
             if(rispostaj.status==200 && rispostaj.ok==true){
                 risposta.forEach((city)=>{
@@ -125,20 +125,20 @@ async function cercaVolo() {
     document.getElementById("listaVoli").innerText="";
     let partenza=document.getElementById("nomeCittaPartenza").value.split("-");
     let arrivo=document.getElementById("nomeCittaArrivo").value.split("-");
-    let rispostaPartenza = await fetch("http://192.168.1.56:8088/cities?city="+partenza[0]+"&country="+partenza[1]);
+    let rispostaPartenza = await fetch("http://localhost:8088/cities?city="+partenza[0]+"&country="+partenza[1]);
     let rispostaArrivo;
     if(arrivo!=""){
-        rispostaArrivo = await fetch("http://192.168.1.56:8088/cities?city="+arrivo[0]+"&country="+arrivo[1]);
+        rispostaArrivo = await fetch("http://localhost:8088/cities?city="+arrivo[0]+"&country="+arrivo[1]);
     }
     if(rispostaPartenza.status==200 && rispostaPartenza.ok==true){
         rispostaPartenza = await rispostaPartenza.json();
         let rispostav;
         if(arrivo!=""){ 
             rispostaArrivo = await rispostaArrivo.json();
-            rispostav = await fetch("http://192.168.1.56:8088/flights?from="+rispostaPartenza[0].id+"&to="+rispostaArrivo[0].id);
+            rispostav = await fetch("http://localhost:8088/flights?from="+rispostaPartenza[0].id+"&to="+rispostaArrivo[0].id);
         }
         else{
-            rispostav = await fetch("http://192.168.1.56:8088/flights?from="+rispostaPartenza[0].id);
+            rispostav = await fetch("http://localhost:8088/flights?from="+rispostaPartenza[0].id);
         }
         if(rispostav.ok==true && rispostav.status==200){
             rispostav = await rispostav.json();
@@ -169,7 +169,7 @@ function prenotaVolo(e){
             date:dataPartenza
         };
         console.log(ticket);
-        fetch("http://192.168.1.56:8088/tickets",{
+        fetch("http://localhost:8088/tickets",{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -186,31 +186,31 @@ function assegnaV(e){
     document.getElementById("listaVoli").dataset.idVolo=idVolo;
 }
 async function controllaV(){
-    let rispostaj = await fetch("http://192.168.1.56:8088/tickets");
+    let rispostaj = await fetch("http://localhost:8088/tickets");
     let risposta = await rispostaj.json();
     console.log(risposta);
 }
 async function ricercaPrenotazioni() {
-    let hotel = await fetch("http://192.168.1.56:8088/reservations?name="+nome);
+    let hotel = await fetch("http://localhost:8088/reservations?name="+nome);
     if(hotel.ok==true){
         hotel = await hotel.json();
         hotel.forEach(async (reservation)=>{
-            let citta= await fetch("http://192.168.1.56:8088/cities/"+reservation.cityId);
+            let citta= await fetch("http://localhost:8088/cities/"+reservation.cityId);
             citta=await citta.json();
             document.getElementById("ricerca").innerHTML+=
             `<span>
-            <h1>Hotel ${citta.city}</h1>
+                <h1>Hotel ${citta.city}</h1>
                 <p>Check in:${reservation.from}</p>
                 <p>Check out:${reservation.to}</p>
                 <p>Paese:${citta.country}</p>
             </span>`;
         });
     }
-    let voli = await fetch("http://192.168.1.56:8088/tickets?name="+nome);
+    let voli = await fetch("http://localhost:8088/tickets?name="+nome);
     if(voli.ok==true){
         voli= await voli.json();
         voli.forEach(async (ticket)=>{
-            let volo= await fetch("http://192.168.1.56:8088/flights/"+ticket.flightId);
+            let volo= await fetch("http://localhost:8088/flights/"+ticket.flightId);
             volo=await volo.json();
             document.getElementById("ricerca").innerHTML+=
             `<span>
