@@ -62,10 +62,10 @@ async function cercaCitta(e) {
         cercato=cercato.split("-");
         let citta;
         if(cercato.length>1){
-            citta = await fetch("http://192.168.1.56:8088/cities?city="+cercato[0]+"&country="+cercato[1]);
+            citta = await fetch("http://10.1.0.52:8088/cities?city="+cercato[0]+"&country="+cercato[1]);
         }
         else if(cercato.length==1){
-            citta = await fetch("http://192.168.1.56:8088/cities?city="+cercato[0]);
+            citta = await fetch("http://10.1.0.52:8088/cities?city="+cercato[0]);
         }
         if(citta.status==200 && citta.ok==true){
             citta = await citta.json();
@@ -95,7 +95,7 @@ async function prenotaHotel(){
             name: nome,
             to: dataFine
         };
-        fetch("http://192.168.1.56:8088/reservations",{
+        fetch("http://10.1.0.52:8088/reservations",{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -112,7 +112,7 @@ function assegnaH(e){
     document.getElementById("listaCitta").dataset.idCitta=idCitta;
 }
 async function controllaH(){
-    let rispostaj = await fetch("http://192.168.1.56:8088/reservations");
+    let rispostaj = await fetch("http://10.1.0.52:8088/reservations");
     let risposta = await rispostaj.json();
     console.log(risposta);
 }
@@ -120,20 +120,20 @@ async function cercaVolo() {
     document.getElementById("listaVoli").innerText="";
     let partenza=document.getElementById("nomeCittaPartenza").value.split("-");
     let arrivo=document.getElementById("nomeCittaArrivo").value.split("-");
-    let rispostaPartenza = await fetch("http://192.168.1.56:8088/cities?city="+partenza[0]+"&country="+partenza[1]);
+    let rispostaPartenza = await fetch("http://10.1.0.52:8088/cities?city="+partenza[0]+"&country="+partenza[1]);
     let rispostaArrivo;
     if(arrivo!=""){
-        rispostaArrivo = await fetch("http://192.168.1.56:8088/cities?city="+arrivo[0]+"&country="+arrivo[1]);
+        rispostaArrivo = await fetch("http://10.1.0.52:8088/cities?city="+arrivo[0]+"&country="+arrivo[1]);
     }
     if(rispostaPartenza.status==200 && rispostaPartenza.ok==true){
         rispostaPartenza = await rispostaPartenza.json();
         let rispostav;
         if(arrivo!=""){ 
             rispostaArrivo = await rispostaArrivo.json();
-            rispostav = await fetch("http://192.168.1.56:8088/flights?from="+rispostaPartenza[0].id+"&to="+rispostaArrivo[0].id);
+            rispostav = await fetch("http://10.1.0.52:8088/flights?from="+rispostaPartenza[0].id+"&to="+rispostaArrivo[0].id);
         }
         else{
-            rispostav = await fetch("http://192.168.1.56:8088/flights?from="+rispostaPartenza[0].id);
+            rispostav = await fetch("http://10.1.0.52:8088/flights?from="+rispostaPartenza[0].id);
         }
         if(rispostav.ok==true && rispostav.status==200){
             rispostav = await rispostav.json();
@@ -163,7 +163,7 @@ function prenotaVolo(e){
             date:dataPartenza
         };
         console.log(ticket);
-        fetch("http://192.168.1.56:8088/tickets",{
+        fetch("http://10.1.0.52:8088/tickets",{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -180,17 +180,17 @@ function assegnaV(e){
     document.getElementById("listaVoli").dataset.idVolo=idVolo;
 }
 async function controllaV(){
-    let rispostaj = await fetch("http://192.168.1.56:8088/tickets");
+    let rispostaj = await fetch("http://10.1.0.52:8088/tickets");
     let risposta = await rispostaj.json();
     console.log(risposta);
 }
 async function ricercaPrenotazioni() {
     document.getElementById("ricerca").innerHTML="";
-    let hotel = await fetch("http://192.168.1.56:8088/reservations?name="+nome);
+    let hotel = await fetch("http://10.1.0.52:8088/reservations?name="+nome);
     if(hotel.ok==true){
         hotel = await hotel.json();
         hotel.forEach(async (reservation)=>{
-            let citta= await fetch("http://192.168.1.56:8088/cities/"+reservation.cityId);
+            let citta= await fetch("http://10.1.0.52:8088/cities/"+reservation.cityId);
             citta=await citta.json();
             document.getElementById("ricerca").innerHTML+=
             `<section>
@@ -202,11 +202,11 @@ async function ricercaPrenotazioni() {
             </section>`;
         });
     }
-    let voli=await fetch("http://192.168.1.56:8088/tickets?name="+nome);
+    let voli=await fetch("http://10.1.0.52:8088/tickets?name="+nome);
     if(voli.ok==true){
         voli=await voli.json();
         voli.forEach(async (ticket)=>{
-            let volo= await fetch("http://192.168.1.56:8088/flights/"+ticket.flightId);
+            let volo= await fetch("http://10.1.0.52:8088/flights/"+ticket.flightId);
             volo=await volo.json();
             document.getElementById("ricerca").innerHTML+=
             `<section>
