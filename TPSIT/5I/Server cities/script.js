@@ -1,17 +1,19 @@
 "use strict";
 let nome;
+let map;
 function mostra(e){      
     document.getElementById("erroreNome").classList.add("hidden");
     if(document.getElementById("nomeU").value!=""){
         nome=document.getElementById("nomeU").value;
         if(e.target.id=="pulsanteHotel"){
             aggiungiN();
-            mostraMappa();
+            mostraMappa("Hotel");
             document.getElementById("prenotazioneHotel").classList.remove("hidden");
             document.getElementById("scelta").classList.add("hidden");
             document.getElementById("pulsanteHome").classList.remove("hidden");
         }
         if(e.target.id=="pulsanteVoli"){
+            mostraMappa("Flights");
             document.getElementById("prenotazioneVoli").classList.remove("hidden");
             document.getElementById("scelta").classList.add("hidden");
             document.getElementById("pulsanteHome").classList.remove("hidden");
@@ -43,6 +45,34 @@ function aggiungiN(){
         menu.appendChild(opt);
     }
 }
+function mostraMappa(type){
+    if(type=="Hotel"){
+        const bounds=[[85,-180],[-85,180]];
+        map = L.map('mapHotel',{
+            maxBounds: bounds,
+            maxBoundsViscosity: 2.0
+        }).setView([0,0], 5);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            minZoom:2,
+            noWrap:true,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    }
+    if(type=="Flights"){
+        const bounds=[[85,-180],[-85,180]];
+        map = L.map('mapFlights',{
+            maxBounds: bounds,
+            maxBoundsViscosity: 2.0
+        }).setView([0,0], 5);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            minZoom:2,
+            noWrap:true,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    }
+}
 async function cercaCitta(e) {
     if(e.key=="Enter"){
         let cercato;
@@ -60,13 +90,16 @@ async function cercaCitta(e) {
             cercato=document.getElementById("nomeCittaArrivo").value;
         }
         lista.innerHTML="";
+        document.getElementsByClassName("leaflet-marker-pane")[0].innerHTML="";
+        document.getElementsByClassName("leaflet-shadow-pane")[0].innerHTML="";
+        document.getElementsByClassName("leaflet-popup-pane")[0].innerHTML="";
         cercato=cercato.split("-");
         let citta;
         if(cercato.length>1){
-            citta = await fetch("http://10.1.0.52:8088/cities?city="+cercato[0]+"&country="+cercato[1]);
+            citta = await fetch("http://192.168.1.56:8088/cities?city="+cercato[0]+"&country="+cercato[1]);
         }
         else if(cercato.length==1){
-            citta = await fetch("http://10.1.0.52:8088/cities?city="+cercato[0]);
+            citta = await fetch("http://192.168.1.56:8088/cities?city="+cercato[0]);
         }
         if(citta.status==200 && citta.ok==true){
             citta = await citta.json();
@@ -75,6 +108,15 @@ async function cercaCitta(e) {
                 opt.innerText=city.city+"-"+city.country;
                 opt.dataset.idCitta=city.id;
                 lista.appendChild(opt);
+                if(lista.id=="listaCitta"){
+                    let marker = L.marker([city.coordinates.lat,city.coordinates.lng]).addTo(map);
+                    marker.bindPopup(city.city+"-"+city.country).openPopup();
+                    marker.idCitta=city.id;
+                    marker.addEventListener("click",()=>{
+                        lista.value=marker._popup._content;
+                        lista.dataset.idCitta=marker.idCitta;
+                    });
+                }
             });
         }
         else{
@@ -96,7 +138,7 @@ async function prenotaHotel(){
             name: nome,
             to: dataFine
         };
-        fetch("http://10.1.0.52:8088/reservations",{
+        fetch("http://192.168.1.56:8088/reservations",{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -113,28 +155,29 @@ function assegnaH(e){
     document.getElementById("listaCitta").dataset.idCitta=idCitta;
 }
 async function controllaH(){
-    let rispostaj = await fetch("http://10.1.0.52:8088/reservations");
+    let rispostaj = await fetch("http://192.168.1.56:8088/reservations");
     let risposta = await rispostaj.json();
     console.log(risposta);
 }
 async function cercaVolo() {
-    document.getElementById("listaVoli").innerText="";
     let partenza=document.getElementById("nomeCittaPartenza").value.split("-");
     let arrivo=document.getElementById("nomeCittaArrivo").value.split("-");
-    let rispostaPartenza = await fetch("http://10.1.0.52:8088/cities?city="+partenza[0]+"&country="+partenza[1]);
+    let rispostaPartenza = await fetch("http://192.168.1.56:8088/cities?city="+partenza[0]+"&country="+partenza[1]);
+    let lista=document.getElementById("listaVoli");
     let rispostaArrivo;
+    lista.innerHTML="";
     if(arrivo!=""){
-        rispostaArrivo = await fetch("http://10.1.0.52:8088/cities?city="+arrivo[0]+"&country="+arrivo[1]);
+        rispostaArrivo = await fetch("http://192.168.1.56:8088/cities?city="+arrivo[0]+"&country="+arrivo[1]);
     }
     if(rispostaPartenza.status==200 && rispostaPartenza.ok==true){
         rispostaPartenza = await rispostaPartenza.json();
         let rispostav;
         if(arrivo!=""){ 
             rispostaArrivo = await rispostaArrivo.json();
-            rispostav = await fetch("http://10.1.0.52:8088/flights?from="+rispostaPartenza[0].id+"&to="+rispostaArrivo[0].id);
+            rispostav = await fetch("http://192.168.1.56:8088/flights?from="+rispostaPartenza[0].id+"&to="+rispostaArrivo[0].id);
         }
         else{
-            rispostav = await fetch("http://10.1.0.52:8088/flights?from="+rispostaPartenza[0].id);
+            rispostav = await fetch("http://192.168.1.56:8088/flights?from="+rispostaPartenza[0].id);
         }
         if(rispostav.ok==true && rispostav.status==200){
             rispostav = await rispostav.json();
@@ -142,7 +185,32 @@ async function cercaVolo() {
                 let opt=document.createElement("option");
                 opt.innerText=flight.from.city+"-"+flight.to.city;
                 opt.dataset.idVolo=flight.id;
-                document.getElementById("listaVoli").appendChild(opt);
+                lista.appendChild(opt);
+                let markerFrom = L.marker([flight.from.coordinates.lat,flight.from.coordinates.lng]).addTo(map);
+                markerFrom.bindPopup(flight.from.city+"-"+flight.from.country).openPopup();
+                markerFrom.idVolo=flight.id;
+                markerFrom.addEventListener("click",()=>{
+                    lista.value=markerFrom._popup._content;
+                    lista.dataset.idVolo=markerFrom.idVolo;
+                });
+                let markerTo = L.marker([flight.to.coordinates.lat,flight.to.coordinates.lng]).addTo(map);
+                markerTo.bindPopup(flight.to.city+"-"+flight.to.country).openPopup();
+                markerTo.idVolo=flight.id;
+                markerTo.addEventListener("click",()=>{
+                    lista.value=markerTo._popup._content;
+                    lista.dataset.idVolo=markerTo.idVolo;
+                });
+                //Da fixare
+                // let curve = L.curve([
+                //         'M',[flight.from.coordinates.lat,flight.from.coordinates.lng],
+                //         'Q',(flight.from.coordinates.lat+flight.to.coordinates.lat)/2,flight.from.coordinates.lng-0.02,
+                //         [flight.to.coordinates.lat,flight.to.coordinates.lng]
+                // ],{color:'red',weight:2}).addTo(map);
+                // curve.bindPopup("From "+flight.from.city+"-"+flight.from.country+" to "+flight.to.city+"-"+flight.to.country);
+                let polyline=L.polyline([
+                    [flight.from.coordinates.lat,flight.from.coordinates.lng],
+                    [flight.to.coordinates.lat,flight.to.coordinates.lng]
+                ],{color:"red"}).addTo(map);
             });
         }
         else{
@@ -164,7 +232,7 @@ function prenotaVolo(e){
             date:dataPartenza
         };
         console.log(ticket);
-        fetch("http://10.1.0.52:8088/tickets",{
+        fetch("http://192.168.1.56:8088/tickets",{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -181,17 +249,17 @@ function assegnaV(e){
     document.getElementById("listaVoli").dataset.idVolo=idVolo;
 }
 async function controllaV(){
-    let rispostaj = await fetch("http://10.1.0.52:8088/tickets");
+    let rispostaj = await fetch("http://192.168.1.56:8088/tickets");
     let risposta = await rispostaj.json();
     console.log(risposta);
 }
 async function ricercaPrenotazioni() {
     document.getElementById("ricerca").innerHTML="";
-    let hotel = await fetch("http://10.1.0.52:8088/reservations?name="+nome);
+    let hotel = await fetch("http://192.168.1.56:8088/reservations?name="+nome);
     if(hotel.ok==true){
         hotel = await hotel.json();
         hotel.forEach(async (reservation)=>{
-            let citta= await fetch("http://10.1.0.52:8088/cities/"+reservation.cityId);
+            let citta= await fetch("http://192.168.1.56:8088/cities/"+reservation.cityId);
             citta=await citta.json();
             document.getElementById("ricerca").innerHTML+=
             `<section class="biglietto">
@@ -203,11 +271,11 @@ async function ricercaPrenotazioni() {
             </section>`;
         });
     }
-    let voli=await fetch("http://10.1.0.52:8088/tickets?name="+nome);
+    let voli=await fetch("http://192.168.1.56:8088/tickets?name="+nome);
     if(voli.ok==true){
         voli=await voli.json();
         voli.forEach(async (ticket)=>{
-            let volo= await fetch("http://10.1.0.52:8088/flights/"+ticket.flightId);
+            let volo= await fetch("http://192.168.1.56:8088/flights/"+ticket.flightId);
             volo=await volo.json();
             document.getElementById("ricerca").innerHTML+=
             `<section class="biglietto">
@@ -219,12 +287,4 @@ async function ricercaPrenotazioni() {
             </section>`;
         });
     }
-}
-function mostraMappa(){
-    var map = L.map('map').setView([51.505, -0.09], 5);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        minZoom:3,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);   
 }

@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenzia di viaggio Cities</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
-    <link rel="stylesheet" href="style.css">
+    <!-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
+    <!-- <script src="https://unpkg.com/leaflet.curve@0.5.0/leaflet.curve.js" type="application/javascript"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/leaflet.curve@0.5.0/leaflet.curve.js" ></script> -->
+     <script src="leaflet.curve.js"></script>
 </head>
 <body id="body">
     <div id="scelta" class="sezioneAgenzia">
@@ -23,7 +27,7 @@
     </div>
     <div id="prenotazioneHotel" class="hidden sezioneAgenzia">
         <label for="citta">Seleziona una città:</label>
-        <input type="text" name="citta" list="listaCitta" id="nomeCitta" onkeydown="cercaCitta(event)">
+        <input type="text" name="citta" list="listaCitta" id="nomeCitta" onkeydown="cercaCitta(event)" placeholder="Seleziona una città:">
         <select id="listaCitta" onclick="assegnaH(event)">
         </select>
         <label for="ospiti">Quante persone:</label>
@@ -35,7 +39,7 @@
         <input type="date" id="dataF" name="dataF">
         <button class="pulsantiInferfaccia" onclick="prenotaHotel()">Prenota</button>
         <p id="erroreHotel" class="hidden errore">Riempi tutti i campi</p>
-        <div id="map"></div>
+        <div id="mapHotel" class="map"></div>
     </div>
     <div class="hidden sezioneAgenzia" id="prenotazioneVoli">
         <label for="voliPartenza" >Seleziona una città di partenza:</label>
@@ -51,6 +55,7 @@
         <select name="listaVoliDisponibili" id="listaVoli" onclick="assegnaV(event)"></select>
         <button class="pulsantiInferfaccia" onclick="prenotaVolo(event)">Prenota il volo</button>
         <p id="erroreVoli" class="hidden errore">Riempi tutti i campi</p>
+        <div id="mapFlights" class="map"></div>
     </div>
     <div class="hidden sezioneAgenzia" id="ricerca"></div>
     <img src="home.png" alt="Home" id="pulsanteHome" class="hidden" onclick="mostra(event)">

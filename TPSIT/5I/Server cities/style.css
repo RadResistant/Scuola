@@ -1,7 +1,7 @@
 .sezioneAgenzia{
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 800px;
     background-color: lightgray;
     border: 5px darkgrey solid;
     border-radius: 5px;
@@ -37,7 +37,7 @@
 .hidden{
     display: none;
 }
-#map{ 
-    height: 1000px;
-    width: 800px;
+.map{ 
+    height: 500px;
+    width: 100%;
 }
