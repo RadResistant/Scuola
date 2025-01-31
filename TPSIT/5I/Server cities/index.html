@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenzia di viaggio Cities</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
 </head>
-<body>
+<body id="body">
     <div id="scelta" class="sezioneAgenzia">
         <label for="nome">Nome:</label>
         <input type="text" id="nomeU" name="nome">
-        <button onclick="mostra(event)" id="pulsanteHotel">Prenotazione Hotel</button>
-        <button onclick="mostra(event)" id="pulsanteVoli">Prenotazione Voli</button>
-        <button onclick="mostra(event)" id="pulsanteRicerca">Ricerca Prenotazioni</button>
+        <button class="pulsantiInferfaccia" onclick="mostra(event)" id="pulsanteHotel">Prenotazione Hotel</button>
+        <button class="pulsantiInferfaccia" onclick="mostra(event)" id="pulsanteVoli">Prenotazione Voli</button>
+        <button class="pulsantiInferfaccia" onclick="mostra(event)" id="pulsanteRicerca">Ricerca Prenotazioni</button>
         <p id="erroreNome" class="hidden errore">Inserisci il nome</p>
     </div>
     <div id="prenotazioneHotel" class="hidden sezioneAgenzia">
@@ -27,8 +33,9 @@
         <input type="date" id="dataI" name="dataI">
         <label for="dataF">Seleziona una data di inizio:</label>
         <input type="date" id="dataF" name="dataF">
-        <button onclick="prenotaHotel()">Prenota</button>
+        <button class="pulsantiInferfaccia" onclick="prenotaHotel()">Prenota</button>
         <p id="erroreHotel" class="hidden errore">Riempi tutti i campi</p>
+        <div id="map"></div>
     </div>
     <div class="hidden sezioneAgenzia" id="prenotazioneVoli">
         <label for="voliPartenza" >Seleziona una città di partenza:</label>
@@ -37,12 +44,12 @@
         <label for="voliArrivo">Seleziona una città di arrivo:</label>
         <input type="text" list="listaCittaArrivo" name="voliArrivo" id="nomeCittaArrivo" onkeydown="cercaCitta(event)">
         <datalist id="listaCittaArrivo"></datalist>
-        <button onclick="cercaVolo()">Cerca Volo</button>
+        <button class="pulsantiInferfaccia" onclick="cercaVolo()">Cerca Volo</button>
         <label for="dataI">Seleziona una data di partenza:</label>
         <input type="date" id="dataP" name="dataP">
         <label for="listaVoliDisponibili">Voli Disponibili:</label>
         <select name="listaVoliDisponibili" id="listaVoli" onclick="assegnaV(event)"></select>
-        <button onclick="prenotaVolo(event)">Prenota il volo</button>
+        <button class="pulsantiInferfaccia" onclick="prenotaVolo(event)">Prenota il volo</button>
         <p id="erroreVoli" class="hidden errore">Riempi tutti i campi</p>
     </div>
     <div class="hidden sezioneAgenzia" id="ricerca"></div>

@@ -6,6 +6,7 @@ function mostra(e){
         nome=document.getElementById("nomeU").value;
         if(e.target.id=="pulsanteHotel"){
             aggiungiN();
+            mostraMappa();
             document.getElementById("prenotazioneHotel").classList.remove("hidden");
             document.getElementById("scelta").classList.add("hidden");
             document.getElementById("pulsanteHome").classList.remove("hidden");
@@ -193,7 +194,7 @@ async function ricercaPrenotazioni() {
             let citta= await fetch("http://10.1.0.52:8088/cities/"+reservation.cityId);
             citta=await citta.json();
             document.getElementById("ricerca").innerHTML+=
-            `<section>
+            `<section class="biglietto">
                 <h1>Hotel ${citta.city}</h1>
                 <p>Ospiti:${reservation.guests}</p>
                 <p>Check in:${reservation.from}</p>
@@ -209,7 +210,7 @@ async function ricercaPrenotazioni() {
             let volo= await fetch("http://10.1.0.52:8088/flights/"+ticket.flightId);
             volo=await volo.json();
             document.getElementById("ricerca").innerHTML+=
-            `<section>
+            `<section class="biglietto">
                 <h1>Volo ${ticket.flightId}</h1>
                 <p>Data di partenza:${ticket.date}</p>
                 <p>Data di arrivo:${ticket.date}</p>
@@ -218,4 +219,12 @@ async function ricercaPrenotazioni() {
             </section>`;
         });
     }
+}
+function mostraMappa(){
+    var map = L.map('map').setView([51.505, -0.09], 5);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        minZoom:3,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);   
 }
