@@ -72,6 +72,9 @@ function mostraMappa(type){
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
     }
+    setTimeout(function() {
+        map.invalidateSize();
+    }, 100); 
 }
 async function cercaCitta(e) {
     if(e.key=="Enter"){
@@ -166,6 +169,10 @@ async function cercaVolo() {
     let lista=document.getElementById("listaVoli");
     let rispostaArrivo;
     lista.innerHTML="";
+    document.getElementsByClassName("leaflet-marker-pane")[0].innerHTML="";
+    document.getElementsByClassName("leaflet-shadow-pane")[0].innerHTML="";
+    document.getElementsByClassName("leaflet-popup-pane")[0].innerHTML="";
+    // document.getElementsByClassName("leaflet-zoom-animated")[0].innerText=""; 
     if(arrivo!=""){
         rispostaArrivo = await fetch("http://192.168.1.56:8088/cities?city="+arrivo[0]+"&country="+arrivo[1]);
     }
@@ -201,16 +208,21 @@ async function cercaVolo() {
                     lista.dataset.idVolo=markerTo.idVolo;
                 });
                 //Da fixare
-                // let curve = L.curve([
-                //         'M',[flight.from.coordinates.lat,flight.from.coordinates.lng],
-                //         'Q',(flight.from.coordinates.lat+flight.to.coordinates.lat)/2,flight.from.coordinates.lng-0.02,
-                //         [flight.to.coordinates.lat,flight.to.coordinates.lng]
-                // ],{color:'red',weight:2}).addTo(map);
-                // curve.bindPopup("From "+flight.from.city+"-"+flight.from.country+" to "+flight.to.city+"-"+flight.to.country);
-                let polyline=L.polyline([
-                    [flight.from.coordinates.lat,flight.from.coordinates.lng],
-                    [flight.to.coordinates.lat,flight.to.coordinates.lng]
-                ],{color:"red"}).addTo(map);
+                let curve = L.curve([
+                        'M',[flight.from.coordinates.lat,flight.from.coordinates.lng],
+                        'Q',[(flight.from.coordinates.lat*1.5),(flight.to.coordinates.lng)],
+                        [flight.to.coordinates.lat,flight.to.coordinates.lng]
+                ],{color:'red',weight:2}).addTo(map);
+                curve.bindPopup("From "+flight.from.city+"-"+flight.from.country+" to "+flight.to.city+"-"+flight.to.country);
+                curve.idVolo=flight.id;
+                curve.addEventListener("click",()=>{
+                    lista.value=curve._popup._content;
+                    lista.dataset.idVolo=curve.idVolo;
+                });
+                // let polyline=L.polyline([
+                //     [flight.from.coordinates.lat,flight.from.coordinates.lng],
+                //     [flight.to.coordinates.lat,flight.to.coordinates.lng]
+                // ],{color:"red"}).addTo(map);
             });
         }
         else{
