@@ -43,10 +43,10 @@
     <div class="hidden sezioneAgenzia" id="prenotazioneVoli">
         <label for="voliPartenza" >Seleziona una città di partenza:</label>
         <input type="text" list="listaCittaPartenza" name="voliPartenza" id="nomeCittaPartenza" onkeydown="cercaCitta(event)">
-        <datalist id="listaCittaPartenza"></datalist>
+        <select id="listaCittaPartenza" onclick="assegnaH(event)"></select>
         <label for="voliArrivo">Seleziona una città di arrivo:</label>
         <input type="text" list="listaCittaArrivo" name="voliArrivo" id="nomeCittaArrivo" onkeydown="cercaCitta(event)">
-        <datalist id="listaCittaArrivo"></datalist>
+        <select id="listaCittaArrivo" onclick="assegnaH(event)"></select>
         <button class="pulsantiInferfaccia" onclick="cercaVolo()">Cerca Volo</button>
         <label for="dataI">Seleziona una data di partenza:</label>
         <input type="date" id="dataP" name="dataP">
