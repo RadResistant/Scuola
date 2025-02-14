@@ -1,7 +1,7 @@
 let server="http://localhost:8180"
 async function cercaCampi(){
     let posto=document.getElementById("ricercaCampi");
-    posto.innerHTML=`<button onclick="cercaCampi()">Cerca campi</button>`;
+    posto.innerHTML=``;
     let campi=await fetch(`${server}/golf/campi`)
     if(campi.ok && campi.status==200){
         campi=await campi.json();
@@ -16,15 +16,22 @@ async function cercaCampi(){
         });
     }
 }
-async function cercaDatiCampo(e){
-    let campo=await fetch(`${server}/golf/campo/${e.target.dataset.idCampo}`);
+async function cercaDatiCampo(m){
+    let campo=await fetch(`${server}/golf/campi/${m.target.dataset.idCampo}`);
     if(campo.ok && campo.status==200){
         campo=await campo.json();
-        console.log(campo);
-        let img=document.createElement("img");
-        img.alt="Foto del campo";
-        img.src=campo.foto[0];
-        e.target.appendChild(img);
-        e.target.innerHTML+=`<p>Latitudine:${campo.latitudine}</p>`
+        m.target.innerText=campo.nome;
+        for(let i=0;i<campo.foto.length;i++){
+            let img=document.createElement("img");
+            img.alt="Foto del campo";
+            img.src=campo.foto[i];
+            m.target.appendChild(img);
+        }
+        m.target.innerHTML+=`
+        <p>Latitudine:${campo.latitudine}</p> 
+        <p>Longitudine:${campo.longitudine}</p> 
+        <p>Numero buche:${campo.numeroBuche}</p>
+        <p>Tiri massimi:${campo.par}</p>
+        `
     }
 }
