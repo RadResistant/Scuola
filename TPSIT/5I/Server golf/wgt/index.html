@@ -6,8 +6,21 @@
     <title>World Golf Tournament</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="cercaCampi()">
-    <div id="ricercaCampi">
+<body onload="avvia()">
+    <h1>Campi</h1>
+    <div id="ricercaCampi" class="contenitoriGenerali">
+    </div>
+    <h1>Giocatori</h1>
+    <div id="ricercaGiocatori" class="contenitoriGenerali">
+    </div>
+    <h1>Inserisci giocatore</h1>
+    <div id="inserisciGiocatore" class="contenitoriGenerali">
+        <input name="nomeG" type="text" id="nomeGiocatore" placeholder="Nome Giocatore">
+        <input name="handicapG" type="text" id="handicapGiocatore" placeholder="Handicap Giocatore">
+        <button type="button" onclick="inserisciGiocatore()">Inserisci Giocatore</button>
+    </div>
+    <h1>Tornei</h1>
+    <div id="ricercaTornei" class="contenitoriGenerali">
     </div>
     <script src="script.js"></script>
 </body>
