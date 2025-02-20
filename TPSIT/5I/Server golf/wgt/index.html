@@ -11,16 +11,29 @@
     <div id="ricercaCampi" class="contenitoriGenerali">
     </div>
     <h1>Giocatori</h1>
-    <div id="ricercaGiocatori" class="contenitoriGenerali">
+    <div id="ricercaGiocatori" class="ricercaGiocatori contenitoriGenerali">
     </div>
     <h1>Inserisci giocatore</h1>
     <div id="inserisciGiocatore" class="contenitoriGenerali">
         <input name="nomeG" type="text" id="nomeGiocatore" placeholder="Nome Giocatore">
         <input name="handicapG" type="text" id="handicapGiocatore" placeholder="Handicap Giocatore">
         <button type="button" onclick="inserisciGiocatore()">Inserisci Giocatore</button>
+        <p id="giocatoreSI"></p>
     </div>
     <h1>Tornei</h1>
-    <div id="ricercaTornei" class="contenitoriGenerali">
+    <div id="ricercaTornei" class="ricercaTornei contenitoriGenerali">
+    </div>
+    <h1>Inserisci prestazione</h1>
+    <div id="inserisciPrestazione" class="contenitoriGenerali">
+        <select class="ricercaGiocatori" onclick="assegnaG(event)" id="nomeGP">
+            <option>Scegli il giocatore</option>
+        </select>
+        <select class="ricercaTornei" onclick="assegnaG(event)" id="torneoP">
+            <option>Scegli il torneo</option>
+        </select>
+        <input id="numeroColpi" type="text" placeholder="Numero colpi">
+        <button onclick="inserisciPrestazione()">Inserisci prestazione</button>
+        <p id="prestazioneSI"></p>
     </div>
     <script src="script.js"></script>
 </body>
