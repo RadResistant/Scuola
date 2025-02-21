@@ -1,4 +1,4 @@
-let server="http://192.168.1.56:8180"
+let server="http://localhost:8180"
 function avvia(){
     cercaCampi();
     cercaGiocatori();
@@ -15,48 +15,82 @@ async function cercaCampi(){
             let p=document.createElement("p");
             p.innerText=campo.nome;
             p.dataset.idCampo=campo.id;
-            p.addEventListener("click",cercaDatiCampo);
+            let clickG=true;
+            p.addEventListener("click",async (m)=>{
+                if(clickG){
+                    let tornei= await fetch(`${server}/golf/tornei`);
+                    if(tornei.ok){
+                        tornei=await tornei.json();
+                        tornei.filter(torneo=>torneo.campo.id==m.target.dataset.idCampo).forEach((torneo)=>{
+                            for(let i=0;i<torneo.campo.foto.length;i++){
+                                let img=document.createElement("img");
+                                img.alt="Foto del campo";
+                                img.src=torneo.campo.foto[i];
+                                div.appendChild(img);
+                            }
+                            div.innerHTML+=`
+                            <p>Latitudine:${torneo.campo.latitudine}</p> 
+                            <p>Longitudine:${torneo.campo.longitudine}</p> 
+                            <p>Numero buche:${torneo.campo.numeroBuche}</p>
+                            <p>Tiri massimi:${torneo.campo.par}</p>
+                            <h3>Tornei svolti nel campo</h3>
+                            `
+                        })
+                        tornei=tornei.filter(torneo=>torneo.campo.id==m.target.dataset.idCampo).forEach(torneo=>{
+                            let p=document.createElement("p");
+                            p.innerText=torneo.nome+" svolto in data: "+torneo.data;
+                            div.appendChild(p);
+                        });
+                    }
+                    clickG=!clickG;
+                }
+                else{
+                    let nome=m.target.innerText.split('\n');
+                    m.target.innerHTML=nome[0];
+                    clickG=!clickG;
+                }
+            });
             div.appendChild(p);
             posto.appendChild(div);
         });
     }
 }
-let click=true;
-async function cercaDatiCampo(m){
-    if(click){
-        let campo=await fetch(`${server}/golf/campi/${m.target.dataset.idCampo}`);
-        let tornei= await fetch(`${server}/golf/tornei`);
-        if(campo.ok && tornei.ok){
-            campo=await campo.json();
-            tornei=await tornei.json();
-            m.target.innerText=campo.nome;
-            for(let i=0;i<campo.foto.length;i++){
-                let img=document.createElement("img");
-                img.alt="Foto del campo";
-                img.src=campo.foto[i];
-                m.target.appendChild(img);
-            }
-            m.target.innerHTML+=`
-            <p>Latitudine:${campo.latitudine}</p> 
-            <p>Longitudine:${campo.longitudine}</p> 
-            <p>Numero buche:${campo.numeroBuche}</p>
-            <p>Tiri massimi:${campo.par}</p>
-            <h3>Tornei svolti nel campo</h3>
-            `
-            tornei=tornei.filter(torneo=>torneo.campo.id==m.target.dataset.idCampo).forEach(torneo=>{
-                let p=document.createElement("p");
-                p.innerText=torneo.nome+" svolto in data: "+torneo.data;
-                m.target.appendChild(p);
-            });
-        }
-        click=!click;
-    }
-    else{
-        let nome=m.target.innerText.split('\n');
-        m.target.innerHTML=nome[0];
-        click=!click;
-    }
-}
+// let click=true;
+// async function cercaDatiCampo(m){
+//     if(click){
+//         let campo=await fetch(`${server}/golf/campi/${m.target.dataset.idCampo}`);
+//         let tornei= await fetch(`${server}/golf/tornei`);
+//         if(campo.ok && tornei.ok){
+//             campo=await campo.json();
+//             tornei=await tornei.json();
+//             m.target.innerText=campo.nome;
+//             for(let i=0;i<campo.foto.length;i++){
+//                 let img=document.createElement("img");
+//                 img.alt="Foto del campo";
+//                 img.src=campo.foto[i];
+//                 m.target.appendChild(img);
+//             }
+//             m.target.innerHTML+=`
+//             <p>Latitudine:${campo.latitudine}</p> 
+//             <p>Longitudine:${campo.longitudine}</p> 
+//             <p>Numero buche:${campo.numeroBuche}</p>
+//             <p>Tiri massimi:${campo.par}</p>
+//             <h3>Tornei svolti nel campo</h3>
+//             `
+//             tornei=tornei.filter(torneo=>torneo.campo.id==m.target.dataset.idCampo).forEach(torneo=>{
+//                 let p=document.createElement("p");
+//                 p.innerText=torneo.nome+" svolto in data: "+torneo.data;
+//                 m.target.appendChild(p);
+//             });
+//         }
+//         click=!click;
+//     }
+//     else{
+//         let nome=m.target.innerText.split('\n');
+//         m.target.innerHTML=nome[0];
+//         click=!click;
+//     }
+// }
 async function cercaGiocatori() {
     let posto=document.getElementsByClassName("ricercaGiocatori");
     posto.innerHTML=``;
@@ -68,7 +102,14 @@ async function cercaGiocatori() {
             let p=document.createElement("p");
             p.innerText=giocatore.nome+", Handicap: "+giocatore.handicap;
             p.dataset.idGiocatore=giocatore.id;
-            // p.addEventListener("click",elencaPrestazioni);
+            p.addEventListener("click",()=>{
+                giocatore.prestazioni.forEach((prestazione)=>{
+                    let pp=document.createElement("p");
+                    pp.innerText=prestazione.torneo.nome+", svolto in data: "+prestazione.torneo.data.split("T")[0]+" sul campo: "+prestazione.torneo.campo.nome;
+                    pp.dataset.idPrestazione=prestazione.id;
+                    div.appendChild(pp);
+                });
+            });
             div.appendChild(p);
             posto[0].appendChild(div);
         });
@@ -76,7 +117,6 @@ async function cercaGiocatori() {
             let opt=document.createElement("option");
             opt.innerText=giocatore.nome+", Handicap: "+giocatore.handicap;
             opt.dataset.idGiocatore=giocatore.id;
-            // opt.addEventListener("click",elencaPrestazioni);
             posto[1].appendChild(opt);
         });
     }
@@ -149,9 +189,9 @@ async function cercaTornei(){
             p.innerText=torneo.nome+", in data: "+torneo.data;
             p.dataset.idTorneo=torneo.id;
             pCampo.innerText="Svolto nel campo: "+torneo.campo.nome;
-            let click=true;
+            let clickT=true;
             p.addEventListener("click",()=>{
-                if(click){
+                if(clickT){
                     div.innerHTML='';
                     div.appendChild(p);
                     div.appendChild(pCampo);
@@ -161,12 +201,12 @@ async function cercaTornei(){
                         img.src=torneo.campo.foto[i];
                         div.appendChild(img);
                     }
-                    click=!click;
+                    clickT=!clickT;
                 }
                 else{
                     div.innerHTML="";
                     div.appendChild(p)
-                    click=!click;
+                    clickT=!clickT;
                 }
             });
             div.appendChild(p);
