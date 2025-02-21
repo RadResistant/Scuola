@@ -10,8 +10,8 @@
     <?php
         function somma($vettore){
             $somma=0;
-            for($i=0;$i<count($vettore);$i++){
-                $somma+=$vettore[$i];
+            foreach($vettore as $numero){
+                $somma+=$numero;
             }
             return $somma;
         }
@@ -22,9 +22,10 @@
     <?php
         function media($vettore){
             $somma=0;
-            for($i=0;$i<count($vettore);$i++){
+            $i=0;
+            do{
                 $somma+=$vettore[$i];
-            }
+            }while($i<count($vettore));
             $somma/=count($vettore);
             return $somma;
         }
