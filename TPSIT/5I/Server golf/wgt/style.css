@@ -1,24 +1,47 @@
+body{
+    background-color:#383535 ;
+    color: white;
+}
 div{
-    border: 2px grey solid;
+    border: 2px lightgrey solid;
     border-radius: 15px;
     margin: 10px;
+    padding: 0 5px;
 }
-#ricercaCampi{
-    border: 0;
-    margin: 0;
+.contenitoriGenerali{
+    border: 2px solid blue;
+    margin: 5px;
+    padding: 5px;
 }
 img{
-    height: 150px;
+    width:200px;
     display: block;
     margin: 15px;
 }
 button{
-    border: 2px blue solid;
-    color: black;
-    background-color: blue;
+    border: 2px red solid;
+    color: white;
+    background-color: black;
     border-radius: 15px;
     margin: 15px;
+    padding: 5px;
+}
+select, input, p{
+    margin: 10px;
+}
+select, input{
+    border: white 2px solid;
+    border-radius: 15px;
+    background-color:#383535;
+    color: white;
+    padding:5px;
 }
 .hidden{
     display: none;
+}
+.insuccesso{
+    color: red;
+}
+.successo{
+    color: green;
 }
