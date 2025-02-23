@@ -3,85 +3,67 @@ function avvia(){
     cercaCampi();
     cercaGiocatori();
     cercaTornei();
+    mostraMappa();
+}
+function mostraMappa(){
+    const bounds=[[85,-180],[-85,180]];
+    map = L.map('map',{
+        maxBounds: bounds,
+        maxBoundsViscosity: 2.0
+    }).setView([0,0], 5);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        minZoom:2,
+        noWrap:true,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 }
 async function cercaCampi(){
     let posto=document.getElementById("ricercaCampi");
-    posto.innerHTML=``;
     let campi=await fetch(`${server}/golf/campi`)
     if(campi.ok && campi.status==200){
         campi=await campi.json();
         campi.forEach((campo) => {
+            console.log(campo);
             let div=document.createElement("div");
             let p=document.createElement("p");
             p.innerText=campo.nome;
             p.dataset.idCampo=campo.id;
             p.addEventListener("click",async(m)=>{
-                let tornei= await fetch(`${server}/golf/tornei`);
-                if(tornei.ok){
-                    tornei=await tornei.json();
-                    tornei.filter(torneo=>torneo.campo.id==m.target.dataset.idCampo).forEach((torneo)=>{
-                        for(let i=0;i<torneo.campo.foto.length;i++){
-                            let img=document.createElement("img");
-                            img.alt="Foto del campo";
-                            img.src=torneo.campo.foto[i];
-                            div.appendChild(img);
-                        }
-                        div.innerHTML+=`
-                        <p>Latitudine:${torneo.campo.latitudine}</p> 
-                        <p>Longitudine:${torneo.campo.longitudine}</p> 
-                        <p>Numero buche:${torneo.campo.numeroBuche}</p>
-                        <p>Tiri massimi:${torneo.campo.par}</p>
-                        <h3>Tornei svolti nel campo</h3>
-                        `
-                    });
-                    tornei=tornei.filter(torneo=>torneo.campo.id==m.target.dataset.idCampo).forEach(torneo=>{
+                let campoCercato= await fetch(`${server}/golf/campi/${m.target.dataset.idCampo}`);
+                if(campoCercato.ok){
+                    campoCercato=await campoCercato.json();
+                    let marker = L.marker([campoCercato.latitudine,campoCercato.longitudine]).addTo(map);
+                    marker.bindPopup(campoCercato.nome).openPopup();
+                    for(let i=0;i<campoCercato.foto.length;i++){
+                        let img=document.createElement("img");
+                        img.alt="Foto del campo";
+                        img.src=campoCercato.foto[i];
+                        div.appendChild(img);
+                    }
+                    div.innerHTML+=`
+                    <p>Latitudine:${campoCercato.latitudine}</p> 
+                    <p>Longitudine:${campoCercato.longitudine}</p> 
+                    <p>Numero buche:${campoCercato.numeroBuche}</p>
+                    <p>Tiri massimi:${campoCercato.par}</p>
+                    <h3>Tornei svolti nel campo</h3>
+                    `;
+                    let tornei=campoCercato.tornei;
+                    tornei.sort((a,b) => new Date(b.data.split("T")[0]) - new Date(a.data.split("T")[0])).forEach(torneo=>{
                         let p=document.createElement("p");
-                        p.innerText=torneo.nome+" svolto in data: "+torneo.data;
+                        p.innerText=torneo.nome;
+                        p.addEventListener("click",()=>{
+                            p.innerText=torneo.nome+"\n-svolto in data: "+torneo.data.split("T")[0]+"\n-iniziato alle ore: "+torneo.data.split("T")[1].split("+")[0].split(".")[0];
+                        });
                         div.appendChild(p);
                     });
                 }
             });
             div.appendChild(p);
-            posto.appendChild(div);
+            posto.insertBefore(div,document.getElementById("map"));
         });
     }
 }
-// let click=true;
-// async function cercaDatiCampo(m){
-//     if(click){
-//         let campo=await fetch(`${server}/golf/campi/${m.target.dataset.idCampo}`);
-//         let tornei= await fetch(`${server}/golf/tornei`);
-//         if(campo.ok && tornei.ok){
-//             campo=await campo.json();
-//             tornei=await tornei.json();
-//             m.target.innerText=campo.nome;
-//             for(let i=0;i<campo.foto.length;i++){
-//                 let img=document.createElement("img");
-//                 img.alt="Foto del campo";
-//                 img.src=campo.foto[i];
-//                 m.target.appendChild(img);
-//             }
-//             m.target.innerHTML+=`
-//             <p>Latitudine:${campo.latitudine}</p> 
-//             <p>Longitudine:${campo.longitudine}</p> 
-//             <p>Numero buche:${campo.numeroBuche}</p>
-//             <p>Tiri massimi:${campo.par}</p>
-//             <h3>Tornei svolti nel campo</h3>
-//             `
-//             tornei=tornei.filter(torneo=>torneo.campo.id==m.target.dataset.idCampo).forEach(torneo=>{
-//                 let p=document.createElement("p");
-//                 p.innerText=torneo.nome+" svolto in data: "+torneo.data;
-//                 m.target.appendChild(p);
-//             });
-//         }
-//         click=!click;
-//     }
-//     else{
-//         let nome=m.target.innerText.split('\n');
-//         m.target.innerHTML=nome[0];
-//         click=!click;
-//     }
-// }
 async function cercaGiocatori() {
     let posto=document.getElementsByClassName("ricercaGiocatori");
     posto.innerHTML=``;
@@ -94,6 +76,8 @@ async function cercaGiocatori() {
             p.innerText=giocatore.nome+", Handicap: "+giocatore.handicap;
             p.dataset.idGiocatore=giocatore.id;
             p.addEventListener("click",()=>{
+                div.innerHTML="";
+                div.appendChild(p);
                 giocatore.prestazioni.forEach((prestazione)=>{
                     let pp=document.createElement("p");
                     pp.innerText=prestazione.torneo.nome+", svolto in data: "+prestazione.torneo.data.split("T")[0]+" sul campo: "+prestazione.torneo.campo.nome;
@@ -173,6 +157,7 @@ async function cercaTornei(){
     posto.innerHTML=``;
     if(tornei.status==200 && tornei.ok){
         tornei= await tornei.json();
+        tornei.sort((a,b) => new Date(ordinaData(b.data)) - new Date(ordinaData(a.data)));
         tornei.forEach((torneo)=>{
             let div=document.createElement("div");
             let p=document.createElement("p");
@@ -211,6 +196,10 @@ async function cercaTornei(){
             posto[1].appendChild(opt);
         });
     }
+}
+function ordinaData(data){
+    let [anno,giorno,mese]=data.split("-");
+    return anno+"-"+mese+"-"+giorno;
 }
 function assegnaG(e){
     if(e.target.dataset.idGiocatore) {

@@ -50,7 +50,7 @@ function mostraMappa(type){
         const bounds=[[85,-180],[-85,180]];
         map = L.map('mapHotel',{
             maxBounds: bounds,
-            maxBoundsViscosity: 2.0
+            maxBoundsViscosity: 10
         }).setView([0,0], 5);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
