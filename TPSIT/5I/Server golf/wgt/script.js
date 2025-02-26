@@ -1,4 +1,4 @@
-let server="http://192.168.1.56:8180"
+let server="http://localhost:8180"
 function avvia(){
     cercaCampi();
     cercaGiocatori();
@@ -20,11 +20,16 @@ function mostraMappa(){
 }
 async function cercaCampi(){
     let posto=document.getElementById("ricercaCampi");
-    let campi=await fetch(`${server}/golf/campi`)
+    let imgCaricamento=document.createElement("img");
+    imgCaricamento.src="images/loading.gif";
+    imgCaricamento.alt="caricamento";
+    imgCaricamento.classList.add("caricamento");
+    posto.insertBefore(imgCaricamento,document.getElementById("map"));
+    let campi=await fetch(`${server}/golf/campi`);
     if(campi.ok && campi.status==200){
         campi=await campi.json();
+        posto.removeChild(imgCaricamento);
         campi.forEach((campo) => {
-            console.log(campo);
             let div=document.createElement("div");
             let p=document.createElement("p");
             p.innerText=campo.nome;
@@ -67,9 +72,15 @@ async function cercaCampi(){
 async function cercaGiocatori() {
     let posto=document.getElementsByClassName("ricercaGiocatori");
     posto.innerHTML=``;
+    let imgCaricamento=document.createElement("img");
+    imgCaricamento.src="images/loading.gif";
+    imgCaricamento.alt="caricamento";
+    imgCaricamento.classList.add("caricamento");
+    posto[0].appendChild(imgCaricamento);
     let giocatori=await fetch(`${server}/golf/giocatori`)
     if(giocatori.ok && giocatori.status==200){
         giocatori=await giocatori.json();
+        posto[0].removeChild(imgCaricamento);
         giocatori.forEach((giocatore)=>{
             let div=document.createElement("div");
             let p=document.createElement("p");
@@ -152,12 +163,18 @@ async function inserisciGiocatore() {
     }
 }
 async function cercaTornei(){
-    let tornei=await fetch(`${server}/golf/tornei`);
     let posto=document.getElementsByClassName("ricercaTornei");
     posto.innerHTML=``;
+    let imgCaricamento=document.createElement("img");
+    imgCaricamento.src="images/loading.gif";
+    imgCaricamento.alt="caricamento";
+    imgCaricamento.classList.add("caricamento");
+    posto[0].appendChild(imgCaricamento);
+    let tornei=await fetch(`${server}/golf/tornei`);
     if(tornei.status==200 && tornei.ok){
         tornei= await tornei.json();
         tornei.sort((a,b) => new Date(ordinaData(b.data)) - new Date(ordinaData(a.data)));
+        posto[0].removeChild(imgCaricamento);
         tornei.forEach((torneo)=>{
             let div=document.createElement("div");
             let p=document.createElement("p");
@@ -166,8 +183,9 @@ async function cercaTornei(){
             p.dataset.idTorneo=torneo.id;
             pCampo.innerText="Svolto nel campo: "+torneo.campo.nome;
             let clickT=true;
-            p.addEventListener("click",()=>{
+            p.addEventListener("click",async(e)=>{
                 if(clickT){
+                    console.log(e)
                     div.innerHTML='';
                     div.appendChild(p);
                     div.appendChild(pCampo);
@@ -177,6 +195,17 @@ async function cercaTornei(){
                         img.src=torneo.campo.foto[i];
                         div.appendChild(img);
                     }
+                    div.innerHTML+="<h3>Giocatori Partecipanti</h3>";
+                    let prestazioniTorneo=await fetch(`${server}/golf/tornei/${e.target.dataset.idTorneo}`);
+                    prestazioniTorneo= await prestazioniTorneo.json();
+                    console.log(prestazioniTorneo)
+                    prestazioniTorneo.prestazioni
+                    .sort((a,b) => a.colpi - b.colpi)
+                    .forEach((prestazione,index)=>{
+                        let giocatore=document.createElement("p");
+                        giocatore.innerText=(index+1)+"° "+prestazione.giocatore.nome+" e ha terminato con "+prestazione.colpi+" colpi";
+                        div.appendChild(giocatore);
+                    });
                     clickT=!clickT;
                 }
                 else{

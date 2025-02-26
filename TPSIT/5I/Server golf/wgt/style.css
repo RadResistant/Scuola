@@ -36,6 +36,10 @@ select, input{
     color: white;
     padding:5px;
 }
+.caricamento{
+    height:100px;
+    width: 100px;
+}
 .hidden{
     display: none;
 }
