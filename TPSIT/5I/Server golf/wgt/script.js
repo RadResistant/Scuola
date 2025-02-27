@@ -1,4 +1,4 @@
-let server="http://192.168.1.56:8180";
+let server="http://localhost:8180";
 let coordinate=[0,0];
 const bounds=[[85,-180],[-85,180]];
 let map= L.map('map',{
@@ -261,6 +261,7 @@ function assegna(e){
         else{
             document.getElementById("campoT").dataset.idCampo=e.target.dataset.idCampo;
         }
+        console.log(e.target);
     }
 }
 async function inserisciPrestazione() {
@@ -385,19 +386,11 @@ async function inserisciTorneo(){
     }
 }
 async function cercaGiocatoriPartecipanti(e){
-    console.log(e);
-    let giocatori= await fetch(`${server}/golf/giocatori`);
-    if(giocatori.ok){
-        giocatori=await giocatori.json();
-        console.log(giocatori);
-        giocatori.forEach((giocatore)=>{
-            let filtrati=giocatore.prestazioni.filter((prestazione)=>prestazione.torneo.id=e.target.dataset.idTorneo);
-            giocatore={
-                nome:giocatore.nome,
-                prestazioni: filtrati
-            }
-            // da continuare
-        });
-        // prestazioni.filter(prestazioni.torneo)
+    let listaGiocatori=[];
+    let torneo= await fetch(`${server}/golf/tornei/${e.target.dataset.idTorneo}`);
+    if(torneo.ok){
+        torneo=await torneo.json();
+        console.log(torneo);
     }
+    console.log(listaGiocatori);
 }
