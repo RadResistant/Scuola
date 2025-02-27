@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +14,8 @@
 </head>
 <body onload="avvia()">
     <h1>Campi</h1>
-    <div id="ricercaCampi" class="contenitoriGenerali">
-        <div id="map"></div>
+    <div id="ricercaCampi" class="ricercaCampi contenitoriGenerali">
+        <div id="map" class="contenitoreMappa"></div>
     </div>
     <h1>Giocatori</h1>
     <div id="ricercaGiocatori" class="ricercaGiocatori contenitoriGenerali">
@@ -32,15 +32,37 @@
     </div>
     <h1>Inserisci prestazione</h1>
     <div id="inserisciPrestazione" class="contenitoriGenerali">
-        <select class="ricercaGiocatori" onclick="assegnaG(event)" id="nomeGP">
+        <select class="ricercaGiocatori" onclick="assegna(event)" id="nomeGP">
             <option>Scegli il giocatore</option>
         </select>
-        <select class="ricercaTornei" onclick="assegnaG(event)" id="torneoP">
+        <select class="ricercaTornei" onclick="assegna(event)" id="torneoP">
             <option>Scegli il torneo</option>
         </select>
         <input id="numeroColpi" type="text" placeholder="Numero colpi">
         <button onclick="inserisciPrestazione()">Inserisci prestazione</button>
         <p id="prestazioneSI"></p>
+    </div>
+    <h1>Modifica prestazione</h1>
+    <div id="modificaPrestazione" class="contenitoriGenerali">
+        <select class="ricercaTornei" onchange="cercaGiocatoriPartecipanti(event)" onclick="assegna(event)" id="torneoNP">
+            <option>Scegli il torneo</option>
+        </select>
+        <select class="ricercaGiocatori" onclick="assegna(event)" id="nomeGP">
+            <option>Scegli il giocatore</option>
+        </select>
+        <input id="numeroColpi" type="text" placeholder="Numero colpi">
+        <button onclick="inserisciPrestazione()">Inserisci prestazione</button>
+        <p id="prestazioneSI"></p>
+    </div>
+    <h1>Inserisci Torneo</h1>
+    <div id="inserisciTorneo" class="contenitoriGenerali">
+        <input type="text" placeholder="Nome torneo" id="nomeTorneo">
+        <input type="date" id="dataTorneo">
+        <select class="ricercaCampi" onclick="assegna(event)" id="campoT"> 
+            <option>Scegli il campo</option>
+        </select>
+        <button onclick="inserisciTorneo()">Inserisci Torneo</button>
+        <p id="torneoSI"></p>
     </div>
     <script src="script.js"></script>
 </body>

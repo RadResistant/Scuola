@@ -1,16 +1,23 @@
-let server="http://localhost:8180"
+let server="http://192.168.1.56:8180";
+let coordinate=[0,0];
+const bounds=[[85,-180],[-85,180]];
+let map= L.map('map',{
+    maxBounds: bounds,
+    maxBoundsViscosity: 2.0
+}).setView(coordinate, 5);
+window.navigator.geolocation.getCurrentPosition(posTrovata);
+function posTrovata(posizione){
+    coordinate=[posizione.coords.latitude,posizione.coords.longitude];
+    map.setView(coordinate,5);
+    L.marker(coordinate).bindPopup("Posizione attuale").openPopup().addTo(map);
+}
 function avvia(){
     cercaCampi();
     cercaGiocatori();
     cercaTornei();
     mostraMappa();
 }
-function mostraMappa(){
-    const bounds=[[85,-180],[-85,180]];
-    map = L.map('map',{
-        maxBounds: bounds,
-        maxBoundsViscosity: 2.0
-    }).setView([0,0], 5);
+async function mostraMappa(){
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         minZoom:2,
@@ -19,19 +26,20 @@ function mostraMappa(){
     }).addTo(map);
 }
 async function cercaCampi(){
-    let posto=document.getElementById("ricercaCampi");
+    let posto=document.getElementsByClassName("ricercaCampi");
     let imgCaricamento=document.createElement("img");
     imgCaricamento.src="images/loading.gif";
     imgCaricamento.alt="caricamento";
     imgCaricamento.classList.add("caricamento");
-    posto.insertBefore(imgCaricamento,document.getElementById("map"));
+    posto[0].insertBefore(imgCaricamento,document.getElementById("map"));
     let campi=await fetch(`${server}/golf/campi`);
     if(campi.ok && campi.status==200){
         campi=await campi.json();
-        posto.removeChild(imgCaricamento);
+        posto[0].removeChild(imgCaricamento);
         campi.forEach((campo) => {
             let div=document.createElement("div");
             let p=document.createElement("p");
+            div.classList.add("sottosezione");
             p.innerText=campo.nome;
             p.dataset.idCampo=campo.id;
             p.addEventListener("click",async(m)=>{
@@ -65,8 +73,14 @@ async function cercaCampi(){
                 }
             });
             div.appendChild(p);
-            posto.insertBefore(div,document.getElementById("map"));
+            posto[0].insertBefore(div,document.getElementById("map"));
         });
+        campi.forEach((campo)=>{
+            let opt=document.createElement("option");
+            opt.innerText=campo.nome+", numero buche: "+campo.numeroBuche+", par: "+campo.par;
+            opt.dataset.idCampo=campo.id;
+            posto[1].appendChild(opt);
+        })
     }
 }
 async function cercaGiocatori() {
@@ -81,10 +95,11 @@ async function cercaGiocatori() {
     if(giocatori.ok && giocatori.status==200){
         giocatori=await giocatori.json();
         posto[0].removeChild(imgCaricamento);
-        giocatori.forEach((giocatore)=>{
+        giocatori.sort((a,b)=>b.handicap - a.handicap).forEach((giocatore,index)=>{
             let div=document.createElement("div");
             let p=document.createElement("p");
-            p.innerText=giocatore.nome+", Handicap: "+giocatore.handicap;
+            div.classList.add("sottosezione");
+            p.innerText=index+1+"° "+giocatore.nome+", Handicap: "+giocatore.handicap;
             p.dataset.idGiocatore=giocatore.id;
             p.addEventListener("click",()=>{
                 div.innerHTML="";
@@ -178,6 +193,7 @@ async function cercaTornei(){
         tornei.forEach((torneo)=>{
             let div=document.createElement("div");
             let p=document.createElement("p");
+            div.classList.add("sottosezione");
             let pCampo=document.createElement("p");
             p.innerText=torneo.nome+", in data: "+torneo.data;
             p.dataset.idTorneo=torneo.id;
@@ -185,7 +201,6 @@ async function cercaTornei(){
             let clickT=true;
             p.addEventListener("click",async(e)=>{
                 if(clickT){
-                    console.log(e)
                     div.innerHTML='';
                     div.appendChild(p);
                     div.appendChild(pCampo);
@@ -198,9 +213,8 @@ async function cercaTornei(){
                     div.innerHTML+="<h3>Giocatori Partecipanti</h3>";
                     let prestazioniTorneo=await fetch(`${server}/golf/tornei/${e.target.dataset.idTorneo}`);
                     prestazioniTorneo= await prestazioniTorneo.json();
-                    console.log(prestazioniTorneo)
                     prestazioniTorneo.prestazioni
-                    .sort((a,b) => a.colpi - b.colpi)
+                    .sort((a,b) => (a.colpi-a.giocatore.handicap) - (b.colpi-b.giocatore.handicap))
                     .forEach((prestazione,index)=>{
                         let giocatore=document.createElement("p");
                         giocatore.innerText=(index+1)+"° "+prestazione.giocatore.nome+" e ha terminato con "+prestazione.colpi+" colpi";
@@ -221,8 +235,13 @@ async function cercaTornei(){
             let opt=document.createElement("option");
             opt.innerText=torneo.nome+", svolto in data: "+torneo.data;
             opt.dataset.idTorneo=torneo.id;
-            // opt.addEventListener("click",elencaPrestazioni);
             posto[1].appendChild(opt);
+        });
+        tornei.forEach(torneo=>{
+            let opt=document.createElement("option");
+            opt.innerText=torneo.nome+", svolto in data: "+torneo.data;
+            opt.dataset.idTorneo=torneo.id;
+            posto[2].appendChild(opt);
         });
     }
 }
@@ -230,12 +249,18 @@ function ordinaData(data){
     let [anno,giorno,mese]=data.split("-");
     return anno+"-"+mese+"-"+giorno;
 }
-function assegnaG(e){
+function assegna(e){
     if(e.target.dataset.idGiocatore) {
         document.getElementById("nomeGP").dataset.idGiocatore=e.target.dataset.idGiocatore;
     }
     else{
-        document.getElementById("torneoP").dataset.idTorneo=e.target.dataset.idTorneo;
+        if(e.target.dataset.idTorneo) {
+            document.getElementById("torneoP").dataset.idTorneo=e.target.dataset.idTorneo;
+            document.getElementById("torneoNP").dataset.idTorneo=e.target.dataset.idTorneo;
+        }
+        else{
+            document.getElementById("campoT").dataset.idCampo=e.target.dataset.idCampo;
+        }
     }
 }
 async function inserisciPrestazione() {
@@ -297,5 +322,82 @@ async function inserisciPrestazione() {
                 document.getElementById("prestazioneSI").classList.remove("successo");
             }
         }
+    }
+}
+async function inserisciTorneo(){
+    let idCampo=document.getElementById("campoT").dataset.idCampo;
+    let nomeT=document.getElementById("nomeTorneo").value;
+    let dataT=document.getElementById("dataTorneo").value;
+    if(idCampo!=undefined && idCampo!="undefined" && nomeT!="" && dataT!=""){
+        let oggetto={
+            nome:nomeT,
+            data:dataT,
+            campo:{
+                id:idCampo
+            }
+        };
+        let risposta= await fetch(`${server}/golf/tornei`,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(oggetto)
+        });
+        if(risposta.ok){
+            document.getElementById("torneoSI").innerText="Torneo inserito con successo";
+            document.getElementById("torneoSI").classList.add("successo");
+            for(let i=0; i<2; i++){
+                if(document.getElementById("torneoSI").classList[i]=="insuccesso"){
+                    document.getElementById("torneoSI").classList.remove("insuccesso");
+                }
+            }
+        }
+        else{
+            if(risposta.status==400){
+                document.getElementById("torneoSI").innerText="Riempi tutti i campi";
+                document.getElementById("torneoSI").classList.add("insuccesso");
+                for(let i=0; i<2; i++){
+                    if(document.getElementById("torneoSI").classList[i]=="successo"){
+                        document.getElementById("torneoSI").classList.remove("successo");
+                    }
+                }
+            }
+            if(risposta.status==500){
+                document.getElementById("torneoSI").innerText="Errore del server";
+                document.getElementById("torneoSI").classList.add("insuccesso");
+                for(let i=0; i<2; i++){
+                    if(document.getElementById("torneoSI").classList[i]=="successo"){
+                        document.getElementById("torneoSI").classList.remove("successo");
+                    }
+                }
+            }
+        }
+        console.log(oggetto);
+    }
+    else{
+        document.getElementById("torneoSI").innerText="Riempire tutti i campi";
+        document.getElementById("torneoSI").classList.add("insuccesso");
+        for(let i=0; i<2; i++){
+            if(document.getElementById("torneoSI").classList[i]=="successo"){
+                document.getElementById("torneoSI").classList.remove("successo");
+            }
+        }
+    }
+}
+async function cercaGiocatoriPartecipanti(e){
+    console.log(e);
+    let giocatori= await fetch(`${server}/golf/giocatori`);
+    if(giocatori.ok){
+        giocatori=await giocatori.json();
+        console.log(giocatori);
+        giocatori.forEach((giocatore)=>{
+            let filtrati=giocatore.prestazioni.filter((prestazione)=>prestazione.torneo.id=e.target.dataset.idTorneo);
+            giocatore={
+                nome:giocatore.nome,
+                prestazioni: filtrati
+            }
+            // da continuare
+        });
+        // prestazioni.filter(prestazioni.torneo)
     }
 }
