@@ -32,10 +32,10 @@
     </div>
     <h1>Inserisci prestazione</h1>
     <div id="inserisciPrestazione" class="contenitoriGenerali">
-        <select class="ricercaGiocatori" onclick="assegna(event)" id="nomeGP">
+        <select class="ricercaGiocatori" id="nomeGP">
             <option>Scegli il giocatore</option>
         </select>
-        <select class="ricercaTornei" onclick="assegna(event)" id="torneoP">
+        <select class="ricercaTornei" id="torneoP">
             <option>Scegli il torneo</option>
         </select>
         <input id="numeroColpi" type="text" placeholder="Numero colpi">
@@ -44,21 +44,21 @@
     </div>
     <h1>Modifica prestazione</h1>
     <div id="modificaPrestazione" class="contenitoriGenerali">
-        <select class="ricercaTornei" onclick="assegna(event)" onchange="cercaGiocatoriPartecipanti(event)" id="torneoNP">
+        <select class="ricercaTornei" onchange="cercaGiocatoriPartecipanti(event)" id="torneoPM">
             <option>Scegli il torneo</option>
         </select>
-        <select class="ricercaGiocatori" onclick="assegna(event)" id="nomeGP">
+        <select class="ricercaGiocatori" id="nomeGPM">
             <option>Scegli il giocatore</option>
         </select>
-        <input id="numeroColpi" type="text" placeholder="Numero colpi">
-        <button onclick="inserisciPrestazione()">Inserisci prestazione</button>
-        <p id="prestazioneSI"></p>
+        <input id="numeroColpiModifica" type="text" placeholder="Numero colpi">
+        <button onclick="modificaPrestazione()">Modifica prestazione</button>
+        <p id="modificaSI"></p>
     </div>
     <h1>Inserisci Torneo</h1>
     <div id="inserisciTorneo" class="contenitoriGenerali">
         <input type="text" placeholder="Nome torneo" id="nomeTorneo">
         <input type="date" id="dataTorneo">
-        <select class="ricercaCampi" onclick="assegna(event)" id="campoT"> 
+        <select class="ricercaCampi" id="campoT"> 
             <option>Scegli il campo</option>
         </select>
         <button onclick="inserisciTorneo()">Inserisci Torneo</button>

@@ -78,7 +78,7 @@ async function cercaCampi(){
         campi.forEach((campo)=>{
             let opt=document.createElement("option");
             opt.innerText=campo.nome+", numero buche: "+campo.numeroBuche+", par: "+campo.par;
-            opt.dataset.idCampo=campo.id;
+            opt.value=campo.id;
             posto[1].appendChild(opt);
         })
     }
@@ -117,7 +117,7 @@ async function cercaGiocatori() {
         giocatori.forEach((giocatore)=>{
             let opt=document.createElement("option");
             opt.innerText=giocatore.nome+", Handicap: "+giocatore.handicap;
-            opt.dataset.idGiocatore=giocatore.id;
+            opt.value=giocatore.id;
             posto[1].appendChild(opt);
         });
     }
@@ -234,13 +234,13 @@ async function cercaTornei(){
         tornei.forEach(torneo=>{
             let opt=document.createElement("option");
             opt.innerText=torneo.nome+", svolto in data: "+torneo.data;
-            opt.dataset.idTorneo=torneo.id;
+            opt.value=torneo.id;
             posto[1].appendChild(opt);
         });
         tornei.forEach(torneo=>{
             let opt=document.createElement("option");
             opt.innerText=torneo.nome+", svolto in data: "+torneo.data;
-            opt.dataset.idTorneo=torneo.id;
+            opt.value=torneo.id;
             posto[2].appendChild(opt);
         });
     }
@@ -249,24 +249,9 @@ function ordinaData(data){
     let [anno,giorno,mese]=data.split("-");
     return anno+"-"+mese+"-"+giorno;
 }
-function assegna(e){
-    if(e.target.dataset.idGiocatore) {
-        document.getElementById("nomeGP").dataset.idGiocatore=e.target.dataset.idGiocatore;
-    }
-    else{
-        if(e.target.dataset.idTorneo) {
-            document.getElementById("torneoP").dataset.idTorneo=e.target.dataset.idTorneo;
-            document.getElementById("torneoNP").dataset.idTorneo=e.target.dataset.idTorneo;
-        }
-        else{
-            document.getElementById("campoT").dataset.idCampo=e.target.dataset.idCampo;
-        }
-        console.log(e.target);
-    }
-}
 async function inserisciPrestazione() {
-    let idGiocatore=document.getElementById("nomeGP").dataset.idGiocatore;
-    let idTorneo=document.getElementById("torneoP").dataset.idTorneo;
+    let idGiocatore=document.getElementById("nomeGP").value;
+    let idTorneo=document.getElementById("torneoP").value;
     let nColpi=document.getElementById("numeroColpi").value;
     if(idGiocatore!=undefined && idTorneo!="undefined" && nColpi!=""){
         let oggetto={
@@ -326,7 +311,7 @@ async function inserisciPrestazione() {
     }
 }
 async function inserisciTorneo(){
-    let idCampo=document.getElementById("campoT").dataset.idCampo;
+    let idCampo=document.getElementById("campoT").value;
     let nomeT=document.getElementById("nomeTorneo").value;
     let dataT=document.getElementById("dataTorneo").value;
     if(idCampo!=undefined && idCampo!="undefined" && nomeT!="" && dataT!=""){
@@ -373,7 +358,6 @@ async function inserisciTorneo(){
                 }
             }
         }
-        console.log(oggetto);
     }
     else{
         document.getElementById("torneoSI").innerText="Riempire tutti i campi";
@@ -387,10 +371,69 @@ async function inserisciTorneo(){
 }
 async function cercaGiocatoriPartecipanti(e){
     let listaGiocatori=[];
-    let torneo= await fetch(`${server}/golf/tornei/${e.target.dataset.idTorneo}`);
+    let torneo= await fetch(`${server}/golf/tornei/${e.target.value}`);
     if(torneo.ok){
         torneo=await torneo.json();
         console.log(torneo);
+        torneo.prestazioni.forEach((prestazione)=>{
+            let opt=document.createElement("option");
+            opt.value=prestazione.id;
+            opt.innerText=prestazione.giocatore.nome;
+            document.getElementById("nomeGPM").appendChild(opt);
+        });
     }
-    console.log(listaGiocatori);
+}
+async function modificaPrestazione(){
+    let idPrestazione=document.getElementById("nomeGPM").value;
+    let nColpi=document.getElementById("numeroColpiModifica").value;
+    if(idPrestazione!="" && nColpi!=""){
+        let oggetto={
+            colpi:nColpi
+        };
+        let risposta= await fetch(`${server}/golf/prestazioni/${idPrestazione}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(oggetto)
+        });
+        if(risposta.ok){
+            document.getElementById("modificaSI").innerText="Prestazione modificata con successo";
+            document.getElementById("modificaSI").classList.add("successo");
+            for(let i=0; i<2; i++){
+                if(document.getElementById("modificaSI").classList[i]=="insuccesso"){
+                    document.getElementById("modificaSI").classList.remove("insuccesso");
+                }
+            }
+        }
+        else{
+            if(risposta.status==400){
+                document.getElementById("modificaSI").innerText="Riempi tutti i campi";
+                document.getElementById("modificaSI").classList.add("insuccesso");
+                for(let i=0; i<2; i++){
+                    if(document.getElementById("modificaSI").classList[i]=="successo"){
+                        document.getElementById("modificaSI").classList.remove("successo");
+                    }
+                }
+            }
+            if(risposta.status==500){
+                document.getElementById("modificaSI").innerText="Errore del server";
+                document.getElementById("modificaSI").classList.add("insuccesso");
+                for(let i=0; i<2; i++){
+                    if(document.getElementById("modificaSI").classList[i]=="successo"){
+                        document.getElementById("modificaSI").classList.remove("successo");
+                    }
+                }
+            }
+        }
+    }
+    else{
+        document.getElementById("modificaSI").innerText="Riempire tutti i campi";
+        document.getElementById("modificaSI").classList.add("insuccesso");
+        for(let i=0; i<2; i++){
+            if(document.getElementById("modificaSI").classList[i]=="successo"){
+                document.getElementById("modificaSI").classList.remove("successo");
+            }
+        }
+    }
 }
