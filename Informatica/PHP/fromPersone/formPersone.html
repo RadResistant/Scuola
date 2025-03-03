@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="formPersone.php" method="get">
+        <input type="text" placeholder="Nome" name="nome" id="nome">
+        <input type="text" placeholder="Cognome" name="cognome">
+        <p>Sesso: M<input type="radio" name="sesso" value="M"> F<input type="radio" name="sesso" value="F"></p>
+        <p>Classe: <select name="classe" id="classe">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select></p>
+        <p><input type="date" name="dNascita" id="dNascita"> :Data di nascita</p>
+        <input type="submit">
+        <input type="reset">
+    </form>
+</body>
+</html>
