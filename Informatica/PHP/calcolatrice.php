@@ -8,15 +8,17 @@
 <body>
     <form action="" method="get">
         <h1>calcolatrice</h1>
-        <p><input type="text" name="num1"> N1</p>
-        <p><input type="text" name="num2"> N2</p>
+        <p><input type="number" name="num1">N1</p>
+        <p><input type="number" name="num2">N2</p>
+        <br>
         <select name="operazione">
             <option value="+">+</option>
             <option value="-">-</option>
             <option value="*">*</option>
             <option value="/">/</option>
             <option value="%">%</option>
-        </select>
+        </select> 
+        <br>
         <input type="submit" name="Submit">
         <input type="reset">
     </form>
