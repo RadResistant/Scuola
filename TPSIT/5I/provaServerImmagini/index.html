@@ -1,0 +1,92 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizza Immagine via WebSocket</title>
+</head>
+<body>
+    <h1>Immagine ricevuta dal server</h1>
+    <img id="image" alt="Immagine" />
+    <script>
+        // Crea una connessione WebSocket
+        const socket = new WebSocket('ws://localhost:8080');
+        
+        // Quando la connessione è aperta
+        socket.onopen = function(event) {
+            console.log('Connesso al server WebSocket');
+        };
+
+        // Quando il client riceve il messaggio
+        socket.onmessage = function(event) {
+            // const imageBlob = new Blob([event.data], { type: 'image/jpeg' });
+
+            // Crea un URL per visualizzare l'immagine
+            // const imageUrl = URL.createObjectURL(imageBlob);
+            const imageUrl = URL.createObjectURL(new Blob([event.data], { type: 'image/jpeg' }));
+            
+            // Imposta l'immagine nell'elemento <img>
+            const img = document.getElementById('image');
+            img.src = imageUrl;
+        };
+
+        // Gestisci eventuali errori di connessione
+        socket.onerror = function(error) {
+            console.error('Errore WebSocket:', error);
+        };
+
+        // Gestisci la chiusura della connessione
+        socket.onclose = function(event) {
+            console.log('Connessione WebSocket chiusa');
+        };
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invia Immagine al Server</title>
+</head>
+<body>
+    <h1>Carica un'immagine</h1>
+    <input type="file" id="fileInput" />
+    <button onclick="sendImage()">Invia Immagine</button>
+    <script>
+        const socket = new WebSocket('ws://localhost:8080');
+        socket.onopen = function() {
+            console.log('Connesso al server WebSocket');
+        };
+        function sendImage() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            console.log(file);
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    let objectToSend={
+                        name:file.name,
+                        type:file.type,
+                        file:event.target.result.byteLength
+                    }
+                    console.log(event.target.result);
+                    // socket.send(event.target.result);
+                    socket.send(JSON.stringify(objectToSend));
+                    console.log('Immagine inviata al server');
+                };
+                
+                reader.readAsArrayBuffer(file);
+            } else {
+                alert('Seleziona un file prima di inviarlo.');
+            }
+        }
+        socket.onerror = function(error) {
+            console.error('Errore WebSocket:', error);
+        };
+        socket.onclose = function() {
+            console.log('Connessione WebSocket chiusa');
+        };
+    </script>
+</body>
+</html>
