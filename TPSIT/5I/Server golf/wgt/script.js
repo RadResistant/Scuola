@@ -370,7 +370,6 @@ async function inserisciTorneo(){
     }
 }
 async function cercaGiocatoriPartecipanti(e){
-    let listaGiocatori=[];
     let torneo= await fetch(`${server}/golf/tornei/${e.target.value}`);
     if(torneo.ok){
         torneo=await torneo.json();
