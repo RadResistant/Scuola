@@ -436,3 +436,22 @@ async function modificaPrestazione(){
         }
     }
 }
+async function calcolaHandicap(){
+    let giocatori= await fetch(`${server}/golf/giocatori`);
+    if(giocatori.ok){
+        giocatori=await giocatori.json();
+        giocatori.forEach((giocatore)=>{
+            let prestazioniOrdinate= giocatore.prestazioni.sort((a,b) => new Date(ordinaData(b.torneo.data)) - new Date(ordinaData(a.torneo.data)));
+            let ultimeSeiP;
+            for(let i=0;i<6;i++){
+                ultimeSeiP.push(prestazioniOrdinate[i]);
+            }
+            ultimeSeiP=ultimeSeiP.sort((a,b)=>{b.colpi-a.colpi});
+            let totale;
+            for(let i=0;i<3;i++){
+                totale+=ultimeSeiP[i];
+            }
+            return totale/3;
+        });
+    }
+}
