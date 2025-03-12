@@ -4,20 +4,49 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 app.use(cors());
-// Middleware per parsare il corpo della richiesta
 app.use(bodyParser.json());
-
-// Endpoint per gestire la richiesta POST e del GET
+const persone=[
+    {
+        id:0,
+        nome:"Valentino",
+        congome:"Rossi",
+        email:"123@23.21"
+    },
+    {
+        id:1,
+        nome:"Mario",
+        congome:"Gialli",
+        email:"12334@23.21"
+    },
+    {
+        id:2,
+        nome:"Maria",
+        congome:"Verdi",
+        email:"2354@23.21"
+    },
+    {
+        id:3,
+        nome:"Marco",
+        congome:"Bianchi",
+        email:"5647@2453.21"
+    }
+];
 app.post('/api/data', (req, res) => {
     const data = req.body;
     console.log('Dati ricevuti:', data);
     res.json({ message: 'Dati ricevuti con successo!', receivedData: data });
 });
 app.get('/api/data', (req, res) => {
-    console.log(req._parsedUrl.query);
-    const sampleData = { nome: 'Mario', email: 'mario@example.com' };
-    console.log('Dati inviati tramite GET:', sampleData);
-    res.json({ message: 'Dati inviati con successo tramite GET!', data: sampleData });
+    console.log(req.query);
+    let query=req.query;
+    Object.keys(query).forEach(key => {
+        console.log(query[key]);
+    });
+    // let query=req._parsedUrl.query.split("&");
+    // let criterio=query[0].split("=");
+    // let datiDaInviare=persone.filter((persona)=>persona.id==criterio[1]);
+    // console.log('Dati inviati tramite GET:', datiDaInviare);
+    // res.json({/*message: 'Dati inviati con successo tramite GET!',*/ pers:datiDaInviare});
 });
 
 // Avvia il server

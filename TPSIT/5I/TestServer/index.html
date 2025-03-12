@@ -17,6 +17,7 @@
 
         <button type="submit">Invia</button>
     </form>
+    <input type="text" name="idRic" id="idRic" placeholder="id">
     <button onclick="chiedi()">chiedi</button>
     <script>
         // Ottieni il riferimento al form
@@ -50,7 +51,8 @@
             });
         });
         async function chiedi() {
-            let richiesta=await fetch("http://localhost:3000/api/data?id=0&ads=0");
+            let id=document.getElementById("idRic").value;
+            let richiesta=await fetch("http://localhost:3000/api/data?id="+id);
             richiesta=await richiesta.json();
             console.log(richiesta);
         }

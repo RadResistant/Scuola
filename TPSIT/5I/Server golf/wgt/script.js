@@ -94,6 +94,12 @@ async function cercaGiocatori() {
     let giocatori=await fetch(`${server}/golf/giocatori`)
     if(giocatori.ok && giocatori.status==200){
         giocatori=await giocatori.json();
+        giocatori.forEach((giocatore)=>{
+            if(giocatore.prestazioni.length>5){
+                let handicapCalcolato=calcolaHandicap(giocatore.prestazioni);
+                giocatore.handicap=handicapCalcolato;
+            }
+        });
         posto[0].removeChild(imgCaricamento);
         giocatori.sort((a,b)=>b.handicap - a.handicap).forEach((giocatore,index)=>{
             let div=document.createElement("div");
@@ -435,4 +441,18 @@ async function modificaPrestazione(){
             }
         }
     }
+}
+function calcolaHandicap(prestazioni){
+
+    let prestazioniOrdinate=prestazioni.sort((a,b) => new Date(ordinaData(b.torneo.data)) - new Date(ordinaData(a.torneo.data)));
+    let ultimeSeiP=[];
+    for(let i=0;i<6;i++){
+        ultimeSeiP.push(prestazioniOrdinate[i]);
+    }
+    ultimeSeiP=ultimeSeiP.sort((a,b)=>{b.colpi-a.colpi});
+    let totale=0;
+    for(let i=0;i<3;i++){
+        totale+=ultimeSeiP[i].colpi;
+    }
+    return totale/3;
 }
