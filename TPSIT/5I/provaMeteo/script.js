@@ -1,5 +1,4 @@
 const APIkey="";
-// 3b8dba71694014a2c2cc25b295059f80
 const months=["January","February","March","April","May","June","July","August","September","October","November","December"];
 const days=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 window.navigator.geolocation.getCurrentPosition(trovaMeteo,errore);
