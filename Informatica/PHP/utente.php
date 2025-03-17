@@ -9,6 +9,7 @@
     <form method="GET">
         <input type="text" name="email">
         <input type="password" name="password">
+        <input type="date" name="datadiNascita">
         <input type="submit" name="tasto">
     </form>
     <?php
@@ -18,6 +19,9 @@
             }
             else{
                 echo "<h1>Accesso negato</h1>";
+            }
+            if(isset($_GET["datadiNascita"])){
+                
             }
         }
     ?>
