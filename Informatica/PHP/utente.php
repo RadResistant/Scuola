@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="get">
+    <form method="GET">
         <input type="text" name="email">
         <input type="password" name="password">
         <input type="submit" name="tasto">
