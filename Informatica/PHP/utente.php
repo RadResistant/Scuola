@@ -21,7 +21,7 @@
                 echo "<h1>Accesso negato</h1>";
             }
             if(isset($_GET["datadiNascita"])){
-                
+             //calcola l'eta in base alla data di nascita    
             }
         }
     ?>
