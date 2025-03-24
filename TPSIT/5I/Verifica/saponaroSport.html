@@ -1,0 +1,161 @@
+<!-- Raffaele Saponaro-->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco</title>
+    <style>
+        body{
+            background-color: darkslategray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            padding: 15px;
+            text-align: center;
+            border: 2px blue solid;
+            border-radius: 15px;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+ </head>
+ <body>
+    <div id="inserimentoNomeUtente">
+        <input type="text" id="nomeUtente" placeholder="Insersci il tuo nome">
+        <button onclick="cambiaSchermata('start')">Start</button>
+        <button onclick="cambiaSchermata('punti')">punteggi</button>
+    </div>
+    <div id="areaDiGioco" class="hidden">
+    </div>
+    <div id="punteggi" class="hidden">
+
+    </div>
+    <script>
+        "use strict";
+        let punteggio=0;
+        let nomeUtente="";
+        function cambiaSchermata(tipo){
+            let nomeUtenteInserito=document.getElementById("nomeUtente").value;
+            if(nomeUtenteInserito!=""){
+                nomeUtente=nomeUtenteInserito;
+                if(tipo=="start"){
+                    document.getElementById("inserimentoNomeUtente").classList.add("hidden");
+                    document.getElementById("areaDiGioco").classList.remove("hidden");
+                    sorteggioSport();
+                }
+                if(tipo=='punti'){
+                    document.getElementById("inserimentoNomeUtente").classList.add("hidden");
+                    document.getElementById("punteggi").classList.remove("hidden");
+                    mostraPunteggi();
+                }
+            }
+        }
+        async function sorteggioSport(){
+            let areaDiGioco=document.getElementById("areaDiGioco");
+            areaDiGioco.innerHTML=`
+                <h1 id="nomeSport"></h1>
+                <select id="selectNazioni"></select>
+                <button onclick="provaNazione()">Prova</button>
+                <h2>Punteggio: ${punteggio}</h2>
+            `;
+            riempiSelectNazioni();
+            let rispostaSports=await fetch("http://10.1.0.52:8280/giochigeografici/sport");
+            if(rispostaSports.ok){
+                let sports=await rispostaSports.json();
+                let indiceCasuale=Math.floor(Math.random()*sports.length);
+                let rispostaSport=await fetch("http://10.1.0.52:8280/giochigeografici/sport/"+sports[indiceCasuale].idSport);
+                if(rispostaSport.ok){
+                    let sport=await rispostaSport.json();
+                    document.getElementById("nomeSport").innerText=sport.nome;
+                    document.getElementById("nomeSport").dataset.idSport=sport.idSport;
+                }
+            }
+        }
+        async function provaNazione(){
+            let sportDato=document.getElementById("nomeSport");
+            let sportProvato=document.getElementById("selectNazioni");
+            let rispostaSport=await fetch("http://10.1.0.52:8280/giochigeografici/sport/"+sportDato.dataset.idSport);
+            if(rispostaSport.ok){
+                let sport=await rispostaSport.json();
+                let rispostaGiusta=false;
+                sport.nazioni.forEach((nazione)=>{
+                    if(nazione.idNazione==selectNazioni.value){
+                        rispostaGiusta=true;
+                    }
+                });
+                if(rispostaGiusta){
+                    punteggio++;
+                    document.getElementById("areaDiGioco").innerHTML=`
+                        <h1>Hai indovinato!</h1>
+                        <h2>Lingue parlate:</h2>
+                        <ul id="listaLingue"></ul>
+                        <button onclick="sorteggioSport()">Continua ad Indovinare</button>
+                    `;
+                    sport.nazioni.forEach((nazione)=>{
+                        nazione.lingue.forEach((lingua)=>{
+                        let ul=document.createElement("ul");
+                        ul.innerText=lingua.nome;
+                        document.getElementById("listaLingue").appendChild(ul);
+                        });
+                    });
+                }
+                else{
+                    document.getElementById("areaDiGioco").innerHTML=`
+                        <h1>Hai sbagliato!</h1>
+                        <button onclick="registraPunteggio()">Registra il punteggio e torna alla home</button>
+                    `;
+                }
+            }
+        }
+        async function riempiSelectNazioni(){
+            let selectNazioni=document.getElementById("selectNazioni");
+            let rispostaNazioni=await fetch("http://10.1.0.52:8280/giochigeografici/nazioni");
+            if(rispostaNazioni.ok){
+                let nazioni=await rispostaNazioni.json();
+                nazioni.forEach((nazione)=>{
+                    let opt=document.createElement("option");
+                    opt.textContent=nazione.nome;
+                    opt.value=nazione.idNazione;
+                    selectNazioni.appendChild(opt);
+                });
+            }
+        }
+        async function registraPunteggio(){
+            let dataOdierna=new Date();
+            let oggettoDaInviare={
+                nome:nomeUtente,
+                punti:punteggio,
+                data:dataOdierna
+            };
+            fetch("http://10.1.0.52:8280/giochigeografici/punteggi",{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(oggettoDaInviare)
+            });
+            document.getElementById("inserimentoNomeUtente").classList.remove("hidden");
+            document.getElementById("areaDiGioco").classList.add("hidden");
+        }
+        async function mostraPunteggi() {
+            let areaPunti=document.getElementById("punteggi");
+            areaPunti.innerHTML='';
+            let rispostaPunteggi=await fetch("http://10.1.0.52:8280/giochigeografici/punteggi");
+            if(rispostaPunteggi.ok){
+                let punteggi=await rispostaPunteggi.json();
+                punteggi.forEach((punteggio)=>{
+                    if(punteggio.nome==nomeUtente){
+                        let p=document.createElement("p");
+                        p.innerText="Punti: "+punteggio.punti+" in data "+punteggio.data.split("T")[0];
+                        areaPunti.appendChild(p);
+                    }
+                });
+            }
+        }
+    </script>
+ </body>
+ </html>
