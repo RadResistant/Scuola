@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="aggiungi.php" method="post">
+    <form action="aggiungiAtleta.php" method="post">
         <input type="text" name="nome" placeholder="inserisci il nome">
         <input type="text" name="cognome" placeholder="inserisci il cognome">
         <input type="text" name="paese" placeholder="inserisci il paese di provenienza">
