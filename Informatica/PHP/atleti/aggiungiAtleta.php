@@ -22,6 +22,7 @@
             if(!(mysqli_query($conn, $query))){
                 echo "Error: " . $query . "<br>" . $conn->error;
             }
+            mysqli_close($conn);
         }
     ?>
 </body>
