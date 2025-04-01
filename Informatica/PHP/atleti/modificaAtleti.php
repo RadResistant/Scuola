@@ -11,15 +11,17 @@
         if(!$conn){
             die("Errore connessione ".mysqli_connect_err());
         }
+        $queryAtleti="SELECT * FROM Atleti WHERE id_atleta=".$_GET["atleti"].";";
+        $result=mysqli_query($conn,$queryAtleti);
     ?>
     <form action="modificaAtleti.php" method="post">
         <?php
             if(!isset($_POST["modifica"]) && !isset($_POST["elimina"])){
-                $queryAtleti="SELECT * FROM Atleti WHERE id_atleta=".$_GET["atleti"].";";
-                $result=mysqli_query($conn,$queryAtleti);
+                
                 if(mysqli_num_rows($result)>0){
                     while($riga=mysqli_fetch_assoc($result)){
-                        echo '<input type="text" name="nome" value='.$riga["nome"].'>
+                        echo '<input type="text" name="id_atleta" disabled value='.$riga["id_atleta"].'>
+                            <input type="text" name="nome" value='.$riga["nome"].'>
                             <input type="text" name="cognome" value='.$riga["cognome"].'>
                             <input type="text" name="nazione" value='.$riga["nazione"].'>
                             ';
