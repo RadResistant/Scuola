@@ -21,6 +21,7 @@
                 echo "Error: " . $query . "<br>" . $conn->error;
             }
         }
+        mysqli_close($conn);
     ?>
 </body>
 </html>
