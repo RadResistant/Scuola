@@ -11,7 +11,6 @@ public class ToDo {
     String lista;
     String cosa;
     Boolean fatto;
-    /* il metodi set/get vanno inseriti per esercizio, magari usando Eclipse */
 	public String getLista() {
 		return lista;
 	}
@@ -32,5 +31,8 @@ public class ToDo {
 	}
 	public Integer getId() {
 		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

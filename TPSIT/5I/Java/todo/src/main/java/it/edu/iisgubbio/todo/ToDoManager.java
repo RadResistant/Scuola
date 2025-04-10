@@ -4,6 +4,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+@CrossOrigin
 @RestController
 public class ToDoManager {
     @Autowired
     ToDoRepository repoToDo;
     @GetMapping("/esempio1")
     public List<ToDo> elenco() {
-        List<ToDo> k = repoToDo.findAll();
-        return k;
+    	return repoToDo.findAll();
     }
     @GetMapping("/todos")
     public List<ToDo> cerca(
         @RequestParam(required = false) String lista,
         @RequestParam(required = false) Boolean fatto
-    ) {
+    ){
         ToDo t = new ToDo();
         t.setLista(lista);
         t.setFatto(fatto);
@@ -43,7 +44,7 @@ public class ToDoManager {
     }
     @PostMapping("/todo")
     public void inserisci(@RequestBody ToDo td) {
-        repoToDo.save( td );
+        repoToDo.save(td);
     }
     @DeleteMapping("todo/{id}")
     public void cancellaPerChiave( @PathVariable int id ) {
