@@ -17,6 +17,9 @@
         if(mysqli_num_rows($result)==1){
             $utente=mysqli_fetch_assoc($result);
             echo "<h1> Benvenuto ".$utente["nome"]."</h1>";
+            if($utente["is_gestore"]){
+                echo "<form action='gestore.php'><button>Gestisci la libreria</button></form>";
+            }
         }
         $queryLibri="SELECT libri.nome as nomeLibro,autori.nome as nomeAutore,autori.cognome as cognomeAutore, categorie.descrizione as descrizioneCategoria 
         FROM libri,libri_autori,autori,libri_categorie,categorie 

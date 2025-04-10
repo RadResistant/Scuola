@@ -25,7 +25,7 @@
             if(!empty($_GET["nome"]) && !empty($_GET["cognome"]) && !empty($_GET["email"]) && !empty($_GET["password"])){
                 $nome=htmlspecialchars($_GET["nome"]);
                 $cognome=htmlspecialchars($_GET["cognome"]);
-                $email=htmlspecialchars($_GET["email"]);
+                $email=strtolower(htmlspecialchars($_GET["email"]));
                 $password=password_hash($_GET["password"],PASSWORD_DEFAULT);
                 $queryRicerca="SELECT * FROM utenti WHERE email='".$email."';";
                 $result=mysqli_query($conn, $queryRicerca);

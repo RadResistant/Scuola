@@ -21,7 +21,7 @@
     <?php
         if(isset($_GET["login"])){
             if(!empty($_GET["email"]) && !empty($_GET["password"])){
-                $email=htmlspecialchars($_GET["email"]);
+                $email=strtolower(htmlspecialchars($_GET["email"]));
                 $password=$_GET["password"];
                 $query="SELECT * FROM utenti WHERE email='".$email."';";
                 $result=mysqli_query($conn,$query);
@@ -43,7 +43,7 @@
             mysqli_close($conn);
         }
         if(isset($_COOKIE["email"]) && isset($_COOKIE["password"])){
-            $email=$_COOKIE["email"];
+            $email=strtolower($_COOKIE["email"]);
             $password=$_COOKIE["password"];
             $query="SELECT * FROM utenti WHERE email='".$email."';";
             $result=mysqli_query($conn,$query);
