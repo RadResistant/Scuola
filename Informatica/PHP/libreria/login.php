@@ -29,7 +29,7 @@
                     $utente=mysqli_fetch_assoc($result);
                     if(password_verify($password,$utente["password"])){
                         setcookie("email",$email,time()+3600);
-                        setcookie("password",$password,time()+3600);
+                        setcookie("login",1,time()+3600);
                         header("Location:catalogo.php");
                     }
                     else{
@@ -42,18 +42,15 @@
             }
             mysqli_close($conn);
         }
-        if(isset($_COOKIE["email"]) && isset($_COOKIE["password"])){
+        if(isset($_COOKIE["email"]) && isset($_COOKIE["login"])){
             $email=strtolower($_COOKIE["email"]);
-            $password=$_COOKIE["password"];
             $query="SELECT * FROM utenti WHERE email='".$email."';";
             $result=mysqli_query($conn,$query);
             if(mysqli_num_rows($result)==1){
                 $utente=mysqli_fetch_assoc($result);
-                if(password_verify($password,$utente["password"])){
-                    setcookie("email",$email,time()+3600);
-                    setcookie("password",$password,time()+3600);
-                    header("Location:catalogo.php");
-                }
+                setcookie("email",$email,time()+3600);
+                setcookie("login",1,time()+3600);
+                header("Location:catalogo.php");
             }
             mysqli_close($conn);
         }

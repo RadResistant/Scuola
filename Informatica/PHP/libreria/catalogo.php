@@ -20,6 +20,12 @@
             if($utente["is_gestore"]){
                 echo "<form action='gestore.php'><button>Gestisci la libreria</button></form>";
             }
+            echo "<form action='catalogo.php'><button name='logout'>Log out</button></form>";
+        }
+        if(isset($_GET["logout"])){
+            setcookie("email","",time()-1);
+            setcookie("login","",time()-1);
+            header("Location:index.php");
         }
         $queryLibri="SELECT libri.nome as nomeLibro,autori.nome as nomeAutore,autori.cognome as cognomeAutore, categorie.descrizione as descrizioneCategoria 
         FROM libri,libri_autori,autori,libri_categorie,categorie 
