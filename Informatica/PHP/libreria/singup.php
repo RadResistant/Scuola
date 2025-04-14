@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Libreria Regitrazione</title>
 </head>
 <body>
@@ -30,10 +31,10 @@
                 $queryRicerca="SELECT * FROM utenti WHERE email='".$email."';";
                 $result=mysqli_query($conn, $queryRicerca);
                 if(mysqli_num_rows($result)>0){
-                    echo "<p>Email gia registrata</p>";
+                    echo "<p class='errore'>Email gia registrata</p>";
                 }
                 else{
-                    $queryInserimento="INSERT INTO utenti(email,password,nome,cognome) VALUES ('".$email."','".$password."','".$nome."','".$cognome."');";
+                    $queryInserimento="INSERT INTO utenti(email,password,nome,cognome,is_gestore) VALUES ('".$email."','".$password."','".$nome."','".$cognome."',0);";
                     if(!(mysqli_query($conn, $queryInserimento))){
                         echo "Error: " . $queryInserimento . "<br>" . $conn->error;
                     }
@@ -46,7 +47,7 @@
                 }
             }
             else{
-                echo "<p>Riempire tutti i campi</p>";
+                echo "<p class='errore'>Riempire tutti i campi</p>";
             }
             mysqli_close($conn);
         }

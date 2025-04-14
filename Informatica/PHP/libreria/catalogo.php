@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Libreira catalogo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <?php
+        session_start();
         if($_SESSION["login"]==1){
     ?>
     <?php
@@ -15,19 +17,18 @@
         if(!$conn){
             die("Errore connessione ".mysqli_connect_err());
         }
-        $queryUtente="SELECT * FROM utenti WHERE email='".$_COOKIE["email"]."';";
+        $queryUtente="SELECT * FROM utenti WHERE email='".$_SESSION["email"]."';";
         $result=mysqli_query($conn,$queryUtente);
         if(mysqli_num_rows($result)==1){
             $utente=mysqli_fetch_assoc($result);
-            echo "<h1> Benvenuto ".$utente["nome"]."</h1>";
+            echo "<h1> Benvenuto ".$utente["nome"]."</h1><br>";
             if($utente["is_gestore"]){
-                echo "<form action='gestore.php'><button>Gestisci la libreria</button></form>";
+                echo "<form action='gestore.php'><button>Gestisci la libreria</button></form><br>";
             }
-            echo "<form action='catalogo.php'><button name='logout'>Log out</button></form>";
+            echo "<form action='catalogo.php'><button name='logout'>Log out</button></form><br>";
         }
         if(isset($_GET["logout"])){
-            setcookie("email","",time()-1);
-            setcookie("login","",time()-1);
+            session_destroy();
             header("Location:index.php");
         }
         $queryLibri="SELECT libri.nome as nomeLibro,autori.nome as nomeAutore,autori.cognome as cognomeAutore, categorie.descrizione as descrizioneCategoria 

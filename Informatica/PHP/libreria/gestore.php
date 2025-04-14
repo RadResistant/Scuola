@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestisci la libreria</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <?php
-        if($_SESSION["login"]==1){
+        session_start();
+        if(isset($_SESSION["email"]) && isset($_SESSION["login"]) && $_SESSION["login"]==1){
     ?>
     <?php
         include("info.php");
@@ -48,7 +50,7 @@
                     echo "Error: " . $inserimentoAutore . "<br>" . $conn->error;
                 }
                 else{
-                    echo "<p>Autore registrato con successo</p>";
+                    echo "<p class='giusto'>Autore registrato con successo</p>";
                 }
             }
             mysqli_close($conn);
@@ -70,7 +72,7 @@
                     echo "Error: " . $inserimentoCategoria . "<br>" . $conn->error;
                 }
                 else{
-                    echo "<p>Categoria registrata con successo</p>";
+                    echo "<p class='giusto'>Categoria registrata con successo</p>";
                 }
             }
             mysqli_close($conn);
@@ -152,7 +154,7 @@
                     echo "Error: " . $modificaNome . "<br>" . $conn->error;
                 }
                 else{
-                    echo "<p>Nome del libro modificato con successo</p>";
+                    echo "<p class='giusto'>Nome del libro modificato con successo</p>";
                 }
             }
             mysqli_close($conn);
@@ -184,7 +186,7 @@
                     echo "Error: " . $eliminaLibro . "<br>" . $conn->error;
                 }
                 else{
-                    echo "<p>Libro eliminato con successo</p>";
+                    echo "<p class='giusto'>Libro eliminato con successo</p>";
                 }
             }
             mysqli_close($conn);
@@ -215,19 +217,19 @@
         if(isset($_GET["impostaGestore"])){
             $modificaUtente="UPDATE `utenti` SET `is_gestore` = '1' WHERE `utenti`.`email` = '".$_GET["utente"]."';";
             if(!mysqli_query($conn,$modificaUtente)){
-                echo "<p>Errore</p>";
+                echo "<p class='errore'>Errore</p>";
             }
             else{
-                echo "<p>Utente impostato come gestore</p>";
+                echo "<p class='giusto'>Utente impostato come gestore</p>";
             }
         }
         if(isset($_GET["impostaUtente"])){
             $modificaUtente="UPDATE `utenti` SET `is_gestore` = '0' WHERE `utenti`.`email` = '".$_GET["utente"]."';";
             if(!mysqli_query($conn,$modificaUtente)){
-                echo "<p>Errore</p>";
+                echo "<p class='errore'>Errore</p>";
             }
             else{
-                echo "<p>Utente impostato come utente</p>";
+                echo "<p class='giusto'>Utente impostato come utente</p>";
             }
         }
     ?>

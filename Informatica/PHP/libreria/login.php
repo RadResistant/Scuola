@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Libreria accesso</title>
 </head>
 <body>
@@ -19,6 +20,7 @@
             <button name="login">Accesso</button>
         </form>
     <?php
+        session_start();
         if(isset($_GET["login"])){
             if(!empty($_GET["email"]) && !empty($_GET["password"])){
                 $email=strtolower(htmlspecialchars($_GET["email"]));
@@ -28,33 +30,33 @@
                 if(mysqli_num_rows($result)==1){
                     $utente=mysqli_fetch_assoc($result);
                     if(password_verify($password,$utente["password"])){
-                        session_start();
                         $_SESSION["email"]=$email;
                         $_SESSION["login"]=1;
                         header("Location:catalogo.php");
                     }
                     else{
-                        echo "no";
+                        echo "<p class='errore'>Password errata</p>";
                     }
                 }
             }
             else{
-                echo "<p>Riempire tutti i campi</p>";
+                echo "<p class='errore'>Riempire tutti i campi</p>";
             }
             mysqli_close($conn);
         }
-        if(isset($_COOKIE["email"]) && isset($_COOKIE["login"])){
-            $email=strtolower($_COOKIE["email"]);
-            $query="SELECT * FROM utenti WHERE email='".$email."';";
-            $result=mysqli_query($conn,$query);
-            if(mysqli_num_rows($result)==1){
-                $utente=mysqli_fetch_assoc($result);
-                session_start();
-                $_SESSION["email"]=$email;
-                $_SESSION["login"]=1;
-                header("Location:catalogo.php");
+        if(isset($_SESSION["login"]) && isset($_SESSION["email"])){
+            if($_SESSION["login"]==1){
+                $email=strtolower($_SESSION["email"]);
+                $query="SELECT * FROM utenti WHERE email='".$email."';";
+                $result=mysqli_query($conn,$query);
+                if(mysqli_num_rows($result)==1){
+                    $utente=mysqli_fetch_assoc($result);
+                    $_SESSION["email"]=$email;
+                    $_SESSION["login"]=1;
+                    header("Location:catalogo.php");
+                }
+                mysqli_close($conn);
             }
-            mysqli_close($conn);
         }
     ?>
 </body>

@@ -1,0 +1,21 @@
+form{
+    background-color: lightcyan;
+    border: gray 2px solid;
+    border-radius: 15px;
+    padding: 10px;
+}
+body{
+    justify-content: center;
+}
+p{
+    display: block;
+}
+h1{
+    display: block;
+}
+.errore{
+    color: red;
+}
+.giusto{
+    color: green;
+}
