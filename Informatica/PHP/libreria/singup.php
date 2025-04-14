@@ -38,8 +38,9 @@
                         echo "Error: " . $queryInserimento . "<br>" . $conn->error;
                     }
                     else{
-                        setcookie("email",$email,time()+3600);
-                        setcookie("login",1,time()+3600);
+                        session_start();
+                        $_SESSION["email"]=$email;
+                        $_SESSION["login"]=1;
                         header("Location:login.php");
                     }
                 }

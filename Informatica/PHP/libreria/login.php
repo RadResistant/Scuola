@@ -28,8 +28,9 @@
                 if(mysqli_num_rows($result)==1){
                     $utente=mysqli_fetch_assoc($result);
                     if(password_verify($password,$utente["password"])){
-                        setcookie("email",$email,time()+3600);
-                        setcookie("login",1,time()+3600);
+                        session_start();
+                        $_SESSION["email"]=$email;
+                        $_SESSION["login"]=1;
                         header("Location:catalogo.php");
                     }
                     else{
@@ -48,8 +49,9 @@
             $result=mysqli_query($conn,$query);
             if(mysqli_num_rows($result)==1){
                 $utente=mysqli_fetch_assoc($result);
-                setcookie("email",$email,time()+3600);
-                setcookie("login",1,time()+3600);
+                session_start();
+                $_SESSION["email"]=$email;
+                $_SESSION["login"]=1;
                 header("Location:catalogo.php");
             }
             mysqli_close($conn);

@@ -7,6 +7,9 @@
 </head>
 <body>
     <?php
+        if($_SESSION["login"]==1){
+    ?>
+    <?php
         include("info.php");
         $conn=mysqli_connect($server,$username,$password,$database);
         if(!$conn){
@@ -19,7 +22,8 @@
         <button name="aggiungiCategoria">Aggiungi categoria</button>
         <button name="aggiungiLibro">Aggiungi libro</button>
         <button name="modificaLibro">Modifica libro</button>
-        <button name="eliminaLibro">Elimina Libro</button>
+        <button name="eliminaLibro">Elimina libro</button>
+        <button name="gestisciUtenti">Gestisci utenti</button>
         <button name="catalogo">Torna al catalogo</button>
     </form>
     <?php
@@ -188,6 +192,49 @@
         if(isset($_GET["catalogo"])){
             mysqli_close($conn);
             header("Location:catalogo.php");
+        }
+        if(isset($_GET["gestisciUtenti"])){
+    ?>
+        <form action="gestore.php">
+            <select name="utente">
+                <?php
+                     $ricercaUtenti="SELECT * FROM utenti";
+                     $result=mysqli_query($conn,$ricercaUtenti);
+                     if(mysqli_num_rows($result)>0){
+                         while($utente=mysqli_fetch_assoc($result)){
+                            echo "<option value=".$utente["email"].">".$utente["nome"]." ".$utente["cognome"]."</option>";
+                         }
+                     }
+                ?>
+            </select>
+            <button name="impostaGestore">Imposta come gestore</button>
+            <button name="impostaUtente">Imposta come utente</button>
+        </form>
+    <?php
+        }
+        if(isset($_GET["impostaGestore"])){
+            $modificaUtente="UPDATE `utenti` SET `is_gestore` = '1' WHERE `utenti`.`email` = '".$_GET["utente"]."';";
+            if(!mysqli_query($conn,$modificaUtente)){
+                echo "<p>Errore</p>";
+            }
+            else{
+                echo "<p>Utente impostato come gestore</p>";
+            }
+        }
+        if(isset($_GET["impostaUtente"])){
+            $modificaUtente="UPDATE `utenti` SET `is_gestore` = '0' WHERE `utenti`.`email` = '".$_GET["utente"]."';";
+            if(!mysqli_query($conn,$modificaUtente)){
+                echo "<p>Errore</p>";
+            }
+            else{
+                echo "<p>Utente impostato come utente</p>";
+            }
+        }
+    ?>
+    <?php
+        }
+        else{
+            header("Location:index.php");
         }
     ?>
 </body>

@@ -7,6 +7,9 @@
 </head>
 <body>
     <?php
+        if($_SESSION["login"]==1){
+    ?>
+    <?php
         include("info.php");
         $conn=mysqli_connect($server,$username,$password,$database);
         if(!$conn){
@@ -35,6 +38,12 @@
             while($libro=mysqli_fetch_assoc($result)){
                 echo "<p><strong>".$libro["nomeLibro"]."</strong> scritto da <strong>".$libro["nomeAutore"]." ".$libro["cognomeAutore"]."</strong> con categorie <strong>".$libro["descrizioneCategoria"]."</strong></p>";
             }
+        }
+    ?>
+    <?php
+        }
+        else{
+            header("Location:index.php");
         }
     ?>
 </body>
