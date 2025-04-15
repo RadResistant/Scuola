@@ -129,23 +129,42 @@
     ?>
     <h2>Modifica Libri</h2>
     <form action="gestore.php">
-        <select name="libri">
+        <!-- <select name="libri">
             <?php
-                $ricercaLibri="SELECT * FROM libri";
-                $result=mysqli_query($conn,$ricercaLibri);
-                if(mysqli_num_rows($result)>0){
-                    while($libro=mysqli_fetch_assoc($result)){
-                        echo "<option value=".$libro["id"].">".$libro["nome"]."</option>";
-                    }
-                }
+                // $ricercaLibri="SELECT * FROM libri";
+                // $result=mysqli_query($conn,$ricercaLibri);
+                // if(mysqli_num_rows($result)>0){
+                //     while($libro=mysqli_fetch_assoc($result)){
+                //         echo "<option value=".$libro["id"].">".$libro["nome"]."</option>";
+                //     }
+                // }
             ?>
-        </select>
-        <input type="text" name="nuovoNome">
-        <button name="modificaNomeLibro">Modifica</button>
+        </select> -->
+        <?php
+            $queryLibri="SELECT * FROM libri";
+            $queryAutori="SELECT * FROM autori";
+            $queryCategorie="SELECT * FROM categorie";
+            $resultLibri=mysqli_query($conn,$queryLibri);
+            $resultAutori=mysqli_query($conn,$queryAutori);
+            $resultCategorie=mysqli_query($conn,$queryCategorie);
+            $libro=mysqli_fetch_assoc($resultLibri);
+            $autore=mysqli_fetch_assoc($resultAutori);
+            $categoria=mysqli_fetch_assoc($resultCategorie);
+            echo "Libro";
+            foreach($libro as $key=>$content){
+                echo "<input type='text' name='".$key."' value='".$content."'>";
+            }
+            echo "autore";
+            foreach($autore as $key=>$content){
+                echo "<select name='".$key."'>";
+                
+            }
+        ?>
+        <button name="modificaCampiLibro">Modifica</button>
     </form>
     <?php
         }
-        if(isset($_GET["modificaNomeLibro"])){
+        if(isset($_GET["modificaCampiLibro"])){
             if(!empty($_GET["libri"]) && !empty($_GET["nuovoNome"])){
                 $libro=htmlspecialchars($_GET["libri"]);
                 $nuovoNome=htmlspecialchars($_GET["nuovoNome"]);
