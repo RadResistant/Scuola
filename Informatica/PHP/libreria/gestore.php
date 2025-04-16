@@ -125,39 +125,56 @@
             }
             mysqli_close($conn);
         }
-        if(isset($_GET["modificaLibro"])){
+        if(isset($_GET["modificaLibro"]) || isset($_GET["libroScelto"])){
     ?>
     <h2>Modifica Libri</h2>
     <form action="gestore.php">
-        <!-- <select name="libri">
+        <select name="libro">
             <?php
-                // $ricercaLibri="SELECT * FROM libri";
-                // $result=mysqli_query($conn,$ricercaLibri);
-                // if(mysqli_num_rows($result)>0){
-                //     while($libro=mysqli_fetch_assoc($result)){
-                //         echo "<option value=".$libro["id"].">".$libro["nome"]."</option>";
-                //     }
-                // }
+                $ricercaLibri="SELECT * FROM libri";
+                $result=mysqli_query($conn,$ricercaLibri);
+                if(mysqli_num_rows($result)>0){
+                    while($libro=mysqli_fetch_assoc($result)){
+                        echo "<option value=".$libro["id"].">".$libro["nome"]."</option>";
+                    }
+                }
             ?>
-        </select> -->
+        </select>
+        <button name="libroScelto">Modifica libro</button>
+    </form>
+    <form action="gestore.php">
         <?php
-            $queryLibri="SELECT * FROM libri";
-            $queryAutori="SELECT * FROM autori";
-            $queryCategorie="SELECT * FROM categorie";
-            $resultLibri=mysqli_query($conn,$queryLibri);
-            $resultAutori=mysqli_query($conn,$queryAutori);
-            $resultCategorie=mysqli_query($conn,$queryCategorie);
-            $libro=mysqli_fetch_assoc($resultLibri);
-            $autore=mysqli_fetch_assoc($resultAutori);
-            $categoria=mysqli_fetch_assoc($resultCategorie);
-            echo "Libro";
-            foreach($libro as $key=>$content){
-                echo "<input type='text' name='".$key."' value='".$content."'>";
-            }
-            echo "autore";
-            foreach($autore as $key=>$content){
-                echo "<select name='".$key."'>";
-                
+            if(isset($_GET["libroScelto"])){
+                $queryLibri="SELECT * FROM libri WHERE id=".$_GET["libro"].";";
+                $queryAutori="SELECT * FROM autori";
+                $queryCategorie="SELECT * FROM categorie";
+                $resultLibri=mysqli_query($conn,$queryLibri);
+                $resultAutori=mysqli_query($conn,$queryAutori);
+                $resultCategorie=mysqli_query($conn,$queryCategorie);
+                $libro=mysqli_fetch_assoc($resultLibri);
+                $autore=mysqli_fetch_assoc($resultAutori);
+                $categoria=mysqli_fetch_assoc($resultCategorie);
+                echo "Libro";
+                foreach($libro as $key=>$content){
+                    if($key=="id"){
+                        echo "<input type='text' name='".$key."' readonly value='".$content."'>";
+                    }
+                    else{
+                        echo "<input type='text' name='".$key."' value='".$content."'>";
+                    }
+                }
+                echo "autore";
+                echo "<select name='autore'>";
+                while($riga=mysqli_fetch_assoc($resultAutori)){
+                    echo "<option value='".$riga["cf"]."'>".$riga["nome"]." ".$riga["cognome"]."</option>";
+                }
+                echo "</select>";
+                echo "categoria";
+                echo "<select name='categoria'>";
+                while($riga=mysqli_fetch_assoc($resultCategorie)){
+                    echo "<option value='".$riga["id"]."'>".$riga["descrizione"]."</option>";
+                }
+                echo "</select>";
             }
         ?>
         <button name="modificaCampiLibro">Modifica</button>
@@ -165,11 +182,16 @@
     <?php
         }
         if(isset($_GET["modificaCampiLibro"])){
-            if(!empty($_GET["libri"]) && !empty($_GET["nuovoNome"])){
-                $libro=htmlspecialchars($_GET["libri"]);
-                $nuovoNome=htmlspecialchars($_GET["nuovoNome"]);
-                $modificaNome="UPDATE `libri` SET `nome` = '".$nuovoNome."' WHERE `libri`.`id` = ".$libro.";";
-                if(!mysqli_query($conn,$modificaNome)){
+            if(!empty($_GET["nuovoNome"])){
+                $libro=htmlspecialchars($_GET["id"]);
+                $nuovoNome=htmlspecialchars($_GET["nome"]);
+                $descrizione=htmlspecialchars($_GET["descrizione"]);
+                $autore=htmlspecialchars($_GET["autore"]);
+                $categoria=htmlspecialchars($_GET["categoria"]);
+                $modificaNome="UPDATE `libri` SET `nome` = '".$nuovoNome."' AND `descrizione` = '".$descrizione."' WHERE `libri`.`id` = ".$libro.";";
+                $modificaAutore="UPDATE `libri_autori` SET `fk_autore` = '".$autore."' WHERE `libri`.`id` = ".$libro.";";
+                $modificaCategoria="UPDATE `libri_categorie` SET `fk_categorie` = '".$categoria."' WHERE `libri`.`id` = ".$libro.";";
+                if(!mysqli_query($conn,$modificaNome) && !mysqli_query($conn,$modificaAutore) && !mysqli_query($conn,$modificaCategoria)){
                     echo "Error: " . $modificaNome . "<br>" . $conn->error;
                 }
                 else{
