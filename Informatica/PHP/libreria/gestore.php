@@ -152,8 +152,6 @@
                 $resultAutori=mysqli_query($conn,$queryAutori);
                 $resultCategorie=mysqli_query($conn,$queryCategorie);
                 $libro=mysqli_fetch_assoc($resultLibri);
-                $autore=mysqli_fetch_assoc($resultAutori);
-                $categoria=mysqli_fetch_assoc($resultCategorie);
                 echo "Libro";
                 foreach($libro as $key=>$content){
                     if($key=="id"){
@@ -181,6 +179,9 @@
     </form>
     <?php
         }
+        // DA FINIRE
+        // DA FINIRE
+        // DA FINIRE
         if(isset($_GET["modificaCampiLibro"])){
             if(!empty($_GET["nuovoNome"])){
                 $libro=htmlspecialchars($_GET["id"]);
@@ -195,11 +196,14 @@
                     echo "Error: " . $modificaNome . "<br>" . $conn->error;
                 }
                 else{
-                    echo "<p class='giusto'>Nome del libro modificato con successo</p>";
+                    echo "<p class='giusto'>Libro modificato con successo</p>";
                 }
             }
             mysqli_close($conn);
         }
+        // DA FINIRE
+        // DA FINIRE
+        // DA FINIRE
         if(isset($_GET["eliminaLibro"])){
     ?>
     <h2>Elimina Libri</h2>
