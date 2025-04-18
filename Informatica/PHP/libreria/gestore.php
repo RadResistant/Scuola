@@ -189,15 +189,22 @@
                 $descrizione=htmlspecialchars($_GET["descrizione"]);
                 $autore=htmlspecialchars($_GET["autore"]);
                 $categoria=htmlspecialchars($_GET["categoria"]);
-                $modificaNome="UPDATE `libri` SET `nome` = '".$nuovoNome."' AND `descrizione` = '".$descrizione."' WHERE `libri`.`id` = ".$libro.";";
-                $modificaAutore="UPDATE `libri_autori` SET `fk_autore` = '".$autore."' WHERE `libri`.`id` = ".$libro.";";
-                $modificaCategoria="UPDATE `libri_categorie` SET `fk_categorie` = '".$categoria."' WHERE `libri`.`id` = ".$libro.";";
-                if(!mysqli_query($conn,$modificaNome) && !mysqli_query($conn,$modificaAutore) && !mysqli_query($conn,$modificaCategoria)){
-                    echo "Error: " . $modificaNome . "<br>" . $conn->error;
+                $campi="";
+                foreach($_GET as $key=>$content){
+                    if($key!="id" && $key!="autore" && $key!="categoria" && $key!="nome"){
+                        $campi.="AND ".$key."='".$content."' ";
+                    }
                 }
-                else{
-                    echo "<p class='giusto'>Libro modificato con successo</p>";
-                }
+                echo $campi;
+                // $modificaNome="UPDATE `libri` SET `nome` = '".$nuovoNome."' ".$campi."WHERE `libri`.`id` = ".$libro.";";
+                // $modificaAutore="UPDATE `libri_autori` SET `fk_autore` = '".$autore."' WHERE `libri`.`id` = ".$libro.";";
+                // $modificaCategoria="UPDATE `libri_categorie` SET `fk_categorie` = '".$categoria."' WHERE `libri`.`id` = ".$libro.";";
+                // if(!mysqli_query($conn,$modificaNome) && !mysqli_query($conn,$modificaAutore) && !mysqli_query($conn,$modificaCategoria)){
+                //     echo "Error: " . $modificaNome . "<br>" . $conn->error;
+                // }
+                // else{
+                //     echo "<p class='giusto'>Libro modificato con successo</p>";
+                // }
             }
             mysqli_close($conn);
         }
