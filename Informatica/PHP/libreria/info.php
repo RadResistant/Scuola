@@ -1,10 +1,10 @@
 <?php
     // Nome dell'account con la quale viene esguito l'accesso al database
-    $username="saponaro";
+    $username="root";
     // Password dell'account con la quale viene eseguito l'accesso al database
-    $password="saponaro";
+    $password="";
     // Indirizzo del server mysql
-    $server="10.1.0.52:8306";
+    $server="localhost:3306";
     // Nome del database voluto
     $database="saponaro_libreria";
 ?>

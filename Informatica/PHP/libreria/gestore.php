@@ -125,7 +125,7 @@
             }
             mysqli_close($conn);
         }
-        if(isset($_GET["modificaLibro"]) || isset($_GET["libroScelto"])){
+        if(isset($_GET["modificaLibro"])){
     ?>
     <h2>Modifica Libri</h2>
     <form action="gestore.php">
@@ -142,75 +142,69 @@
         </select>
         <button name="libroScelto">Modifica libro</button>
     </form>
+    <?php
+        }
+        if(isset($_GET["libroScelto"])){
+    ?>
     <form action="gestore.php">
         <?php
-            if(isset($_GET["libroScelto"])){
-                $queryLibri="SELECT * FROM libri WHERE id=".$_GET["libro"].";";
-                $queryAutori="SELECT * FROM autori";
-                $queryCategorie="SELECT * FROM categorie";
-                $resultLibri=mysqli_query($conn,$queryLibri);
-                $resultAutori=mysqli_query($conn,$queryAutori);
-                $resultCategorie=mysqli_query($conn,$queryCategorie);
-                $libro=mysqli_fetch_assoc($resultLibri);
-                echo "Libro";
-                foreach($libro as $key=>$content){
-                    if($key=="id"){
-                        echo "<input type='text' name='".$key."' readonly value='".$content."'>";
-                    }
-                    else{
-                        echo "<input type='text' name='".$key."' value='".$content."'>";
-                    }
+            $queryLibri="SELECT * FROM libri WHERE id=".$_GET["libro"].";";
+            $queryAutori="SELECT * FROM autori";
+            $queryCategorie="SELECT * FROM categorie";
+            $resultLibri=mysqli_query($conn,$queryLibri);
+            $resultAutori=mysqli_query($conn,$queryAutori);
+            $resultCategorie=mysqli_query($conn,$queryCategorie);
+            $libro=mysqli_fetch_assoc($resultLibri);
+            echo "Libro";
+            foreach($libro as $key=>$content){
+                if($key=="id"){
+                    echo "<input type='text' name='".$key."' readonly value='".$content."'>";
                 }
-                echo "autore";
-                echo "<select name='autore'>";
-                while($riga=mysqli_fetch_assoc($resultAutori)){
-                    echo "<option value='".$riga["cf"]."'>".$riga["nome"]." ".$riga["cognome"]."</option>";
+                else{
+                    echo "<input type='text' name='".$key."' value='".$content."' placeholder='".$key."'>";
                 }
-                echo "</select>";
-                echo "categoria";
-                echo "<select name='categoria'>";
-                while($riga=mysqli_fetch_assoc($resultCategorie)){
-                    echo "<option value='".$riga["id"]."'>".$riga["descrizione"]."</option>";
-                }
-                echo "</select>";
             }
+            echo "autore";
+            echo "<select name='autore'>";
+            while($riga=mysqli_fetch_assoc($resultAutori)){
+                echo "<option value='".$riga["cf"]."'>".$riga["nome"]." ".$riga["cognome"]."</option>";
+            }
+            echo "</select>";
+            echo "categoria";
+            echo "<select name='categoria'>";
+            while($riga=mysqli_fetch_assoc($resultCategorie)){
+                echo "<option value='".$riga["id"]."'>".$riga["descrizione"]."</option>";
+            }
+            echo "</select>";
         ?>
         <button name="modificaCampiLibro">Modifica</button>
     </form>
     <?php
         }
-        // DA FINIRE
-        // DA FINIRE
-        // DA FINIRE
-        if(isset($_GET["modificaCampiLibro"])){
-            if(!empty($_GET["nuovoNome"])){
-                $libro=htmlspecialchars($_GET["id"]);
-                $nuovoNome=htmlspecialchars($_GET["nome"]);
-                $descrizione=htmlspecialchars($_GET["descrizione"]);
-                $autore=htmlspecialchars($_GET["autore"]);
-                $categoria=htmlspecialchars($_GET["categoria"]);
+        if(isset($_GET["modificaCampiLibro"]) || isset($_GET["modificaLibro"]) || isset($_GET["libroScelto"])){
+            if(isset($_GET["id"]) && isset($_GET["nome"])){
+                $libro=$_GET["id"];
+                $nome=htmlspecialchars($_GET["nome"]);
+                $autore=$_GET["autore"];
+                $categoria=$_GET["categoria"];
                 $campi="";
                 foreach($_GET as $key=>$content){
-                    if($key!="id" && $key!="autore" && $key!="categoria" && $key!="nome"){
-                        $campi.="AND ".$key."='".$content."' ";
+                    if($key!="id" && $key!="autore" && $key!="categoria" && $key!="nome" && $key!="modificaCampiLibro"){
+                        $campi.=", ".$key."='".$content."' ";
                     }
                 }
-                echo $campi;
-                // $modificaNome="UPDATE `libri` SET `nome` = '".$nuovoNome."' ".$campi."WHERE `libri`.`id` = ".$libro.";";
-                // $modificaAutore="UPDATE `libri_autori` SET `fk_autore` = '".$autore."' WHERE `libri`.`id` = ".$libro.";";
-                // $modificaCategoria="UPDATE `libri_categorie` SET `fk_categorie` = '".$categoria."' WHERE `libri`.`id` = ".$libro.";";
-                // if(!mysqli_query($conn,$modificaNome) && !mysqli_query($conn,$modificaAutore) && !mysqli_query($conn,$modificaCategoria)){
-                //     echo "Error: " . $modificaNome . "<br>" . $conn->error;
-                // }
-                // else{
-                //     echo "<p class='giusto'>Libro modificato con successo</p>";
-                // }
+                $modificaLibro="UPDATE `libri` SET `nome` = '".$nome."' ".$campi."WHERE `libri`.`id` = ".$libro.";";
+                $modificaAutore="UPDATE `libri_autori` SET `fk_autore` = '".$autore."' WHERE `libri`.`id` = ".$libro.";";
+                $modificaCategoria="UPDATE `libri_categorie` SET `fk_categorie` = '".$categoria."' WHERE `libri`.`id` = ".$libro.";";
+                if(!mysqli_query($conn,$modificaLibro) && !mysqli_query($conn,$modificaAutore) && !mysqli_query($conn,$modificaCategoria)){
+                    echo "Error: " . $modificaLibro . "<br>" . $conn->error;
+                }
+                else{
+                    echo "<p class='giusto'>Libro modificato con successo</p>";
+                }
+                mysqli_close($conn);
             }
-            mysqli_close($conn);
         }
-        // DA FINIRE
-        // DA FINIRE
-        // DA FINIRE
         if(isset($_GET["eliminaLibro"])){
     ?>
     <h2>Elimina Libri</h2>
