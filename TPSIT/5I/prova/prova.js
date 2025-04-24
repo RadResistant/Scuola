@@ -6,5 +6,6 @@ async function prova(){
         body:JSON.stringify(oggetto)
     });
     // let richiesta=await fetch("http://localhost:8080/todo/8",{method:'DELETE'});
+    let as=document.getElementsByTagName("body")[0];
     console.log(richiesta)
 }
