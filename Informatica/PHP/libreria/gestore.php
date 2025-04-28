@@ -8,17 +8,25 @@
 </head>
 <body>
     <?php
+        // Avvio la sessione
         session_start();
-        if(isset($_SESSION["email"]) && isset($_SESSION["login"]) && $_SESSION["login"]==1){
+        // Controllo se la variabile superglobale "SESSION" all'indice "login" è diversa da 1
+        if($_SESSION["login"]!=1){
+            // Se lo è allora reindirizzo alla pagina "index.php"
+            header("Location:index.php");
+        }
     ?>
     <?php
+        // Viene incluso il file nella quale risiedono le informazioni necessarie per connettersi al database
         include("info.php");
+        // Effettuo la connessione al database con le informazioni residenti nel file "info.php"
         $conn=mysqli_connect($server,$username,$password,$database);
+        // Controllo se la connessione non è andata a buon fine
         if(!$conn){
+            // Se la connessione non è andata a buon fine allora fermo tutto il file e stampo a schermo l'errore
             die("Errore connessione ".mysqli_connect_err());
         }
     ?>
-    <h1>WORK in Progress</h1>
     <form action="gestore.php">
         <button name="aggiungiAutore">Aggiungi autore</button>
         <button name="aggiungiCategoria">Aggiungi categoria</button>
@@ -29,7 +37,9 @@
         <button name="catalogo">Torna al catalogo</button>
     </form>
     <?php
+        // Controllo se la variabile $_GET è impostata all'indice "aggiungiAutore"
         if(isset($_GET["aggiungiAutore"])){
+            // Se lo è mostro il form per la aggiunta dell'autore
     ?>
             <h2>Inserimento autori</h2>
             <form action="gestore.php">
@@ -40,6 +50,7 @@
             </form>
     <?php
         }
+        // Controllo se la variabile $_GET è impostata all'indice "registraAutore"
         if(isset($_GET["registraAutore"])){
             if(!empty($_GET["nomeAutore"]) && !empty($_GET["cognomeAutore"]) && !empty($_GET["cfAutore"])){
                 $nome=htmlspecialchars($_GET["nomeAutore"]);
@@ -277,12 +288,6 @@
             else{
                 echo "<p class='giusto'>Utente impostato come utente</p>";
             }
-        }
-    ?>
-    <?php
-        }
-        else{
-            header("Location:index.php");
         }
     ?>
 </body>

@@ -10,8 +10,11 @@
     <?php
         // Avvio la sessione
         session_start();
-        // Controllo se la variabile superglobale "SESSION" all'indice "login" è uguale a 1 se lo è allora avvio il sito
-        if($_SESSION["login"]==1){
+        // Controllo se la variabile superglobale "SESSION" all'indice "login" è diversa da 1
+        if($_SESSION["login"]!=1){
+            // Se lo è allora reindirizzo alla pagina "index.php"
+            header("Location:index.php");
+        }
     ?>
     <?php
         // Viene incluso il file nella quale risiedono le informazioni necessarie per connettersi al database
@@ -71,14 +74,6 @@
                 // Stampo a schermo il resto delle informazioni del libro
                 echo " scritto da <strong>".$libro["nomeAutore"]." ".$libro["cognomeAutore"]."</strong> con categorie <strong>".$libro["descrizioneCategoria"]."</strong></p>";
             }
-        }
-    ?>
-    <?php
-        }
-        // Altrimenti se la variabile superglobale "SESSION" all'indice "login" è diversa da 1 non permetto l'accesso al sito
-        else{
-            // Reindirizzo alla pagina "index.php"
-            header("Location:index.php");
         }
     ?>
 </body>

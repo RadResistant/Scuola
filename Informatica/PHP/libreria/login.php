@@ -7,7 +7,7 @@
     <title>Libreria accesso</title>
 </head>
 <body>
-<?php
+    <?php
         // Viene incluso il file nella quale risiedono le informazioni necessarie per connettersi al database
         include("info.php");
         // Effettuo la connessione al database con le informazioni residenti nel file "info.php"
