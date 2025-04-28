@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
-public class Manager {
+public class Manager{
 	@Autowired
 	CampoRepository archivioCampi;
 	@Autowired
@@ -17,5 +17,9 @@ public class Manager {
 	@GetMapping("/tennis/campi")
 	public List<Campo> trovaCampiTutti(){
 		return archivioCampi.findAll();
+	}
+	@GetMapping("/tennis/campo/{id}/prenotazioni")
+	public List<Campo> trovaperdata(@PathVariable Integer id,@RequestParam (required=true) String data){
+		return archivioCampi.trovaPrenotazioneInData(id,data);
 	}
 }
