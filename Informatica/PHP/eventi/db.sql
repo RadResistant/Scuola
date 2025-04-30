@@ -117,7 +117,7 @@ ALTER TABLE `prenotazioni`
 --
 ALTER TABLE `prenotazioni`
   ADD CONSTRAINT `prenotazioni_fkb1` FOREIGN KEY (`id_evento`) REFERENCES `eventi` (`id`),
-  ADD CONSTRAINT `prenotazioni_fkb2` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`cf`);
+  ADD CONSTRAINT `prenotazioni_fkb2` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

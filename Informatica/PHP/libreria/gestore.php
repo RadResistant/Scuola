@@ -52,21 +52,32 @@
         }
         // Controllo se la variabile $_GET è impostata all'indice "registraAutore"
         if(isset($_GET["registraAutore"])){
+            // Se lo è controllo se la variabile $_GET non è vuota negli indici "nomeAutore", "cognomeAutore" e "cfautore"
             if(!empty($_GET["nomeAutore"]) && !empty($_GET["cognomeAutore"]) && !empty($_GET["cfAutore"])){
+                // Se non sono vuote allora assegno alla variabile "$nome" il nome dell'autore passato in input,
                 $nome=htmlspecialchars($_GET["nomeAutore"]);
+                // Alla variabile "$congome" il codice fiscale dell'autore passato in input e
                 $cognome=htmlspecialchars($_GET["cognomeAutore"]);
+                // Alla variabile "$cf" il cognome dell'autore passato in input
                 $cf=strtoupper(htmlspecialchars($_GET["cfAutore"]));
+                // Creo una variabile "$inserimentoAutore" e gli assegno come valore l'interrogazione di inserimento dell'autore, gli do come valori le variabili precedentemente create
                 $inserimentoAutore="INSERT INTO autori(cf,nome,cognome) VALUES ('".$cf."','".$nome."','".$cognome."');";
+                // Eseguo l'interrogazione e controllo se non è andata a buon fine
                 if(!mysqli_query($conn,$inserimentoAutore)){
+                    // Se non è andata a buon fine stampo a schermo l'errore
                     echo "Error: " . $inserimentoAutore . "<br>" . $conn->error;
                 }
                 else{
+                    // Altrimenti stampo a schermo che l'autore è stato registrato
                     echo "<p class='giusto'>Autore registrato con successo</p>";
                 }
             }
+            // Chiudo la connessione
             mysqli_close($conn);
         }
+        // Controllo se la variabile $_GET è impostata all'indice "aggiungiCategoria"
         if(isset($_GET["aggiungiCategoria"])){
+            // Se lo è stampo il form per l'insermento della categoria
     ?>
             <h2>Inserimento Categorie</h2>
             <form action="gestore.php">
@@ -75,6 +86,7 @@
             </form>
     <?php
         }
+        // Controllo se la variabile $_GET è impostata all'indice "registraCategoria"
         if(isset($_GET["registraCategoria"])){
             if(!empty($_GET["descrizioneCategoria"])){
                 $descrizione=htmlspecialchars($_GET["descrizioneCategoria"]);
