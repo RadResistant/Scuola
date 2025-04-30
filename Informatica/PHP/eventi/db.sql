@@ -43,7 +43,7 @@ CREATE TABLE `eventi` (
 
 CREATE TABLE `prenotazioni` (
   `id` int(11) NOT NULL,
-  `id_utente` char(16) DEFAULT NULL,
+  `id_utente` int(11) DEFAULT NULL,
   `id_evento` int(11) DEFAULT NULL,
   `is_vip` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -55,7 +55,7 @@ CREATE TABLE `prenotazioni` (
 --
 
 CREATE TABLE `utenti` (
-  `cf` char(16) NOT NULL,
+  `id` int(11) NOT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `cognome` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -85,7 +85,7 @@ ALTER TABLE `prenotazioni`
 -- Indici per le tabelle `utenti`
 --
 ALTER TABLE `utenti`
-  ADD PRIMARY KEY (`cf`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -97,6 +97,11 @@ ALTER TABLE `utenti`
 ALTER TABLE `eventi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT per la tabella `eventi`
+--
+ALTER TABLE `utenti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `prenotazioni`
 --

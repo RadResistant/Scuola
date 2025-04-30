@@ -13,6 +13,7 @@
         if(!$conn){
             die("Errore connessione al db nce arpova");
         }
+        start_session();
     ?>
     <div>
         <form>
@@ -27,7 +28,9 @@
                         if(mysqli_num_rows($resultUtente)=1){
                             $utente=mysqli_fetch_assoc($resultUtente);
                             if(password_verify($_GET["passw"],$utente["password"])){
-                                echo "bravo";
+                                $_SESSION["email"]=$_GET["email"];
+                                $_SESSION["login"]=1;
+                                header("Location:home.php");
                             }
                         }
                     }
