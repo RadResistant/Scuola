@@ -1,0 +1,39 @@
+html{
+    --colore-azzurrino:rgb(75, 75, 255);
+    --me-cieco-se-non-lo-metto:rgb(152, 152, 152);
+}
+form{
+    border: 2px var(--colore-azzurrino) solid;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 5px;
+    background-color: azure;
+    text-align: center;
+}
+input{
+    display: block;
+    border: 2px var(--colore-azzurrino) solid;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
+    font-size: 15px;
+}
+button{
+    background-color: var(--colore-azzurrino);
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
+}
+html,body{
+    background-color: var(--me-cieco-se-non-lo-metto);
+    font-size: 18px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error{
+    color: red;
+}
