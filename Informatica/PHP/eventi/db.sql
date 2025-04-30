@@ -60,7 +60,7 @@ CREATE TABLE `utenti` (
   `cognome` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `passw` char(60) DEFAULT NULL,
-  `is_admin` tinyint(4) DEFAULT NULL
+  `is_admin` tinyint(4) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
