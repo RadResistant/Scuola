@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `eventi` (
   `id` int(11) NOT NULL,
+  `descrizione` varchar(255) DEFAULT NULL,
   `data` date DEFAULT NULL,
   `posti_disponibilli` int(11) DEFAULT NULL,
   `costo` double DEFAULT NULL,

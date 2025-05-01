@@ -55,4 +55,7 @@
     if(isset($_GET["signup"])){
         header("Location:signup.php");
     }
+    if(isset($_SESSION["email"]) && $_SESSION["login"]==1){
+        header("Location:home.php");
+    }
 ?>
