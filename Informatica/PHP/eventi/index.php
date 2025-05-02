@@ -37,7 +37,12 @@
                             }
                         }
                         else{
-                            echo "<p class='error'>Nessun utente trovato o troppi</p>";
+                            if(mysqli_num_rows($resultUtente)==0){
+                                echo "<p class='error'>Nessun utente trovato</p>";
+                            }
+                            elseif(mysqli_num_rows($resultUtente)>1){
+                                die("<p class='error'>Errore nel database perfavore contattare il 3347565800</p>");
+                            }
                         }
                     }
                     else{
