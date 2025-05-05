@@ -31,7 +31,7 @@ CREATE TABLE `eventi` (
   `id` int(11) NOT NULL,
   `descrizione` varchar(255) DEFAULT NULL,
   `data` date DEFAULT NULL,
-  `posti_disponibilli` int(11) DEFAULT NULL,
+  `posti_disponibili` int(11) DEFAULT NULL,
   `costo` double DEFAULT NULL,
   `costo_vip` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -41,11 +41,11 @@
         ?>
     </div>
     <?php
-        $ricercaEventi="SELECT * FROM eventi";
+        $ricercaEventi="SELECT * FROM eventi WHERE data>'".date("Y-m-d")."';";
         $resultEventi=mysqli_query($conn,$ricercaEventi);
         if(mysqli_num_rows($resultEventi)>0){
             while($evento=mysqli_fetch_assoc($resultEventi)){
-                echo "<div class='biglietto'><h2>".$evento["descrizione"]."</h2><h3>Data: ".$evento["data"]."</h3><p>Prezzo: ".$evento["costo"]."  Vip: ".$evento["costo_vip"]."</p><a href='info.php?id=".$evento["id"]."'>Prenota ora>>></a></div>";
+                echo "<div class='biglietto'><h2>".$evento["descrizione"]."</h2><h3>Data: ".$evento["data"]."</h3><h3>Posti disponibili: ".$evento["posti_disponibilli"]."</h3><p>Prezzo: ".$evento["costo"]."€  Vip: ".$evento["costo_vip"]."€</p><a href='prenotazioneEvento.php?id=".$evento["id"]."'>Prenota ora>>></a></div>";
             }
         }
     ?>
