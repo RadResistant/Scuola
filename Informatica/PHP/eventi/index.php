@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log-in eventi</title>
-    <link rel="stylesheet" href="styleAccesso.css">
+    <link rel="stylesheet" href="Styles/styleAccesso.css">
 </head>
 <body>
     <?php
