@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="Styles/styleCarrello.css">
 </head>
 <body>
-    <h1>Carrello Eventi</h1>
+    <div>
+        <h1>Carrello Eventi</h1>
+        <a href="home.php"><img id='homeIcon' src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home"></a>
+    </div>
     <div id='contenitoreEventi'>
         <?php
             if(!empty($_SESSION["carrello"])){
@@ -81,7 +84,7 @@
             }
         }
         if(isset($_GET["acquista"])){
-            echo "<div class='confermaAcquisto'><h1>Sei sicuro di voler acuqistare i biglietti?</h1><form><button class='scelta' name='continuaAcquisto'>Sì</button><button class='scelta'>No</button></form></div>";
+            echo "<div class='confermaAcquisto'><h1>Sei sicuro di voler acquistare i biglietti?</h1><form><button class='scelta' name='continuaAcquisto'>Sì</button><button class='scelta'>No</button></form></div>";
         }
         if(isset($_GET["continuaAcquisto"]) && isset($_SESSION["carrello"])){
             mysqli_autocommit($conn,false);
@@ -103,8 +106,8 @@
             }
             mysqli_commit($conn);
             mysqli_autocommit($conn,true);
-            echo "<h2>Prenotazioni andate a buon fine</h2><a href='home.php'>Torna alla home</a>";
             unset($_SESSION["carrello"]);
+            header("Location:carrello.php");
         }
         ?>
     </form>

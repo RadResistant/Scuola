@@ -1,4 +1,13 @@
 <?php
+    session_start();
+    include "info.php";
+    $conn=mysqli_connect($server,$uname,$password,$db);
+    if(!$conn){
+        die("Errore connessione al db nce arpova");
+    }
+    if(!isset($_SESSION["email"]) && $_SESSION["login"]!=1){
+        header("Location:index.php");
+    }
     $ricercaUtente="SELECT * FROM utenti WHERE email='".$_SESSION["email"]."';";
     $resultUtente=mysqli_query($conn,$ricercaUtente);
     if(mysqli_num_rows($resultUtente)==1){
@@ -22,9 +31,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gestione eventi</title>
 </head>
 <body>
-    <h1>WORK IN PROGRESS</h1>
+    <?php
+        if(!isset($_GET["aggiuntaEvento"]) || !isset($_GET["rimozioneEvento"])){
+    ?>
+        <form>
+            <button name='aggiuntaEvento'>Aggiungi evento</button>
+            <button name='rimozioneEvento'>Elimina evento</button>
+        </form>
+    <?php
+        }
+    ?>
 </body>
 </html>

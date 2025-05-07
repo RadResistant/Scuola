@@ -69,3 +69,11 @@ h1{
     font-size: larger;
     margin: 15px;
 }
+a{
+   position: fixed;
+   top: 0;
+   right: 0;
+}
+#homeIcon{
+    height: 40px;
+}
