@@ -11,12 +11,13 @@ h1{
     text-align: center;
 }
 .biglietto{
+    overflow: hidden;
     position: relative;
     margin: 10px;
     padding: 10px;
     border: 2px var(--colore-azzurrino) solid;
     border-radius: 15px;
-    width: 500px;
+    width: 600px;
     background-color: azure;
     display: flex;
     flex-direction: column;
@@ -44,5 +45,13 @@ h2{
     transform-origin: top right;
 }
 #carrello{
+    height: 40px;
+}
+#homeLink{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+#homeIcon{
     height: 40px;
 }

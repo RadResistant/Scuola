@@ -36,6 +36,14 @@ CREATE TABLE `eventi` (
   `costo_vip` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `eventi`
+--
+
+INSERT INTO `eventi` (`id`, `descrizione`, `data`, `posti_disponibili`, `costo`, `costo_vip`) VALUES
+(1, 'Max Angioni', '2025-05-24', 100, 15.4, 55.5),
+(2, 'Daniele Fabbri', '2025-07-21', 500, 25.5, 104);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +56,26 @@ CREATE TABLE `prenotazioni` (
   `id_evento` int(11) DEFAULT NULL,
   `is_vip` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `prenotazioni`
+--
+
+INSERT INTO `prenotazioni` (`id`, `id_utente`, `id_evento`, `is_vip`) VALUES
+(1, 1, 1, 0),
+(2, 1, 2, 0),
+(3, 1, 2, 0),
+(4, 1, 2, 0),
+(5, 1, 2, 0),
+(6, 1, 2, 0),
+(7, 1, 2, 0),
+(8, 1, 2, 0),
+(9, 1, 1, 1),
+(10, 1, 2, 0),
+(11, 1, 1, 1),
+(12, 1, 2, 0),
+(13, 1, 1, 1),
+(14, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -63,6 +91,13 @@ CREATE TABLE `utenti` (
   `passw` char(60) DEFAULT NULL,
   `is_admin` tinyint(4) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `utenti`
+--
+
+INSERT INTO `utenti` (`id`, `nome`, `cognome`, `email`, `passw`, `is_admin`) VALUES
+(1, 'Raffaele', 'Saponaro', 'raffaele.saponaro@iisgubbio.edu.it', '$2y$10$h1Fzrd6jMmKzVvqubJ.ynOPlxKfTPaTcmRt2QICAmRTLDszqSmz9q', 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -117,8 +152,8 @@ ALTER TABLE `prenotazioni`
 -- Limiti per la tabella `prenotazioni`
 --
 ALTER TABLE `prenotazioni`
-  ADD CONSTRAINT `prenotazioni_fkb1` FOREIGN KEY (`id_evento`) REFERENCES `eventi` (`id`),
-  ADD CONSTRAINT `prenotazioni_fkb2` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`);
+  ADD CONSTRAINT `prenotazioni_fkb1` FOREIGN KEY (`id_evento`) REFERENCES `eventi` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  ADD CONSTRAINT `prenotazioni_fkb2` FOREIGN KEY (`id_utente`) REFERENCES `utenti` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

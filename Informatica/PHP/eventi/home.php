@@ -13,7 +13,7 @@
     if(!$conn){
         die("Errore connessione al db nce arpova");
     }
-    if(!isset($_SESSION["email"]) && $_SESSION["login"]!=1){
+    if(!isset($_SESSION["email"]) && !$_SESSION["login"]){
         header("Location:index.php");
     }
 ?>
