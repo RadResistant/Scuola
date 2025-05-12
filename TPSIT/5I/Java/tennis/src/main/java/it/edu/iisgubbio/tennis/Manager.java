@@ -1,7 +1,5 @@
 package it.edu.iisgubbio.tennis;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,12 +56,8 @@ public class Manager{
 	}
 	@PostMapping("/campo/{id}/prenotazione")
 	public void inserisciPrenotazione(@PathVariable Integer id, @RequestBody Prenotazione prenotazione){
-		Campo campo=archivioCampi.findById(id).orElseThrow(() -> new RuntimeException("Campo non trovato"));;
-		if(campo==null){
-			return;
-		}
-		Prenotazione nuovaPrenotazione=new Prenotazione();
-		nuovaPrenotazione.setCampo_id(campo.getId());
-        archivioPrenotazioni.inserisciPrenotazione(prenotazione);
+		Campo campo=archivioCampi.findById(id).orElseThrow(() -> new RuntimeException("Campo non trovato"));
+		prenotazione.setCampo_id(campo);
+        archivioPrenotazioni.save(prenotazione);
     }
 }
