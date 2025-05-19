@@ -41,7 +41,7 @@
     <a href="carrello.php"><img id="carrello" src="https://cdn-icons-png.flaticon.com/512/649/649931.png" alt="Carrello"></a>
     </form>
     <?php
-        $ricercaEventi="SELECT * FROM eventi WHERE data>'".date("Y-m-d")."';";
+        $ricercaEventi="SELECT * FROM eventi WHERE data>='".date("Y-m-d")."';";
         $resultEventi=mysqli_query($conn,$ricercaEventi);
         if(mysqli_num_rows($resultEventi)>0){
             while($evento=mysqli_fetch_assoc($resultEventi)){
