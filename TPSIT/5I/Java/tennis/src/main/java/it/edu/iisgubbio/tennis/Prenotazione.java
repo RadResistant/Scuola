@@ -16,11 +16,11 @@ public class Prenotazione {
 	String data;
 	@ManyToOne
 	@JoinColumn(name="campo_id")
-	@JsonBackReference
+	@JsonBackReference("campo-prenotazione")
 	Campo campo_id;
 	@ManyToOne
 	@JoinColumn(name="giocatore_id")
-	@JsonBackReference
+	@JsonBackReference("giocatore-prenotazione")
 	Giocatore giocatore_id;
 	public Prenotazione(){
 		super();

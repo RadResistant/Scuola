@@ -18,7 +18,7 @@ public class Campo {
 	String nome;
 	Integer riscaldato;
 	@OneToMany(mappedBy="campo_id")
-	@JsonManagedReference
+	@JsonManagedReference("campo-prenotazione")
 	List<Prenotazione> prenotazione;
 	public Campo(){
 		super();

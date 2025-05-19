@@ -18,7 +18,7 @@ public class Manager{
 	@Autowired
 	PrenotazioneRepository archivioPrenotazioni;
 	@GetMapping("/campi")
-	public List<Campo> trovaCampiTutti(@RequestParam Integer ora){
+	public List<Campo> trovaCampiTutti(@RequestParam (required=false) Integer ora){
 		if(ora==null){
 			return archivioCampi.findAll();
 		}
@@ -27,12 +27,12 @@ public class Manager{
 		}
 	}
 	@GetMapping("/campo/{id}/prenotazioni")
-	public List<Prenotazione> trovaPerData(@PathVariable Integer id,@RequestParam (required=true) String data, @RequestParam String oraInizio, @RequestParam String oraFine){
+	public List<Prenotazione> trovaPerData(@PathVariable Integer id,@RequestParam (required=true) String data, @RequestParam (required=false) Integer oraInizio, @RequestParam (required=false) Integer oraFine){
 		if(oraInizio==null){
-			oraInizio="00";
+			oraInizio=00;
 		}
 		if(oraFine==null){
-			oraFine="23";
+			oraFine=23;
 		}
 		return archivioPrenotazioni.trovaPrenotazioneInData(id,data,oraInizio,oraFine);
 	}

@@ -17,7 +17,7 @@ public class Giocatore {
 	String telefono;
 	String data_nascita;
 	@OneToMany(mappedBy="giocatore_id")
-	@JsonManagedReference
+	@JsonManagedReference("giocatore-prenotazione")
 	List<Prenotazione> prenotazione;
 	public Giocatore(){
 		super();
