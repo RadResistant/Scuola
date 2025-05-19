@@ -1,11 +1,13 @@
 async function prova(){
-    let oggetto={nome:"asfadg"};
-    let richiesta=await fetch("http://localhost:8280/hotel/1",{
-        method:'PUT',
+    let oggetto={
+        isbn:"978-3-16-148410-0",
+        titolo:"L'amore della mia vita Edoardo Panfili",
+        autore:"Raffaele",
+        prestabile:1};
+    let richiesta=await fetch("http://localhost:8080/libri",{
+        method:'POST',
         headers:{'Content-Type': 'application/json'},
         body:JSON.stringify(oggetto)
     });
-    // let richiesta=await fetch("http://localhost:8080/todo/8",{method:'DELETE'});
-    let as=document.getElementsByTagName("body")[0];
-    console.log(richiesta)
 }
+prova();
