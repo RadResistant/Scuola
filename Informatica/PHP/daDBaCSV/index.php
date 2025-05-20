@@ -7,8 +7,7 @@
 </head>
 <body>
     <?php
-        echo "<h1>Sto facendo</h1>";
-        $path=$_SERVER["DOCUMENT_ROOT"]."/daDBaCSV/files/";
+        // $path=$_SERVER["DOCUMENT_ROOT"]."/daDBaCSV/files/";
         // So che bastava mettere il /files/ prima del nome del file da aprire ma cosi almeno mi ricordo qualcosa di nuovo
         include "info.php";
         $conn=mysqli_connect($servername,$username,$passw,$db);
@@ -19,7 +18,8 @@
         $resultTabelle=mysqli_query($conn,$ricercaTabelle);
         if(mysqli_num_rows($resultTabelle)>0){
             while($tabella=mysqli_fetch_assoc($resultTabelle)){
-                $file=fopen($path.$tabella["TABLE_NAME"].".csv","w");
+                // $file=fopen($path.$tabella["TABLE_NAME"].".csv","w");
+                $file=fopen($tabella["TABLE_NAME"].".csv","w");
                 $ricercaContenuto="SELECT * FROM ".$tabella["TABLE_NAME"].";";
                 $resultContenuto=mysqli_query($conn,$ricercaContenuto);
                 if(mysqli_num_rows($resultContenuto)>0){
