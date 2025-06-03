@@ -10,23 +10,24 @@
         include "info.php";
         $conn=mysqli_connect($servername,$username,$password);
         if(!$conn){
-            die(mysqli_connect_error());
+            die("Errore");
         }
         $dbName="saponaro_magazzino";
-        $ricercaDB="SHOW DATABASES WHERE database='".$dbName."'";
+        $ricercaDB="SHOW DATABASES LIKE '".$dbName."'";
         $resultDB=mysqli_query($conn,$ricercaDB);
         if(mysqli_num_rows($resultDB)==0){
             $creazioneDB="CREATE DATABASE saponaro_magazzino;";
             if(!mysqli_query($conn,$creazioneDB)){
-                die(mysqli_connect_error());
+                die("Errore");
             }
+            echo "ciao";
         }
         $ricercaTabelle="SELECT TABLE_NAME FROM information_schema.tables WHERE table_schema = '".$dbName."';";
         $resultTabelle=mysqli_query($conn,$ricercaTabelle);
         while($tabella=mysqli_fetch_assoc($resultTabelle)){
             $cancellazioneTabelle="DROP TABLE ".$dbName.".".$tabella["TABLE_NAME"].";";
             if(!mysqli_query($conn,$cancellazioneTabelle)){
-                die(mysqli_connect_error());
+                die("Errore");
             }
         }
         $creazioneTabellaFornitori="CREATE TABLE ".$dbName.".fornitori(
@@ -37,7 +38,7 @@
             citta varchar(30)
         );";
         if(!mysqli_query($conn,$creazioneTabellaFornitori)){
-            die(mysqli_connect_error());
+            die("Errore");
         }
         $creazioneTabellaArticoli="CREATE TABLE ".$dbName.".articoli(
             codice_articolo varchar(15) PRIMARY KEY,
@@ -50,7 +51,7 @@
             ON DELETE CASCADE
         );";
         if(!mysqli_query($conn,$creazioneTabellaArticoli)){
-            die(mysqli_connect_error());
+            die("Errore");
         }
         $file=fopen("Maga.csv","r");
         $fileLog=fopen("Log.txt","w");
@@ -68,7 +69,7 @@
                     $inserimentoValori="INSERT INTO ".$dbName.".fornitori(codice_fornitore,ragione_sociale,indirizzo,cap,citta) VALUES 
                     ('".$content[1]."','".$content[2]."','".$content[3]."','".$content[4]."','".$content[5]."');";
                     if(!mysqli_query($conn,$inserimentoValori)){
-                       die(mysqli_connect_error());
+                       die("Errore");
                     }
                 }
                 else{
@@ -84,13 +85,11 @@
                     $inserimentoValori="INSERT INTO ".$dbName.".articoli(codice_articolo,descrizione,quantita,prezzo,fk_fornitore) VALUES 
                     ('".$content[1]."','".$content[2]."',".$content[3].",".$content[4].",'".$content[5]."');";
                     if(!mysqli_query($conn,$inserimentoValori)){
-                        die(mysqli_connect_error());
-                    }
-                    else{
-                        print_r($content);
+                        die("Errore");
                     }
                 }
                 else{
+                    echo "no";
                     fwrite($fileLog,"Error at line ".($key+1)."\n");
                 }
             }
