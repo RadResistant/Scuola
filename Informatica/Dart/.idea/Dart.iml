@@ -9,18 +9,12 @@
       <excludeFolder url="file://$MODULE_DIR$/colori/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/colori/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/colori/build" />
+      <excludeFolder url="file://$MODULE_DIR$/esprova2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/esprova2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/esprova2/build" />
       <excludeFolder url="file://$MODULE_DIR$/immagini/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/immagini/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/immagini/build" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia/build" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia2/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia2/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia2/build" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia3/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia3/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/interfaccia3/build" />
       <excludeFolder url="file://$MODULE_DIR$/interfaccia4/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/interfaccia4/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/interfaccia4/build" />
@@ -36,9 +30,6 @@
       <excludeFolder url="file://$MODULE_DIR$/multipagina/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/multipagina/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/multipagina/build" />
-      <excludeFolder url="file://$MODULE_DIR$/panini/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/panini/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/panini/build" />
       <excludeFolder url="file://$MODULE_DIR$/pariodispari/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/pariodispari/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/pariodispari/build" />
@@ -51,9 +42,6 @@
       <excludeFolder url="file://$MODULE_DIR$/rettangolo/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/rettangolo/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/rettangolo/build" />
-      <excludeFolder url="file://$MODULE_DIR$/ristorante/.dart_tool" />
-      <excludeFolder url="file://$MODULE_DIR$/ristorante/.pub" />
-      <excludeFolder url="file://$MODULE_DIR$/ristorante/build" />
       <excludeFolder url="file://$MODULE_DIR$/slot_machine/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/slot_machine/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/slot_machine/build" />
@@ -66,6 +54,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Dart SDK" level="project" />
   </component>
 </module>
