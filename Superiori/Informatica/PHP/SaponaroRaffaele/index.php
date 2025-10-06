@@ -10,7 +10,11 @@
         include "info.php";
         $conn=mysqli_connect($servername,$username,$password);
         if(!$conn){
+<<<<<<< Updated upstream:Superiori/Informatica/PHP/SaponaroRaffaele/index.php
             die("Errore");
+=======
+            die(mysqli_connect_error($conn));
+>>>>>>> Stashed changes:Informatica/PHP/SaponaroRaffaele/index.php
         }
         $dbName="saponaro_magazzino";
         $ricercaDB="SHOW DATABASES LIKE '".$dbName."'";
@@ -18,7 +22,11 @@
         if(mysqli_num_rows($resultDB)==0){
             $creazioneDB="CREATE DATABASE saponaro_magazzino;";
             if(!mysqli_query($conn,$creazioneDB)){
+<<<<<<< Updated upstream:Superiori/Informatica/PHP/SaponaroRaffaele/index.php
                 die("Errore");
+=======
+                die(mysqli_connect_error($conn));
+>>>>>>> Stashed changes:Informatica/PHP/SaponaroRaffaele/index.php
             }
             echo "ciao";
         }
@@ -27,7 +35,11 @@
         while($tabella=mysqli_fetch_assoc($resultTabelle)){
             $cancellazioneTabelle="DROP TABLE ".$dbName.".".$tabella["TABLE_NAME"].";";
             if(!mysqli_query($conn,$cancellazioneTabelle)){
+<<<<<<< Updated upstream:Superiori/Informatica/PHP/SaponaroRaffaele/index.php
                 die("Errore");
+=======
+                die(mysqli_connect_error($conn));
+>>>>>>> Stashed changes:Informatica/PHP/SaponaroRaffaele/index.php
             }
         }
         $creazioneTabellaFornitori="CREATE TABLE ".$dbName.".fornitori(
@@ -38,7 +50,11 @@
             citta varchar(30)
         );";
         if(!mysqli_query($conn,$creazioneTabellaFornitori)){
+<<<<<<< Updated upstream:Superiori/Informatica/PHP/SaponaroRaffaele/index.php
             die("Errore");
+=======
+            die(mysqli_connect_error($conn));
+>>>>>>> Stashed changes:Informatica/PHP/SaponaroRaffaele/index.php
         }
         $creazioneTabellaArticoli="CREATE TABLE ".$dbName.".articoli(
             codice_articolo varchar(15) PRIMARY KEY,
@@ -51,7 +67,11 @@
             ON DELETE CASCADE
         );";
         if(!mysqli_query($conn,$creazioneTabellaArticoli)){
+<<<<<<< Updated upstream:Superiori/Informatica/PHP/SaponaroRaffaele/index.php
             die("Errore");
+=======
+            die(mysqli_connect_error($conn));
+>>>>>>> Stashed changes:Informatica/PHP/SaponaroRaffaele/index.php
         }
         $file=fopen("Maga.csv","r");
         $fileLog=fopen("Log.txt","w");
@@ -69,7 +89,11 @@
                     $inserimentoValori="INSERT INTO ".$dbName.".fornitori(codice_fornitore,ragione_sociale,indirizzo,cap,citta) VALUES 
                     ('".$content[1]."','".$content[2]."','".$content[3]."','".$content[4]."','".$content[5]."');";
                     if(!mysqli_query($conn,$inserimentoValori)){
+<<<<<<< Updated upstream:Superiori/Informatica/PHP/SaponaroRaffaele/index.php
                        die("Errore");
+=======
+                       die(mysqli_connect_error($conn));
+>>>>>>> Stashed changes:Informatica/PHP/SaponaroRaffaele/index.php
                     }
                 }
                 else{
@@ -85,7 +109,14 @@
                     $inserimentoValori="INSERT INTO ".$dbName.".articoli(codice_articolo,descrizione,quantita,prezzo,fk_fornitore) VALUES 
                     ('".$content[1]."','".$content[2]."',".$content[3].",".$content[4].",'".$content[5]."');";
                     if(!mysqli_query($conn,$inserimentoValori)){
+<<<<<<< Updated upstream:Superiori/Informatica/PHP/SaponaroRaffaele/index.php
                         die("Errore");
+=======
+                        die(mysqli_connect_error($conn));
+                    }
+                    else{
+                        print_r($content);
+>>>>>>> Stashed changes:Informatica/PHP/SaponaroRaffaele/index.php
                     }
                 }
                 else{
