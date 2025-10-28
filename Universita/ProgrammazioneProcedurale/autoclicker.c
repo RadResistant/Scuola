@@ -8,7 +8,6 @@ int main(){
     if (display == NULL) {
         return 1;
     }
-    system("gnome-terminal");
     int num=0;
     int inte=0;
     int press=0;
