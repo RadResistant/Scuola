@@ -11,7 +11,7 @@ void cleanString(char *dpt){
     int ipt=0;
     for(int i=0;dpt[i]!='\0';i++){
         if((dpt[i]>='a' && dpt[i]<='z') || (dpt[i]>='A' && dpt[i]<='Z') ){
-            plaintext[ipt] = dpt[i];
+            plaintext[ipt]=dpt[i];
             ipt++;
         }
     }
