@@ -36,7 +36,7 @@ void cifra(char *pt,char *key,char *ct,char type){
     ct[strlen(ct)]='\0';
 }
 void cifratore(char *plaintext){
-    char *key=calloc(size,sizeof(char));
+    char *key=(char*)calloc(size,sizeof(char));
     char ciphertext[25]="";
     printf("Scrivi la tua chiave di cifratura: ");
     fgets(key, size, stdin);
@@ -55,7 +55,7 @@ void cifratore(char *plaintext){
     printf("%s\n",ciphertext);
 }
 void decifratore(char *ciphertext){
-    char *key=calloc(size,sizeof(char));
+    char *key=(char*)calloc(size,sizeof(char));
     char plaintext[25]="";
     printf("Scrivi la tua chiave di cifratura: ");
     fgets(key, size, stdin);
@@ -73,8 +73,8 @@ void decifratore(char *ciphertext){
     printf("%s\n",plaintext);
 }
 int main(){
-    char *text=calloc(size,sizeof(char));
-    char *choice=calloc(10,sizeof(char));
+    char *text=(char*)calloc(size,sizeof(char));
+    char *choice=(char*)calloc(10,sizeof(char));
     printf(">Cifratore di Vernam<\n");
     printf("Scrivi la tua frase: ");
     fgets(text,size,stdin);
