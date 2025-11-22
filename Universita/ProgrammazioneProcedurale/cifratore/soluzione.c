@@ -66,15 +66,19 @@ void decifratore(char *ciphertext){
     cifra(ciphertext,key,plaintext,'d');
     printf("ciphertext: %s\n", ciphertext); // Problema: non stampa
     printf("key: %s\n", key);
-    printf("plaintextt: \n");
-    for(int i=0;i<strlen(plaintext);i++){
+    printf("plaintext: \n");
+    if(plaintext[strlen(plaintext)]==159){
+        plaintext[strlen(plaintext)]='\0';
+    }
+    for(int i=0;i<strlen(plaintext)-1;i++){
         printf("%d: %d,\n",i,(unsigned char)plaintext[i]); // Problema: aggiunge il carattere 159 alla fine
     }
     printf("%s\n",plaintext);
 }
 int main(){
     char *text=(char*)calloc(size,sizeof(char));
-    char *choice=(char*)calloc(10,sizeof(char));
+    char *choice=(char*)calloc(8,sizeof(char));
+    char repeat[2];
     printf(">Cifratore di Vernam<\n");
     printf("Scrivi la tua frase: ");
     fgets(text,size,stdin);
@@ -82,19 +86,22 @@ int main(){
     fgets(choice,sizeof(choice),stdin);
     switch(tolower(choice[0])){
         case 'c':
-            free(choice);
             cifratore(text);
             break;
         case 'd':
-            free(choice);
             decifratore(text);
             break;
         case 'n':
             printf("Non hai scelto nulla e questo è il testo inserito: %s\n",text);
             break;
         default:
-            printf("Non hai scelto un opzione valida (Cifrare: c, Decifrare: d, Nulla:n):");
+            printf("Non hai scelto un opzione valida (Cifrare: c, Decifrare: d, Nulla:n)");
             break;
+    }
+    printf("Vuoi eseguire altre operazioni?(si=y, no=n):");
+    scanf("%s",repeat);
+    if(repeat[0]=='y'){
+        main();
     }
     return 0;
 }
