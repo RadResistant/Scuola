@@ -1,24 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "gamelib.h"
-int scegli(){
-    int scelta;
-    int validInput;
-    do {
-        printf("Menù\n1)imposta gioco\n2)gioca\n3)termina gioco\n4)crediti\nScegli un opzione del menu:");
-        validInput=scanf("%d",&scelta);
-        if(validInput!=1){
-            printf("non hai scelto un opzione valida\n");
-            while(getchar()!='\n');
-        }
-    } while (validInput != 1);
-    return scelta;
-}
+static int impostato=0;
 void imposta_gioco(){
     printf("imposta gioco\n");
+    impostato=1;
 }
 void gioca(){
-    printf("gioca\n");
+    if(impostato){
+        printf("gioca\n");
+    }
+    else{
+        printf("prima di poter giocare devi impostare il gioco\n");
+    }
 }
 void termina_gioco(){
     printf("termina gioco\n");
