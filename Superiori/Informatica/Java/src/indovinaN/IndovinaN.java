@@ -5,7 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
+// import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -16,10 +16,10 @@ public class IndovinaN extends Application {
 		Button bProva = new Button("Prova");
 		int numeroEstratto;
 		int numeroTentaitivi;
-//		RadioButton rb100 = new RadioButton("0,100");
-//		RadioButton rb1000 = new RadioButton("0,1000");
-//		RadioButton rb10000 = new RadioButton("0,10000");
-//		ToggleGroup tgProva = new ToggleGroup();
+		// RadioButton rb100 = new RadioButton("0,100");
+		// RadioButton rb1000 = new RadioButton("0,1000");
+		// RadioButton rb10000 = new RadioButton("0,10000");
+		// ToggleGroup tgProva = new ToggleGroup();
 		
 	public void start(Stage finestra) throws Exception {
 			

@@ -1,5 +1,5 @@
 package vettoriSTRAni;
-import java.util.Iterator;
+// import java.util.Iterator;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
