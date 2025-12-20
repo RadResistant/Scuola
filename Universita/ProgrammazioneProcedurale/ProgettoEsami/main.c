@@ -1,16 +1,18 @@
 #include <stdio.h>
 #include "gamelib.h"
 int main(){
+    printf("----------------------Menù--------------------------\n");
     int scelta;
     int validInput;
     do{
-        printf("Menù\n1)imposta gioco\n2)gioca\n3)termina gioco\n4)crediti\nScegli un opzione del menu:");
+        printf("1)Imposta gioco\n2)Gioca\n3)Termina gioco\n4)Crediti\nScegli un opzione del menu:");
         validInput=scanf("%d",&scelta);
         if(validInput!=1){
-            printf("non hai scelto un opzione valida\n");
+            printf("Non hai scelto un opzione valida\n");
             while(getchar()!='\n');
         }
     }while(validInput!=1);
+    printf("----------------------------------------------------\n");
     switch(scelta){
         case 1:
             imposta_gioco();
@@ -32,7 +34,7 @@ int main(){
             crediti();
             break;
         default:
-            printf("non hai scelto un opzione valida\n");
+            printf("Non hai scelto un opzione valida\n");
             break;
     }
     main();

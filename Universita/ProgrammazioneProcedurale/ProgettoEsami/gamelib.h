@@ -27,9 +27,6 @@ void imposta_gioco();
 void gioca();
 void termina_gioco();
 void crediti();
-<<<<<<< Updated upstream
-=======
-int scegli();
 struct zona_mondoreale{
     tipo_zona tipo_zona_mondoreale;
     tipo_nemico tipo_nemico_mondoreale;
@@ -43,10 +40,9 @@ struct zona_soprasotto{
     struct zona_mondoreale *indietro;
     struct zona_soprasotto *link_soprasotto;
 };
->>>>>>> Stashed changes
 struct giocatore{
     char nome[64];
-    enum {reale=0,soprasotto=1} mondo;
+    enum {mondoreale=0,soprasotto=1} mondo;
     struct zona_mondoreale *pos_mondoreale;
     struct zona_soprasotto *pos_soprasotto;
     short attacco_psichico;
