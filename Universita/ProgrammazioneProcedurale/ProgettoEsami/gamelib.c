@@ -1,15 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
 #include "gamelib.h"
 static int impostato=0;
-static struct giocatore giocatori[4];
-static struct zona_mondoreale mappa_mondoreale[15];
-static struct zona_soprasotto mappa_soprasotto[15];
-static void inserisci_giocatore(){
-    // Registrazione giocatore
+static int inseriti=0;
+static struct giocatore *giocatori[4];
+// static struct zona_mondoreale *mappa_mondoreale[15];
+// static struct zona_soprasotto *mappa_soprasotto[15];
+static void pulisciBuffer(int validInput){
+    while(getchar()!='\n');
+    if(validInput!=1){
+        printf("Non hai scelto un opzione valida\n");
+    }
 }
-static void rimuovi_giocatore(){
-    // Rimozione giocatore
+static void inserisci_giocatore(){
+    int quantita;
+    int validInput;
+    int undiciEsiste=0;
+    printf("----------------Inserisci-giocatori-----------------\n");
+    do{
+        printf("Inserisci la quantita di giocatori che vuoi inserire: ");
+        validInput=scanf("%d",&quantita);
+        pulisciBuffer(validInput);
+    }while(validInput!=1);
+    printf("----------------------------------------------------\n\n");
+    for(int i=0;i<quantita;i++){
+        printf("--------------------Giocatore-%d--------------------\n",i+1);
+        giocatori[i]=malloc(sizeof(struct giocatore));
+        printf("Inserisci il nome (max 62 caratteri): ");
+        scanf("%62s",giocatori[i]->nome);
+        giocatori[i]->attacco_psichico=1+rand()%20;
+        giocatori[i]->difesa_psichica=1+rand()%20;
+        giocatori[i]->fortuna=1+rand()%20;
+        printf("Il suo attacco psichico vale: %d\n",giocatori[i]->attacco_psichico);
+        printf("La sua difesa psichica vale: %d\n",giocatori[i]->difesa_psichica);
+        printf("La sua fortuna vale: %d\n",giocatori[i]->fortuna);
+        giocatori[i]->mondo=0;
+        pulisciBuffer(1);
+        if(!undiciEsiste){
+            char vuole[5];
+            printf("Vuoi diventare UndiciVirgolaCinque?[y/n]:");
+            scanf("%s",vuole);
+            if(vuole[0]=='y'){
+                strcpy(giocatori[i]->nome,"UndiciVirgolaCinque");
+                giocatori[i]->attacco_psichico+=4;
+                giocatori[i]->difesa_psichica+=4;
+                giocatori[i]->fortuna-=7;
+                undiciEsiste=1;
+                printf("Ora il suo attacco psichico vale: %d\n",giocatori[i]->attacco_psichico);
+                printf("Ora la sua difesa psichica vale: %d\n",giocatori[i]->difesa_psichica);
+                printf("Ora la sua fortuna vale: %d\n",giocatori[i]->fortuna);
+            }
+        }
+        printf("----------------------------------------------------\n\n");
+    }
 }
 static void genera_mappa(){
     // Crazione della mappa
@@ -27,42 +72,36 @@ static void stampa_zona(){
     // Stampa della zona scelta dallutente
 }
 void imposta_gioco(){
-    printf("----------------------Menù-mappa--------------------\n");
-    register_giocatore();
+    if(!inseriti){
+        inserisci_giocatore();
+    }
+    inseriti=1;
     int scelta;
     int validInput;
     do{
-        printf("1)Inserisci giocatore\n2)Rimuovi giocatore\n3)Genera mappa\n4)Inserisci zona\n5)Cancella zona\n6)Stampa mappa\n7)Stampa zona\n8)Chiudi mappa\nScegli un opzione del menu:");
+        printf("----------------------Menù-mappa--------------------\n");
+        printf("1)Genera mappa\n2)Inserisci zona\n3)Cancella zona\n4)Stampa mappa\n5)Stampa zona\n6)Chiudi mappa\nScegli un opzione del menu:");
         validInput=scanf("%d",&scelta);
-        if(validInput!=1){
-            printf("Non hai scelto un opzione valida\n");
-            while(getchar()!='\n');
-        }
+        pulisciBuffer(validInput);
     }while(validInput!=1);
-    printf("----------------------------------------------------\n");
+    printf("----------------------------------------------------\n\n");
     switch(scelta){
         case 1:
-            inserisci_giocatore();
-            break;
-        case 2:
-            rimuovi_giocatore();
-            break;
-        case 3:
             genera_mappa();
             break;
-        case 4:
+        case 2:
             inserisci_zona();
             break;
-        case 5:
+        case 3:
             cancella_zona();
             break;
-        case 6:
+        case 4:
             stampa_mappa();
             break;
-        case 7:
+        case 5:
             stampa_zona();
             break;
-        case 8:
+        case 6:
             impostato=1;
             return;
             break;

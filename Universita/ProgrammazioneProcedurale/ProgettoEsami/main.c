@@ -1,6 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "gamelib.h"
 int main(){
+    time_t t;
+    srand((unsigned)time(&t));
     printf("----------------------Menù--------------------------\n");
     int scelta;
     int validInput;
@@ -12,7 +16,7 @@ int main(){
             while(getchar()!='\n');
         }
     }while(validInput!=1);
-    printf("----------------------------------------------------\n");
+    printf("----------------------------------------------------\n\n");
     switch(scelta){
         case 1:
             imposta_gioco();
